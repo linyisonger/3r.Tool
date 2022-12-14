@@ -1,0 +1,16 @@
+{
+  "name": "@3r/tool",
+  "version": "0.0.3",
+  "description": "这是一个工具包.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node ./test/index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
