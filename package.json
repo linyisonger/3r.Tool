@@ -1,14 +1,18 @@
 {
   "name": "@3r/tool",
   "version": "0.0.3",
-  "description": "这是一个工具包.",
+  "description": "🎨This is a tool kit for front-end common methods.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node ./test/index"
+    "test": "node ./test/index.cjs",
+    "build": "npx tsc && node ./build/readme.cjs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "typescript",
+    "tool"
+  ],
+  "author": "3r",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.9.4"

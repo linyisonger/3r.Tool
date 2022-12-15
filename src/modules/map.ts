@@ -1,4 +1,4 @@
-import { Maths } from "./maths";
+import { Maths } from "./maths.js";
 /**
  * 地图经纬度
  */
