@@ -9,7 +9,7 @@ let run = function () {
 
 
 
-module.exports = {
+export {
     run,
     description
 }

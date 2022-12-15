@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node ./test/index.cjs",
-    "build": "npx tsc && node ./build/readme.cjs"
+    "test": "node ./test/index.js",
+    "build": "npx tsc && node ./build/readme.js"
   },
   "keywords": [
     "typescript",
