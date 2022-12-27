@@ -1,6 +1,6 @@
 {
   "name": "@3r/tool",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "🎨This is a tool kit for front-end common methods.",
   "main": "index.js",
   "type": "module",
