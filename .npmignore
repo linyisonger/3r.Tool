@@ -2,3 +2,5 @@
 /test
 /build
 tsconfig.json
+/.vscode
+/.github
