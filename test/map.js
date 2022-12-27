@@ -1,7 +1,7 @@
 import { Map } from '../index.js'
 
 let description = function () {
-    return ['#### Map 地图模块', '包含一些与地图的方法.', '以下是相关示例:']
+    return ['#### Map 地图模块', '包含一些与地图的方法.', '', '以下是相关示例:']
 }
 
 let run = function () {

@@ -15,7 +15,7 @@ async function write() {
     // 获取改文件所在文件夹
     const __dirname = dirname(fileURLToPath(import.meta.url))
     // 书写模板
-    let template = ['### 🛠', '🎨内置了一些常用的前端方法.', '', '', ''].join('\n')
+    let template = ['### 🛠 JS Tool', '🎨内置了一些常用的Js方法.', '', '', '![npm](https://img.shields.io/npm/v/@3r/tool?style=for-the-badge)![npm](https://img.shields.io/npm/dw/@3r/tool?style=for-the-badge)', '', ''].join('\n')
 
     let currSrc = __dirname.replace('build', 'test')
     let currDir = readdirSync(currSrc)

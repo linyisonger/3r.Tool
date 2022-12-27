@@ -24,16 +24,14 @@ async function test() {
         // 执行测试文件
         console.log('TEST RUN FileName: ', file);
         // try {
-            await (await import(fileName)).run()
+        await (await import(fileName)).run()
         // } catch (error) {
-            // console.log('TEST ERROR', error)
-            // console.log('TEST FileName: ', file);
-            // console.log('TEST Time: ', new Date());
+        // console.log('TEST ERROR', error)
+        // console.log('TEST FileName: ', file);
+        // console.log('TEST Time: ', new Date());
         // }
     }
     console.log('TEST DONE ...');
-
-
 }
 
 test();
