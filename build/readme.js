@@ -36,7 +36,7 @@ async function write() {
         // 添加脚本
         template += ['```js', '\n'].join('')
         scriptLines.slice(1, scriptLines.length - 1).forEach((line) => {
-            template += `${line.substring(4)}`
+            template += `${line.substring(4)}\n`
         })
         template += ['\n', '```', '\n', '\n'].join('')
     }

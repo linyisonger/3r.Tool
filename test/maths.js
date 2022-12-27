@@ -5,7 +5,6 @@ let description = function () {
 }
 
 let run = function () {
-
     console.log('获取整数12的所有因数', Maths.getFactors(12));
     // [
     //   { a: 1, b: 12 },
