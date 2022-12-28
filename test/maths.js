@@ -29,6 +29,16 @@ let run = function () {
     // 0.7853981633974483
     console.log('弧度转角度', Maths.radToDegree(0.7853981633974483))
     // 45
+    console.log('交集 A∩B', Maths.intersection([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }, false, true, 1, 3, 5, { a: 2, c: [1, 2] }], [true, 5, 5, { z: 3, a: 2 }]));
+    // [ { a: 2, z: 3 }, true, 5, 5 ]
+    console.log('对象是否相等', Maths.equal({ a: 2, z: 3 }, { z: 3, a: 2 }));
+    // true
+    console.log('删除重复项', Maths.removeRepeat([{ x: 1, y: 2 }, 2, 3, { y: 2, x: 1 }, 1, 4, 5, 6, 2, 3, 4, 4, 45, 4, 31]));
+    // [ { x: 1, y: 2 }, 2, 3, 1, 4, 5, 6, 45, 31 ]
+    console.log('补集', Maths.complementarySet([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }, false, true, 1, 3, 5, { a: 2, c: [1, 2] }], [true, 5, 5, { z: 3, a: 2 }, 8, { z: 3, a: 3 }]))
+    // [ 8, { z: 3, a: 3 } ] 
+    console.log('并集', Maths.union([1, 23, 4, 556, 14, 124], [123, 452, 231, 1, 14]));
+    // [ 23, 4, 556, 124, 123, 452, 231 ]
 }
 
 

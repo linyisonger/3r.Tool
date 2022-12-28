@@ -1,4 +1,3 @@
-### 🛠 JS Tool
 🎨内置了一些常用的Js方法.
 
 
@@ -23,10 +22,12 @@ console.log('json对象转换base64', Convertor.jsonToBase64({ a: 1 }));
 // eyJhIjoxfQ==
 console.log('base64转换json对象', Convertor.base64ToJson('eyJhIjoxfQ=='));
 // { a: 1 }
-console.log('颜色转换',Convertor.hexToRgb('f2a'));
+console.log('颜色转换', Convertor.hexToRgb('f2a'));
 // rgb(255,34,170)
-console.log('颜色转换',Convertor.rgbToHex('rgb(255,34,170)'));
+console.log('颜色转换', Convertor.rgbToHex('rgb(255,34,170)'));
 // #ff22aa
+console.log('xml输出文本', Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>'));
+// 总金额 100,000.00
 
 ```
 
@@ -47,7 +48,6 @@ console.log(`计算郑州市到杭州市的距离约:${Map.distance({ latitude: 
 
 以下是相关示例:
 ```js
-
 console.log('获取整数12的所有因数', Maths.getFactors(12));
 // [
 //   { a: 1, b: 12 },
@@ -72,6 +72,16 @@ console.log('角度转弧度', Maths.degreeToRad(45));
 // 0.7853981633974483
 console.log('弧度转角度', Maths.radToDegree(0.7853981633974483))
 // 45
+console.log('交集 A∩B', Maths.intersection([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }, false, true, 1, 3, 5, { a: 2, c: [1, 2] }], [true, 5, 5, { z: 3, a: 2 }]));
+// [ { a: 2, z: 3 }, true, 5, 5 ]
+console.log('对象是否相等', Maths.equal({ a: 2, z: 3 }, { z: 3, a: 2 }));
+// true
+console.log('删除重复项', Maths.removeRepeat([{ x: 1, y: 2 }, 2, 3, { y: 2, x: 1 }, 1, 4, 5, 6, 2, 3, 4, 4, 45, 4, 31]));
+// [ { x: 1, y: 2 }, 2, 3, 1, 4, 5, 6, 45, 31 ]
+console.log('补集', Maths.complementarySet([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }, false, true, 1, 3, 5, { a: 2, c: [1, 2] }], [true, 5, 5, { z: 3, a: 2 }, 8, { z: 3, a: 3 }]))
+// [ 8, { z: 3, a: 3 } ]
+
+console.log('并集');
 
 ```
 

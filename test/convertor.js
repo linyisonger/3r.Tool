@@ -19,10 +19,12 @@ let run = function () {
     // eyJhIjoxfQ==
     console.log('base64转换json对象', Convertor.base64ToJson('eyJhIjoxfQ=='));
     // { a: 1 }
-    console.log('颜色转换',Convertor.hexToRgb('f2a'));
+    console.log('颜色转换', Convertor.hexToRgb('f2a'));
     // rgb(255,34,170)
-    console.log('颜色转换',Convertor.rgbToHex('rgb(255,34,170)'));
+    console.log('颜色转换', Convertor.rgbToHex('rgb(255,34,170)'));
     // #ff22aa
+    console.log('xml输出文本', Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>'));
+    // 总金额 100,000.00
 }
 
 

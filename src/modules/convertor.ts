@@ -254,4 +254,12 @@ export class Convertor {
         else throw new TypeError("input data type error.")
     }
 
+    /**
+     * xml 输出 文本
+     * <p>123</p> => 123
+     * @param xml 
+     */
+    static xmlToText(xml: string): string {
+        return xml.replace(/<[^>]+>/g, '')
+    }
 }   

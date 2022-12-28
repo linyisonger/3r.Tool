@@ -72,4 +72,84 @@ export class Maths {
     static radToDegree(rad: number) {
         return rad * 180 / Math.PI
     }
+
+    /**
+     * 对象是否相等
+     * @param A 
+     * @param B 
+     */
+    static equal<T>(A: T, B: T): Boolean {
+        if (typeof A !== typeof B) return false;
+        if (typeof A === 'object') {
+            for (const key in A)
+                if (!this.equal(A[key], B[key]))
+                    return false
+            return true
+        }
+        if (A !== B) return false
+        return true;
+    }
+
+
+    /**
+     * 交集
+     * @param A 
+     * @param B
+     */
+    static intersection<T>(A: T[], B: T[]): T[] {
+        const result = new Array<T>()
+        for (let i = 0; i < A.length; i++) {
+            for (let j = 0; j < B.length; j++) {
+                if (this.equal(A[i], B[j])) result.push(A[i])
+            }
+        }
+        return result
+    }
+
+    /**
+     * 删除重复项 (改变原数组)
+     * @param A
+     */
+    static removeRepeat<T>(A: T[]): T[] {
+        for (let i = 0; i < A.length - 1; i++) {
+            for (let j = i + 1; j < A.length; j++) {
+                if (this.equal(A[i], A[j])) {
+                    A.splice(j, 1);
+                    j--;
+                }
+            }
+        }
+        return A
+    }
+
+
+    /**
+     * 补集
+     * @param A 
+     * @param B 
+     */
+    static complementarySet<T>(A: T[], B: T[]): T[] {
+        const result = new Array<T>()
+        for (let i = 0; i < B.length; i++) {
+            if (!A.find(_ => this.equal(B[i], _))) result.push(B[i])
+        }
+        return result
+    }
+
+    /**
+     * 并集
+     * @param A 
+     * @param B 
+     * @returns 
+     */
+    static union<T>(A: T[], B: T[]): T[] {
+        const result = new Array<T>()
+        for (let i = 0; i < A.length; i++) {
+            if (!B.find(_ => this.equal(A[i], _))) result.push(A[i])
+        }
+        for (let i = 0; i < B.length; i++) {
+            if (!A.find(_ => this.equal(B[i], _))) result.push(B[i])
+        }
+        return result
+    }
 }
