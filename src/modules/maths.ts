@@ -6,6 +6,15 @@ interface IFactor {
     b: number
 }
 
+/** 交换枚举 */
+export enum InterchangeFlag {
+    /** 进操作位置更新 */
+    Move,
+    /** 俩下标值更新 */
+    Change
+}
+
+
 /**
  * 数学拓展类
  */
@@ -151,5 +160,22 @@ export class Maths {
             if (!A.find(_ => this.equal(B[i], _))) result.push(B[i])
         }
         return result
+    }
+
+    /**
+     * 数组 通过下标交互位置
+     * @param array 
+     * @param currentIndex 
+     * @param targetIndex 
+     */
+    static interchange<T>(array: T[], currentIndex: number, targetIndex: number, flag = InterchangeFlag.Move) {
+        if (flag === InterchangeFlag.Move)
+            array.splice(targetIndex, 0, ...array.splice(currentIndex, 1))
+        if (flag === InterchangeFlag.Change) {
+            const tmp = array[currentIndex];
+            array[currentIndex] = array[targetIndex]
+            array[targetIndex] = tmp;
+        }
+        return array;
     }
 }
