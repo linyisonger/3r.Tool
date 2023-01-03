@@ -32,8 +32,10 @@ let a = {
     int16Array: new Int16Array([22, 33, 13]),
     int32Array: new Int32Array([22, 22, 13]),
 }
+a.color.add('222')
 let b = cloneDeep(a)
 b.x = 2
+b.color.delete('222')
 console.log('深克隆', a, b);
 
 ```
