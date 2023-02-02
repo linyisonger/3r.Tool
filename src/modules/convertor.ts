@@ -262,4 +262,90 @@ export class Convertor {
     static xmlToText(xml: string): string {
         return xml.replace(/<[^>]+>/g, '')
     }
+
+
+    /**
+     * 数字转大写金额
+     * 引用 https://www.cnblogs.com/wangfuyou/p/7426472.html
+     * @param num 
+     * @returns
+     */
+    static numToAmountInWords(num: number): string {
+        const fraction = ['角', '分'];
+        const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+        const unit = [['圆', '万', '亿'], ['', '拾', '佰', '仟']];
+        let IsNum = Number(num);
+        if (isNaN(IsNum)) return '';
+        let head = num < 0 ? '欠' : '';
+        num = Math.abs(num);
+        let s = '';
+        for (let i = 0; i < fraction.length; i++) {
+            s += (digit[Math.floor(num * 100 / 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');
+        }
+        s = s || '整';
+        num = Math.floor(num);
+        for (let i = 0; i < unit[0].length && num > 0; i++) {
+            let p = '';
+            for (let j = 0; j < unit[1].length && num > 0; j++) {
+                p = digit[num % 10] + unit[1][j] + p;
+                num = Math.floor(num / 10);
+            }
+            s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s;
+        }
+        return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');
+    }
+    /**
+     * 数字转中文
+     * @param num 整数
+     */
+    static numToChinese(num: number): string {
+        const digit = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+        const unit = [['', '万', '亿'], ['', '十', '百', '千']];
+        let IsNum = Number(num);
+        if (isNaN(IsNum)) return '';
+        num = Math.abs(num);
+        let s = '';
+        num = Math.floor(num);
+        for (let i = 0; i < unit[0].length && num > 0; i++) {
+            let p = '';
+            for (let j = 0; j < unit[1].length && num > 0; j++) {
+                let c = digit[num % 10] + unit[1][j];
+                p = num % 10 ? c + p : p;
+                num = Math.floor(num / 10);
+            }
+            p = p.replace('一十', '十')
+            s = p + unit[0][i] + s;
+        }
+        return s
+    }
+
+    /**
+     * url query 方式转成 object 形式
+     * @author 桃子
+     * @param url 地址
+     */
+    static urlQueryToObject(url: string) {
+        const obj: any = {}
+        const urls = url.split('?')[1]
+        const arr = urls.split('&')
+        for (let i = 0; i < arr.length; i++) {
+            const brr = arr[i].split('=')
+            obj[brr[0]] = brr[1]
+        }
+        return obj
+    }
+    /**
+     * url object 方式转成 query 形式
+     * @param obj 对象
+     * @returns 
+     */
+    static urlObjectToQuery(obj: any) {
+        let query = ''
+        for (const key in obj) {
+            query += query ? '&' : '?';
+            query += `${key}=${obj[key]}`
+        }
+        return query
+    }
+
 }   
