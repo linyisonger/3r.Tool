@@ -327,6 +327,7 @@ export class Convertor {
     static urlQueryToObject(url: string) {
         const obj: any = {}
         const urls = url.split('?')[1]
+        if (!urls) return {}
         const arr = urls.split('&')
         for (let i = 0; i < arr.length; i++) {
             const brr = arr[i].split('=')
