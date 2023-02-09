@@ -1,4 +1,4 @@
-🎨内置了一些常用的Js方法.
+🏃‍包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合
 
 
 ![npm](https://img.shields.io/npm/v/@3r/tool?style=for-the-badge)![npm](https://img.shields.io/npm/dw/@3r/tool?style=for-the-badge)
@@ -94,9 +94,10 @@ console.log(`计算郑州市到杭州市的距离约:${Map.distance({ latitude: 
 以下是相关示例:
 ```js
 // 恒生电子的日k值 ———— https://stock.9fzt.com/ 九方智投 文章篇幅有限通过github访问测试文件
-// console.log('恒生电子日k的KDJ值', Market.kdj(hundsunDayK.map(format9fzt)))
-// console.log('恒生电子日k的MACD值', Market.macd(hundsunDayK.map(format9fzt)).pop())
-console.log('恒生电子日k的RSI值', Market.rsi(hundsunDayK.map(format9fzt)).pop())
+console.log('恒生电子KDJ值', Market.kdj(hundsunDayK.map(format9fzt)).pop())
+console.log('恒生电子MACD值', Market.macd(hundsunDayK.map(format9fzt)).pop())
+console.log('恒生电子RSI值', Market.rsi(hundsunDayK.map(format9fzt)).pop())
+console.log('恒生电子BOLL值', Market.boll(hundsunDayK.map(format9fzt)).pop())
 
 ```
 
