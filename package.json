@@ -10,10 +10,15 @@
   },
   "keywords": [
     "typescript",
-    "tool"
+    "market",
+    "convertor",
+    "common",
+    "vertor2",
+    "verify",
+    "math"
   ],
   "author": "3r",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^4.9.4"
   }
