@@ -5,7 +5,7 @@
  * @Date 2022/12/15 09:06:52
  */
 import path, { dirname } from 'path'
-import { readdirSync, writeFileSync } from 'fs';
+import { readdirSync, writeFileSync, readFileSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 
 /**
@@ -15,7 +15,7 @@ async function write() {
     // 获取改文件所在文件夹
     const __dirname = dirname(fileURLToPath(import.meta.url))
     // 书写模板
-    let template = ['🏃‍包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合', '', '', '![npm](https://img.shields.io/npm/v/@3r/tool?style=for-the-badge)![npm](https://img.shields.io/npm/dw/@3r/tool?style=for-the-badge)', '', ''].join('\n')
+    let template = readFileSync(path.join(__dirname, 'template.md'), 'utf-8')
 
     let currSrc = __dirname.replace('build', 'test')
     let currDir = readdirSync(currSrc)
