@@ -16,7 +16,7 @@ async function write() {
     const __dirname = dirname(fileURLToPath(import.meta.url))
     // 书写模板
     let template = readFileSync(path.join(__dirname, 'template.md'), 'utf-8')
-
+    let help = readFileSync(path.join(__dirname, 'help.md'), 'utf-8')
     let currSrc = __dirname.replace('build', 'test')
     let currDir = readdirSync(currSrc)
 
@@ -41,6 +41,7 @@ async function write() {
         template += ['\n', '```', '\n', '\n'].join('')
     }
 
+    template += help
     writeFileSync('README.md', template)
 }
 
