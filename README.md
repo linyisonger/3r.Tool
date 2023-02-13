@@ -61,6 +61,28 @@ export default {
   </body>
 </html>
 ```
+#### Animation 动画模块
+包含一些动画的方法.
+
+以下是相关示例:
+```js
+let offset = 1 / 120 // 执行次数
+let interval = 250; // 延迟
+let minInterval = 50; // 最小延迟
+// 影响我打包速度😅
+// 这里不测试了 
+for (let i = 0; i <= 1; i += offset) {
+    // 延迟时间 
+    // await waitTime(Math.max(Animation.easeIn(i) * interval, minInterval))
+    // await waitTime(Math.max(Animation.easeInOut(i) * interval))
+    // await waitTime(Math.max(Animation.ease(i) * interval))
+    // await waitTime(Math.max(Animation.easeOut(i) * interval))
+    // TODO 可以参考相关示例 34.抽奖页面
+    // https://linyisonger.github.io/H5.Examples/
+}
+
+```
+
 #### Common 常用模块
 包含一些常用的方法.
 
@@ -212,6 +234,8 @@ console.log('获取随机数(整数) [0~10)之间的数', Randoms.getRandomInt(0
 console.log('打乱数组', Randoms.getDisorganizeArray([{ a: 1 }, { b: 1 }, { c: 1 }]));
 console.log('随机一个长度为10的只有大小写的字母字符串', Randoms.getRandomStr(10, GetRandomStrEnum.LargeSmall))
 console.log('全局唯一标识符(uuid)', Randoms.uuid());
+// 数据格式 [{name:string,weight:number}] weight 支持自定义在第二个参数中
+console.log('按权重获取随机索引', Randoms.getRandomIndexByWeight(prizes));
 
 ```
 

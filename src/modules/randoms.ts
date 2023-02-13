@@ -1,3 +1,5 @@
+import { Maths } from "../modules/maths.js";
+
 export enum GetRandomStrEnum {
     /** 大写字母 */
     Large = 1,
@@ -70,5 +72,23 @@ export class Randoms {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
+    }
+
+    /**
+     * 随机获取数组下表 通过权重随机
+     * @param arr 
+     * @param weightKeyt 
+     */
+    static getRandomIndexByWeight(arr: [], weightKey = 'weight') {
+        /** 总权重 */
+        let total = Maths.sum(arr.map(_ => +_[weightKey]))
+        /** 随机数 */
+        let randomNum = Randoms.getRandomInt(0, total)
+        let tmp = 0;
+        for (let i = 0; i < arr.length; i++) {
+            tmp += +arr[i][weightKey]
+            if (tmp > randomNum) return i
+        }
+        return 0;
     }
 }
