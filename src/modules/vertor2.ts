@@ -67,6 +67,14 @@ export class Vector2 {
         return this.x * t.x + this.y * t.y;
     }
 
+    /**
+     * 复制一个新的对象出来 避免源对象污染
+     * @returns 
+     */
+    copy(): Vector2 {
+        return v2(this.x, this.y)
+    }
+
 
     /**
      * 检测两线段是否交叉
