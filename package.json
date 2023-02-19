@@ -1,6 +1,6 @@
 {
   "name": "@3r/tool",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "🏃‍包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合",
   "main": "index.js",
   "type": "module",
