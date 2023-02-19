@@ -291,6 +291,11 @@ console.log('计算p1到p2两点之间的距离 保留3位小数', Vector2.dista
 // 1 
 console.log('计算两直线的夹角角度', Vector2.includedAngle(v2(1, 0), v2(1, 1)))
 // 45
+let a = v2(1, 2)
+let b = a.copy();
+b.x = 3;
+console.log('复制对象a', a, b);
+// Vector2 { x: 1, y: 2 } Vector2 { x: 3, y: 2 }
 
 ```
 
