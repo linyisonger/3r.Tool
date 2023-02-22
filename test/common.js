@@ -1,4 +1,4 @@
-import { cloneDeep } from "../index.js";
+import { cloneDeep, v2 } from "../index.js";
 
 let description = function () {
     return ['#### Common 常用模块', '包含一些常用的方法.', '', '以下是相关示例:']
@@ -34,6 +34,10 @@ let run = function () {
     b.x = 2
     b.color.delete('222')
     console.log('深克隆', a, b);
+    let p1 = v2(1, 2)
+    let p2 = cloneDeep(p1);
+    p1.x = 2;
+    console.log(p1, p2, p2.plus(p1));
 }
 
 
