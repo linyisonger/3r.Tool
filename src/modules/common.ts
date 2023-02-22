@@ -16,13 +16,18 @@ export function cloneDeep<T>(obj: T) {
     if (obj instanceof Set) return new Set(obj.values()) as T
     if (obj instanceof RegExp) return new RegExp(obj) as T
     if (obj instanceof Date) return new Date(+obj) as T
-    
+
     if (typeof obj === "object") {
         let res = (Array.isArray(obj) ? [] : {}) as T
+        // 获取类型
+        let proOf = Reflect.getPrototypeOf(obj as object)
+        // 设置类型
+        Reflect.setPrototypeOf(res as object, proOf)
         for (const key in obj) {
             res[key] = cloneDeep(obj[key])
         }
         return res
     }
+
     return obj
 }
