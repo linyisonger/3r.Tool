@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Cache
-        uses: actions/cache@v3.2.6
       # this will check out the current branch (https://github.com/actions/checkout#Push-a-commit-using-the-built-in-token)
       - uses: actions/checkout@v2
       # installing Node
