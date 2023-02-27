@@ -23,6 +23,7 @@ export function cloneDeep<T>(obj: T) {
         let proOf = Reflect.getPrototypeOf(obj as object)
         // 设置类型
         Reflect.setPrototypeOf(res as object, proOf)
+
         for (const key in obj) {
             res[key] = cloneDeep(obj[key])
         }

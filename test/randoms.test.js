@@ -48,7 +48,30 @@ let run = function () {
     console.log('按权重获取随机索引', Randoms.getRandomIndexByWeight(prizes));
 }
 
+try {
+    describe('随机模块', function () {
+        it('获取随机数(整数) [0~10)之间的数', function () {
+            expect(Randoms.getRandomInt(0, 10) < 10).toEqual(true)
+        })
+        it('打乱数组', function () {
+            expect(Randoms.getDisorganizeArray([{ a: 1 }, { b: 1 }, { c: 1 }]).length == 3).toEqual(true)
+        })
+        it('随机一个长度为10的只有大小写的字母字符串', function () {
+            expect(Randoms.getRandomStr(10, GetRandomStrEnum.LargeSmall).length == 10).toEqual(true)
+            expect(Randoms.getRandomStr(10, GetRandomStrEnum.Number).length == 10).toEqual(true)
+            expect(Randoms.getRandomStr(10, "LargeSmall").length == 10).toEqual(true)
+        })
+        it('全局唯一标识符(uuid)', function () {
+            expect(Randoms.uuid().length).toEqual('e5d823f1-c4dd-4205-91c6-7cc1fe61cb0c'.length)
+        })
+        it('按权重获取随机索引', function () {
+            expect(Randoms.getRandomIndexByWeight(prizes) < prizes.length).toEqual(true)
 
+        })
+    })
+} catch (error) {
+    // describe is not defined 无需理会 调用方式不一致 
+}
 
 export {
     run,

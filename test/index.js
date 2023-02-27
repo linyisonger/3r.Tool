@@ -23,7 +23,7 @@ async function test() {
         // 获取文件名称
         let fileName = pathToFileURL(path.join(currSrc, file), 'file:');
         // 判断文件名称是否是自身 自身跳过
-        if (file.endsWith('index.js')) continue;
+        if (file.startsWith('index')) continue;
         // 判断文件名包含有关键词 跳过
         if (fileNameKeyword && !file.includes(fileNameKeyword)) continue
         // 执行测试文件

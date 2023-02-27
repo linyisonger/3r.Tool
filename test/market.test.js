@@ -19224,7 +19224,24 @@ let run = function () {
     console.log('恒生电子BOLL值', Market.boll(hundsunDayK.map(format9fzt)).pop())
 }
 
-
+try {
+    describe('股票模块', function () {
+        it('恒生电子KDJ值', function () {
+            expect(Market.kdj(hundsunDayK.map(format9fzt)).pop()).toEqual({ "d": 54.66232390908137, "j": 78.11939581422735, "k": 42.93378795650838, "time": 1675872000 })
+        })
+        it('恒生电子MACD值', function () {
+            expect(Market.macd(hundsunDayK.map(format9fzt)).pop()).toEqual({ "dea": 1.7334957322232463, "diff": 1.7593417687652888, "macd": 0.05169207308408508, "time": 1675872000 })
+        })
+        it('恒生电子RSI值', function () {
+            expect(Market.rsi(hundsunDayK.map(format9fzt)).pop()).toEqual({ "rsi12": 65.30589766247904, "rsi24": 64.4059058943537, "rsi6": 58.98822253342878, "time": 1675872000 })
+        })
+        it('恒生电子BOLL值', function () {
+            expect(Market.boll(hundsunDayK.map(format9fzt)).pop()).toEqual({ "lower": 40.90394770381259, "mid": 45.30200000000008, "time": 1675872000, "upper": 49.700052296187565 })
+        })
+    })
+} catch (error) {
+    // describe is not defined 无需理会 调用方式不一致 
+}
 
 export {
     run,

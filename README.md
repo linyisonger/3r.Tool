@@ -1,6 +1,6 @@
 🏃‍ 包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票 KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合
 
-![npm](https://img.shields.io/npm/v/@3r/tool?style=for-the-badge)![npm](https://img.shields.io/npm/dw/@3r/tool?style=for-the-badge)
+![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/publish-npm.yml?style=for-the-badge)![npm](https://img.shields.io/npm/v/@3r/tool?style=for-the-badge)![npm](https://img.shields.io/npm/dw/@3r/tool?style=for-the-badge)
 
 #### 如何使用工具包 ?
 
@@ -88,7 +88,6 @@ for (let i = 0; i <= 1; i += offset) {
 
 以下是相关示例:
 ```js
-
 let a = {
     x: 1, y: '2', z: 33333333333333333333333333333, h: function () {
         return this.y
