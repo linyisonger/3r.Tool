@@ -9,14 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Cache
+        uses: actions/cache@v3.2.6
       # this will check out the current branch (https://github.com/actions/checkout#Push-a-commit-using-the-built-in-token)
       - uses: actions/checkout@v2
       # installing Node
-      - name: Use Node.js 12.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
           # this will use the latest Node 12 version
-          node-version: 12.x
+          node-version: 16.x
       # install dependencies using clean install to avoid package lock updates
       - run: npm i
       # build the project if necessary
@@ -25,7 +27,14 @@ jobs:
       - run: npm run test
 
       # Save coverage report in Coveralls
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
+      #- name: Coveralls
+      #  uses: coverallsapp/github-action@master
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{secrets.CODECOVTOKEN}}
+          
+          
