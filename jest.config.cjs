@@ -2,5 +2,4 @@
 module.exports = {
     // 收集测试覆盖率
     collectCoverage: true,
-
 }
