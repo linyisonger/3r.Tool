@@ -147,15 +147,15 @@ console.log('颜色转换', Convertor.hexToRgb('f2a'));
 console.log('颜色转换', Convertor.rgbToHex('rgb(255,34,170)'));
 // #ff22aa
 console.log('xml输出文本', Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>'));
-// 总金额 102030.00
+// 总金额 100,000.00
 console.log('数字转大写人民币', Convertor.numToAmountInWords(102030.00));
-// 数字 102030.00
+// 壹拾万贰仟零叁拾圆整
 console.log('数字转中文', Convertor.numToChinese(102030));
-// url query 转对象
+// 十万二千三十
 console.log('url query 转对象', Convertor.urlQueryToObject('http://example.com/user?id=1&age=2'));
-// url object 转 query 对象
+// { "age": "2", "id": "1" 
 console.log('url object 转 query', Convertor.urlObjectToQuery({ id: 1, age: 3 }));
-
+// '?id=1&age=3'
 
 ```
 
