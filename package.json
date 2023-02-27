@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "npx tsc && npm run build:readme && npm run build:compress",
     "build:readme": "node ./build/readme.js",
     "build:compress": "node ./build/compress.js"
