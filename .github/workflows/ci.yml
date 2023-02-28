@@ -6,11 +6,6 @@ on:
     paths:
       - "**/*.js"
       - "**/*.ts"
-  pull_request:
-    branches: [master]
-    paths:
-      - "**/*.js"
-      - "**/*.ts"
   workflow_dispatch:
 
 jobs:
