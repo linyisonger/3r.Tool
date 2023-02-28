@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 16.x
       - run: |
-          yarn i
+          yarn install
           yarn run lint
           npx tsc
           yarn run test
