@@ -1,7 +1,7 @@
 🏃‍ 包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票 KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合
 
 
-![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/publish-npm.yml)![npm](https://img.shields.io/npm/v/@3r/tool)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg)](https://coveralls.io/github/linyisonger/3r.Tool)
+![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/cd.yml)![npm](https://img.shields.io/npm/v/@3r/tool)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg)](https://coveralls.io/github/linyisonger/3r.Tool)
 
 #### 如何使用工具包 ?
 
