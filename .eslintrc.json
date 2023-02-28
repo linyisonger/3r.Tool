@@ -38,6 +38,7 @@
         "generator-star-spacing": "off",
         "no-unused-vars": "off",
         "no-useless-escape": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "space-before-function-paren": "off"
     }
 }
