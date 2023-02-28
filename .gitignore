@@ -2,3 +2,5 @@ modules/
 node_modules/
 !/src/*
 coverage/
+package-lock.json
+yarn.lock

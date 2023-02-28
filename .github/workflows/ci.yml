@@ -18,6 +18,8 @@ jobs:
           node-version: 16.x
       # install dependencies using clean install to avoid package lock updates
       - run: npm i
+      # 检查代码规范
+      - run: npm run lint
       # build the project if necessary
       - run: npx tsc
       # finally run the tests

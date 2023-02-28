@@ -28,3 +28,7 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NpmToken}}
+      - name: 版本未更新成功
+        if: ${{ failure() }}
+        run: |
+          echo 出现错误❌
