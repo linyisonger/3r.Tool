@@ -60,6 +60,7 @@ try {
             expect(Randoms.getRandomStr(10, GetRandomStrEnum.LargeSmall).length == 10).toEqual(true)
             expect(Randoms.getRandomStr(10, GetRandomStrEnum.Number).length == 10).toEqual(true)
             expect(Randoms.getRandomStr(10, "LargeSmall").length == 10).toEqual(true)
+            expect(Randoms.getRandomStr(10).length == 10).toEqual(true)
         })
         it('全局唯一标识符(uuid)', function () {
             expect(Randoms.uuid().length).toEqual('e5d823f1-c4dd-4205-91c6-7cc1fe61cb0c'.length)

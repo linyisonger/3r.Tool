@@ -174,7 +174,7 @@ export class Market {
 			}
 			rsv = (C - Ln) / (Hn - Ln) * 100
 
-			if (isNaN(rsv) || rsv === -Infinity || rsv === Infinity) rsv = 0
+			if (!rsv) rsv = 0
 
 			if (x < N) {
 				k = (rsv + k * x) / (x + 1)

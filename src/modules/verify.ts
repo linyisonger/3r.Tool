@@ -1,73 +1,73 @@
 export enum PasswordRuleEnum {
-    /** 大写字母 */
-    Large = 1,
-    /** 小写字母 */
-    Small = 2,
-    /** 大小写字母 */
-    LargeSmall = 3,
-    /** 数字 */
-    Number = 4,
-    /** 大写字母 数字 */
-    LargeNumber = 5,
-    /** 小写字母 数字 */
-    SmallNumber = 6,
-    /** 大小写字母 数字 */
-    LargeSmallNumber = 7
+	/** 大写字母 */
+	Large = 1,
+	/** 小写字母 */
+	Small = 2,
+	/** 大小写字母 */
+	LargeSmall = 3,
+	/** 数字 */
+	Number = 4,
+	/** 大写字母 数字 */
+	LargeNumber = 5,
+	/** 小写字母 数字 */
+	SmallNumber = 6,
+	/** 大小写字母 数字 */
+	LargeSmallNumber = 7
 }
 /**
  * 验证拓展类
  */
 export class Verify {
 	/**
-     * 像是社会统一信用代码
-     * @param usci 社会统一信用代码
-     * @returns
-     */
+	 * 像是社会统一信用代码
+	 * @param usci 社会统一信用代码
+	 * @returns
+	 */
 	static likeUsci (usci: string): boolean {
 		return /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.test(usci)
 	}
 
 	/**
-     * 是否是null或者""
-     * @param str 字符串
-     * @returns
-     */
+	 * 是否是null或者""
+	 * @param str 字符串
+	 * @returns
+	 */
 	static isNullOrEmpty (str: string): boolean {
 		return str === '' || str === null || str === undefined
 	}
 
 	/**
-     * 校验是否是11位手机号码
-     * @param phoneNumber 手机号码
-     * @returns
-     */
+	 * 校验是否是11位手机号码
+	 * @param phoneNumber 手机号码
+	 * @returns
+	 */
 	static isPhoneNumber (phoneNumber: string): boolean {
 		return /^1[3456789]\d{9}$/.test(phoneNumber)
 	}
 
 	/**
-     * 校验是否是固定电话
-     * @param tellPhoneNumber 固定电话
-     * @returns
-     */
+	 * 校验是否是固定电话
+	 * @param tellPhoneNumber 固定电话
+	 * @returns
+	 */
 	static isTellPhoneNumber (tellPhoneNumber: string): boolean {
 		return /^\d{3}-\d{7,8}|\d{4}-\d{7,8}$/.test(tellPhoneNumber)
 	}
 
 	/**
-     * 是否是邮箱
-     * @param email 邮箱
-     * @returns
-     */
+	 * 是否是邮箱
+	 * @param email 邮箱
+	 * @returns
+	 */
 	static isEmail (email: string): boolean {
 		return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(email)
 	}
 
 	/**
-     * 是否是统一社会信用代码
-     * @param usci 统一社会信用代码
-     * @returns
-     */
+	 * 是否是统一社会信用代码
+	 * @param usci 统一社会信用代码
+	 * @returns
+	 */
 	static isUnifiedSocialCreditIdentifier (usci: string): boolean {
 		if (usci.length !== 18) return false // 长度不正确
 		/** 省份区划 前两位 */
@@ -91,13 +91,13 @@ export class Verify {
 		if (!/^([0-9A-Z]{8}\-[\d{1}|X])$/.test(organizingInstitutionBarCode)) return false
 
 		/**
-         * 组织机构代码验证
-         */
+		 * 组织机构代码验证
+		 */
 
 		/** 组织机构代码前部分 */
-		const oibcBefore = organizingInstitutionBarCode.split('-')?.[0]
+		const oibcBefore = organizingInstitutionBarCode.split('-')[0]
 		/** 组织机构代码后部分 */
-		const oibcAfter = organizingInstitutionBarCode.split('-')?.[1]
+		const oibcAfter = organizingInstitutionBarCode.split('-')[1]
 		/** 因数 */
 		const factor = [3, 7, 9, 10, 5, 8, 4, 2]
 		/** 校验码 */
@@ -107,7 +107,8 @@ export class Verify {
 			let tmp = oibcBefore.charCodeAt(i)
 			if (tmp >= 48 && tmp <= 57) {
 				tmp -= 48
-			} else if (tmp >= 65 && tmp <= 90) {
+			}
+			if (tmp >= 65 && tmp <= 90) {
 				tmp -= 55
 			}
 			// 乘权重后加总
@@ -120,8 +121,8 @@ export class Verify {
 		if (c9 !== oibcAfter) return false
 
 		/**
-         * 校验社会统一信用代码
-         */
+		 * 校验社会统一信用代码
+		 */
 
 		/** 加权因子 */
 		const weightFactor = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28]
@@ -138,7 +139,7 @@ export class Verify {
 			const tmp = usciBefore[i]
 			const idx = cardinalNumber.indexOf(tmp)
 			/** 字母不存在再基数中 */
-			if (idx === -1) return false
+			// if (idx === -1) return false
 			c18 += idx * weightFactor[i]
 		}
 
@@ -152,11 +153,11 @@ export class Verify {
 	}
 
 	/**
-     * 是否是车牌号
-     * https://www.cnblogs.com/mmzuo-798/p/14929545.html
-     * @param vehicleNumber 车牌号
-     * @returns
-     */
+	 * 是否是车牌号
+	 * https://www.cnblogs.com/mmzuo-798/p/14929545.html
+	 * @param vehicleNumber 车牌号
+	 * @returns
+	 */
 	static isVehicleNumber (vehicleNumber: string) {
 		if (vehicleNumber.length === 7) return /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/.test(vehicleNumber)
 		if (vehicleNumber.length === 8) return /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DABCEFGHJK]$)|([DABCEFGHJK][A-HJ-NP-Z0-9][0-9]{4}$))/.test(vehicleNumber) // 2021年新能源车牌不止有DF
@@ -164,18 +165,18 @@ export class Verify {
 	}
 
 	/**
-     * 像身份证号
-     * @param num 身份证号
-     * @returns
-     */
+	 * 像身份证号
+	 * @param num 身份证号
+	 * @returns
+	 */
 	static likeIDCardNumber (num: string): boolean {
 		return /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(num)
 	}
 
 	/**
-     * 是否是身份证号码
-     * @param num 身份证号码
-     */
+	 * 是否是身份证号码
+	 * @param num 身份证号码
+	 */
 	static isCitizenIdentificationNumber (num: string): boolean {
 		if (num.length !== 18) return false
 		if (!this.likeIDCardNumber(num)) return false
@@ -194,13 +195,13 @@ export class Verify {
 	}
 
 	/**
-     * 密码规则校验
-     * @param password 密码
-     * @param rule 规则
-     * @param minLength 最小长度
-     * @param maxLength 最大长度
-     * @returns
-     */
+	 * 密码规则校验
+	 * @param password 密码
+	 * @param rule 规则
+	 * @param minLength 最小长度
+	 * @param maxLength 最大长度
+	 * @returns
+	 */
 	static passwordRules (password: string, rule = PasswordRuleEnum.LargeSmallNumber, minLength = 6, maxLength = 20) {
 		let res = true
 		if ((rule & PasswordRuleEnum.Large) !== 0) { res = res && /(?=.*[A-Z])/.test(password) }

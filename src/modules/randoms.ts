@@ -90,6 +90,5 @@ export class Randoms {
 			tmp += +arr[i][weightKey]
 			if (tmp > randomNum) return i
 		}
-		return 0
 	}
 }

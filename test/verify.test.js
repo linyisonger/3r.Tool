@@ -51,6 +51,18 @@ try {
             expect(Verify.isUnifiedSocialCreditIdentifier('92230X00EUFUTJY536')).toEqual(false)
             expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY5Q6')).toEqual(false)
             expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY5X6')).toEqual(false)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTOY536')).toEqual(false)
+
+            expect(Verify.isUnifiedSocialCreditIdentifier('915421000FJ6N75NXB')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92431000RP2YF63L1H')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92140300D4A0HN5F88')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('91422600G3KHQ5W09L')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('916501009894LY0F51')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92412100WWUCGLLT04')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('91211200KL0LRM9N40')).toEqual(true)
+            expect(Verify.isUnifiedSocialCreditIdentifier('91330600TC9XYWDY5G')).toEqual(true)
+
+            
         })
         it('是否是车牌号', function () {
             expect(Verify.isVehicleNumber('青G04444')).toEqual(true)
@@ -77,6 +89,7 @@ try {
             expect(Verify.passwordRules('abc123', PasswordRuleEnum.LargeNumber, 6, 20)).toEqual(false)
             expect(Verify.passwordRules('abc123', PasswordRuleEnum.LargeSmallNumber, 6, 20)).toEqual(false)
             expect(Verify.passwordRules('abc123', PasswordRuleEnum.LargeSmall, 6, 20)).toEqual(false)
+            expect(Verify.passwordRules('abc123')).toEqual(false)
         })
     })
 } catch (error) {

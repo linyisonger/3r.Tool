@@ -30,6 +30,7 @@ try {
     describe('动画模块', function () {
         it('easeIn', function () {
             expect(Animation.easeIn(0.5) < .5).toEqual(true)
+            expect(Animation.easeIn(100000) < .5).toEqual(true)
         })
         it('easeOut', function () {
             expect(Animation.easeOut(0.5) > .5).toEqual(true)

@@ -42,10 +42,13 @@ try {
         })
         it('日期转换', function () {
             expect(Convertor.timeFormat(new Date(), 'yyyy年MM月dd日 hh:mm:ss').startsWith(new Date().getFullYear().toString())).toEqual(true)
-            expect(Convertor.timeFormat(new Date(), 'yy年M月d日 h:m:s').startsWith(new Date().getFullYear().toString())).toEqual(false)
+            expect(Convertor.timeFormat(new Date(), 'yy年M月d日 h:m:s') == '').toEqual(false)
+            expect(Convertor.timeFormat(new Date(), 'qq S') == '').toEqual(false)
+            expect(Convertor.timeFormat(new Date()) == '').toEqual(false)
         })
         it('千分位处理', function () {
             expect(Convertor.thousands(10009992.12)).toEqual('10,009,992.12')
+            expect(Convertor.thousands(1)).toEqual('1')
         })
         it('文本转base64', function () {
             expect(Convertor.textToBase64('1234')).toEqual('MTIzNA==')
@@ -74,6 +77,7 @@ try {
         })
         it('颜色转换', function () {
             expect(Convertor.rgbToHex('rgb(255,34,170)')).toEqual('#ff22aa')
+            expect(Convertor.rgbToHex('rgb(1,34,170)')).toEqual('#0122aa')
             expect(() => Convertor.rgbToHex('')).toThrow();
         })
         it('xml输出文本', function () {
@@ -81,6 +85,7 @@ try {
         })
         it('数字转大写人民币', function () {
             expect(Convertor.numToAmountInWords(102030.00)).toEqual('壹拾万贰仟零叁拾圆整')
+            expect(Convertor.numToAmountInWords(-102030.00)).toEqual('欠壹拾万贰仟零叁拾圆整')
             expect(Convertor.numToAmountInWords(undefined)).toEqual('')
         })
         it('数字转中文', function () {
