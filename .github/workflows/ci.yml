@@ -1,31 +1,21 @@
 name: CI Pipeline
 
-# trigger build when pushing, or when creating a pull request
 on: [push, pull_request]
 
 jobs:
   build:
-    # run build on latest ubuntu
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      # installing Node
       - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
-          # this will use the latest Node 12 version
           node-version: 16.x
-      # install dependencies using clean install to avoid package lock updates
-      - run: npm i
-      # 检查代码规范
-      - run: npm run lint
-      # build the project if necessary
-      - run: npx tsc
-      # finally run the tests
-      - run: npm run test
-
-      # Save coverage report in Coveralls
+      - run: |
+          yarn i
+          yarn run lint
+          npx tsc
+          yarn run test
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
