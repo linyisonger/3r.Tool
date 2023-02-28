@@ -70,9 +70,11 @@ try {
             expect(Convertor.hexToRgb('#f2a')).toEqual('rgb(255,34,170)')
             expect(Convertor.hexToRgb('#ff22aa')).toEqual('rgb(255,34,170)')
             expect(Convertor.hexToRgb('ff22aa')).toEqual('rgb(255,34,170)')
+            expect(() => Convertor.hexToRgb('')).toThrow();
         })
         it('颜色转换', function () {
             expect(Convertor.rgbToHex('rgb(255,34,170)')).toEqual('#ff22aa')
+            expect(() => Convertor.rgbToHex('')).toThrow();
         })
         it('xml输出文本', function () {
             expect(Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>')).toEqual('总金额 100,000.00')
