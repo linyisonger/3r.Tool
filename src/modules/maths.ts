@@ -1,17 +1,17 @@
 /** 因数 */
 interface IFactor {
-    /** 数字a */
-    a: number
-    /** 数字b */
-    b: number
+	/** 数字a */
+	a: number
+	/** 数字b */
+	b: number
 }
 
 /** 交换枚举 */
 export enum InterchangeFlag {
-    /** 进操作位置更新 */
-    Move,
-    /** 俩下标值更新 */
-    Change
+	/** 进操作位置更新 */
+	Move,
+	/** 俩下标值更新 */
+	Change
 }
 
 /**
@@ -19,11 +19,11 @@ export enum InterchangeFlag {
  */
 export class Maths {
 	/**
-     * 获取整数的所有因数
-     * @param x 未知正整数
-     * @returns  所有因数
-     */
-	static getFactors (x: number): IFactor[] {
+	 * 获取整数的所有因数
+	 * @param x 未知正整数
+	 * @returns  所有因数
+	 */
+	static getFactors(x: number): IFactor[] {
 		// 所有因数对应组
 		const factors = []
 		// 循环得到因数
@@ -34,11 +34,11 @@ export class Maths {
 	}
 
 	/**
-     * 获取整数的所有因数通过接近程度排序
-     * @param x 未知正整数
-     * @returns 所有因数
-     */
-	static getFactorsByApproach (x: number): IFactor[] {
+	 * 获取整数的所有因数通过接近程度排序
+	 * @param x 未知正整数
+	 * @returns 所有因数
+	 */
+	static getFactorsByApproach(x: number): IFactor[] {
 		// 根据接近度排序
 		return Maths.getFactors(x).sort((a, b) => {
 			return Math.abs(a.a - a.b) - Math.abs(b.a - b.b)
@@ -46,47 +46,47 @@ export class Maths {
 	}
 
 	/**
-     * 求和
-     * @param array 数组
-     */
-	static sum (array: number[]): number {
+	 * 求和
+	 * @param array 数组
+	 */
+	static sum(array: number[]): number {
 		let sum = 0
 		for (const item of array) sum += item
 		return sum
 	}
 
 	/**
-     * 判断a与b符号是否相同
-     * @param a
-     * @param b
-     * @returns
-     */
-	static sameSign (a: number, b: number): boolean {
+	 * 判断a与b符号是否相同
+	 * @param a
+	 * @param b
+	 * @returns
+	 */
+	static sameSign(a: number, b: number): boolean {
 		return (a ^ b) >= 0
 	}
 
 	/**
-     * 角度转弧度
-     * @param degree 角度
-     */
-	static degreeToRad (degree: number) {
+	 * 角度转弧度
+	 * @param degree 角度
+	 */
+	static degreeToRad(degree: number) {
 		return Math.PI * degree / 180
 	}
 
 	/**
-     * 弧度转角度
-     * @param rad 弧度
-     */
-	static radToDegree (rad: number) {
+	 * 弧度转角度
+	 * @param rad 弧度
+	 */
+	static radToDegree(rad: number) {
 		return rad * 180 / Math.PI
 	}
 
 	/**
-     * 对象是否相等
-     * @param A
-     * @param B
-     */
-	static equal<T> (A: T, B: T): boolean {
+	 * 对象是否相等
+	 * @param A
+	 * @param B
+	 */
+	static equal<T>(A: T, B: T): boolean {
 		if (typeof A !== typeof B) return false
 		if (typeof A === 'object') {
 			for (const key in A) {
@@ -99,12 +99,12 @@ export class Maths {
 	}
 
 	/**
-     * 交集
-     * @param A
-     * @param B
-     */
-	static intersection<T> (A: T[], B: T[]): T[] {
-		const result:T[] = []
+	 * 交集
+	 * @param A
+	 * @param B
+	 */
+	static intersection<T>(A: T[], B: T[]): T[] {
+		const result: T[] = []
 		for (let i = 0; i < A.length; i++) {
 			for (let j = 0; j < B.length; j++) {
 				if (this.equal(A[i], B[j])) result.push(A[i])
@@ -114,10 +114,10 @@ export class Maths {
 	}
 
 	/**
-     * 删除重复项 (改变原数组)
-     * @param A
-     */
-	static removeRepeat<T> (A: T[]): T[] {
+	 * 删除重复项 (改变原数组)
+	 * @param A
+	 */
+	static removeRepeat<T>(A: T[]): T[] {
 		for (let i = 0; i < A.length - 1; i++) {
 			for (let j = i + 1; j < A.length; j++) {
 				if (this.equal(A[i], A[j])) {
@@ -130,12 +130,12 @@ export class Maths {
 	}
 
 	/**
-     * 补集
-     * @param A
-     * @param B
-     */
-	static complementarySet<T> (A: T[], B: T[]): T[] {
-		const result:T[] = []
+	 * 补集
+	 * @param A
+	 * @param B
+	 */
+	static complementarySet<T>(A: T[], B: T[]): T[] {
+		const result: T[] = []
 		for (let i = 0; i < B.length; i++) {
 			if (!A.find(_ => this.equal(B[i], _))) result.push(B[i])
 		}
@@ -143,13 +143,13 @@ export class Maths {
 	}
 
 	/**
-     * 并集
-     * @param A
-     * @param B
-     * @returns
-     */
-	static union<T> (A: T[], B: T[]): T[] {
-		const result:T[] = []
+	 * 并集
+	 * @param A
+	 * @param B
+	 * @returns
+	 */
+	static union<T>(A: T[], B: T[]): T[] {
+		const result: T[] = []
 		for (let i = 0; i < A.length; i++) {
 			if (!B.find(_ => this.equal(A[i], _))) result.push(A[i])
 		}
@@ -160,12 +160,12 @@ export class Maths {
 	}
 
 	/**
-     * 数组 通过下标交互位置
-     * @param array
-     * @param currentIndex
-     * @param targetIndex
-     */
-	static interchange<T> (array: T[], currentIndex: number, targetIndex: number, flag = InterchangeFlag.Move) {
+	 * 数组 通过下标交互位置
+	 * @param array
+	 * @param currentIndex
+	 * @param targetIndex
+	 */
+	static interchange<T>(array: T[], currentIndex: number, targetIndex: number, flag = InterchangeFlag.Move) {
 		if (flag === InterchangeFlag.Move) { array.splice(targetIndex, 0, ...array.splice(currentIndex, 1)) }
 		if (flag === InterchangeFlag.Change) {
 			const tmp = array[currentIndex]
@@ -173,5 +173,17 @@ export class Maths {
 			array[targetIndex] = tmp
 		}
 		return array
+	}
+
+	/**
+	 * 阶乘
+	 * https://www.delftstack.com/zh/howto/javascript/javascript-factorial/
+	 * @param num 数
+	 * @returns
+	 */
+	static iterationFactorial(num: number) {
+		let counter = 1
+		for (let i = 2; i <= num; i++) { counter = counter * i }
+		return counter
 	}
 }

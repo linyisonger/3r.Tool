@@ -41,6 +41,8 @@ let run = function () {
     // [ 23, 4, 556, 124, 123, 452, 231 ]
     console.log('数组 通过下标改变位置 从3的位置移到1的位置', Maths.interchange([1, 2, 3, 4], 3, 1));
     // [ 1, 4, 2, 3 ]
+    console.log('阶乘 10!', Maths.iterationFactorial(10))
+    // 3628800
 }
 
 try {
@@ -94,6 +96,9 @@ try {
         it('数组 通过下标改变位置 从3的位置移到1的位置', function () {
             expect(Maths.interchange([1, 2, 3, 4], 3, 1)).toEqual([1, 4, 2, 3])
             expect(Maths.interchange([1, 2, 3, 4], 3, 1, InterchangeFlag.Change)).toEqual([1, 4, 3, 2])
+        })
+        it('阶乘', function () {
+            expect(Maths.iterationFactorial(10)).toEqual(3628800)
         })
     })
 } catch (error) {
