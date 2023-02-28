@@ -47,6 +47,10 @@ try {
             expect(Verify.isUnifiedSocialCreditIdentifier('9X30900EUFUTJY36')).toEqual(false)
             expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY531')).toEqual(false)
             expect(Verify.isUnifiedSocialCreditIdentifier('929230900EUFUTJY53')).toEqual(false)
+            expect(Verify.isUnifiedSocialCreditIdentifier('159230900EUFUTJY53')).toEqual(false)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92230X00EUFUTJY536')).toEqual(false)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY5Q6')).toEqual(false)
+            expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY5X6')).toEqual(false)
         })
         it('是否是车牌号', function () {
             expect(Verify.isVehicleNumber('青G04444')).toEqual(true)

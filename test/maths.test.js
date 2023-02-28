@@ -1,4 +1,4 @@
-import { Maths } from "../index.js";
+import { InterchangeFlag, Maths } from "../index.js";
 
 let description = function () {
     return ['#### Maths 数学模块', '包含一些与数学的方法.', '', '以下是相关示例:']
@@ -93,6 +93,7 @@ try {
         })
         it('数组 通过下标改变位置 从3的位置移到1的位置', function () {
             expect(Maths.interchange([1, 2, 3, 4], 3, 1)).toEqual([1, 4, 2, 3])
+            expect(Maths.interchange([1, 2, 3, 4], 3, 1, InterchangeFlag.Change)).toEqual([1, 4, 3, 2])
         })
     })
 } catch (error) {

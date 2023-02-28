@@ -79,12 +79,15 @@ try {
         })
         it('数字转大写人民币', function () {
             expect(Convertor.numToAmountInWords(102030.00)).toEqual('壹拾万贰仟零叁拾圆整')
+            expect(Convertor.numToAmountInWords(undefined)).toEqual('')
         })
         it('数字转中文', function () {
             expect(Convertor.numToChinese(102030)).toEqual('十万二千三十')
+            expect(Convertor.numToChinese(undefined)).toEqual('')
         })
         it('url query 转对象', function () {
             expect(Convertor.urlQueryToObject('http://example.com/user?id=1&age=2')).toEqual({ "age": "2", "id": "1" })
+            expect(Convertor.urlQueryToObject('')).toEqual({})
         })
         it('url object 转 query', function () {
             expect(Convertor.urlObjectToQuery({ id: 1, age: 3 })).toEqual('?id=1&age=3')
