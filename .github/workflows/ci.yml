@@ -1,6 +1,17 @@
 name: CI Pipeline
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+    paths:
+      - "*.js"
+      - "*.ts"
+  pull_request:
+    branches: [master]
+    paths:
+      - "*.js"
+      - "*.ts"
+  workflow_dispatch:
 
 jobs:
   build:
