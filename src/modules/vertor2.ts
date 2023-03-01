@@ -173,13 +173,6 @@ export class Vector2 {
 	toString () {
 		return `Vector2(${this.x},${this.y})`
 	}
-
-	/**
-     * 打印一下
-     */
-	log () {
-		console.log(String(this))
-	}
 }
 
 /**

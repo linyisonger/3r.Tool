@@ -1,6 +1,5 @@
 ### 🚀v1.1.4 命名相关转换
 
-
 - 蛇形命名法 -> 大驼峰命名法
 - lower_case_with_underscores -> LowerCaseWithUnderscores
 
@@ -10,3 +9,5 @@
 - 驼峰命名法 -> 蛇形命名法
 - LowerCaseWithUnderscores -> lower_case_with_underscores
 
+- 移除 v2(x,y).log() 方法
+- 强迫症繁了...

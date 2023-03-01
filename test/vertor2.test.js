@@ -74,9 +74,6 @@ try {
         it('转换字符串', function () {
             expect(v2(1, 1).toString()).toEqual("Vector2(1,1)")
         })
-        it('打印一下', function () {
-            expect(v2(1, 1).log()).toEqual(undefined)
-        })
     })
 } catch (error) {
     // describe is not defined 无需理会 调用方式不一致 
