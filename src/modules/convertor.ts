@@ -6,7 +6,7 @@ class Base64 {
 	/**
 	 * 加密
 	 */
-	static encode (input: string) {
+	static encode(input: string) {
 		let output = ''
 		let chr1, chr2, chr3, enc1, enc2, enc3, enc4
 		let i = 0
@@ -35,7 +35,7 @@ class Base64 {
 	/**
 	 * 解密
 	 */
-	static decode (input: string) {
+	static decode(input: string) {
 		let output = ''
 		let chr1, chr2, chr3
 		let enc1, enc2, enc3, enc4
@@ -62,7 +62,7 @@ class Base64 {
 	}
 
 	// private method for UTF-8 encoding
-	static _utf8_encode (string: string) {
+	static _utf8_encode(string: string) {
 		string = string.replace(/\r\n/g, '\n')
 		let utftext = ''
 		for (let n = 0; n < string.length; n++) {
@@ -82,7 +82,7 @@ class Base64 {
 	}
 
 	// private method for UTF-8 decoding
-	static _utf8_decode (utftext: string) {
+	static _utf8_decode(utftext: string) {
 		let str = ''
 		let i = 0
 		let c = 0
@@ -116,7 +116,7 @@ export class Convertor {
 	 * @param usci 社会统一信用代码
 	 * @returns 组织机构代码
 	 */
-	static usciToOibc (usci: string): string {
+	static usciToOibc(usci: string): string {
 		if (usci.length !== 18) return '' // 长度不正确
 		return usci.substring(8, 16) + '-' + usci.substring(16, 17)
 	}
@@ -127,7 +127,7 @@ export class Convertor {
 	 * @param fmt 格式化方案
 	 * @returns
 	 */
-	static timeFormat (date: Date, fmt = 'yyyy-MM-dd hh:mm:ss'): string {
+	static timeFormat(date: Date, fmt = 'yyyy-MM-dd hh:mm:ss'): string {
 		const o: any = {
 			'M+': date.getMonth() + 1, // 月份
 			'd+': date.getDate(), // 日
@@ -151,7 +151,7 @@ export class Convertor {
 	 * @param num 数值
 	 * @returns
 	 */
-	static thousands (num: number | string): string {
+	static thousands(num: number | string): string {
 		const str = num + ''
 		// 分割小数
 		const spa = str.split('.')
@@ -167,7 +167,7 @@ export class Convertor {
 	 * @param text 文本
 	 * @returns
 	 */
-	static textToBase64 (text: string): string {
+	static textToBase64(text: string): string {
 		return Base64.encode(text)
 	}
 
@@ -176,7 +176,7 @@ export class Convertor {
 	 * @param base64
 	 * @returns
 	 */
-	static base64ToText (base64: string): string {
+	static base64ToText(base64: string): string {
 		return Base64.decode(base64)
 	}
 
@@ -185,7 +185,7 @@ export class Convertor {
 	 * @param json
 	 * @returns
 	 */
-	static jsonToBase64<T> (json: T): string {
+	static jsonToBase64<T>(json: T): string {
 		return this.textToBase64(JSON.stringify(json))
 	}
 
@@ -194,7 +194,7 @@ export class Convertor {
 	 * @param base64
 	 * @returns
 	 */
-	static base64ToJson<T> (base64: string): T {
+	static base64ToJson<T>(base64: string): T {
 		return JSON.parse(this.base64ToText(base64))
 	}
 
@@ -205,7 +205,7 @@ export class Convertor {
 	 * @param hexColor 16进制颜色
 	 * @returns rgb颜色
 	 */
-	static hexToRgb (hexColor: string): string {
+	static hexToRgb(hexColor: string): string {
 		// 16进制代码
 		const hexCode = '0123456789ABCDEF'
 		if (/^#[0-9a-fA-F]{6}$/.test(hexColor)) {
@@ -241,7 +241,7 @@ export class Convertor {
 	 * @param rgbColor rgb颜色
 	 * @returns 16进制颜色
 	 */
-	static rgbToHex (rgbColor: string): string {
+	static rgbToHex(rgbColor: string): string {
 		const reg = /rgb\((\d{0,2}|1\d{0,2}|2[0-5]{2}),(\d{0,2}|1\d{0,2}|2[0-5]{2}),(\d{0,2}|1\d{0,2}|2[0-5]{2})\)/
 		// 剔除空格
 		rgbColor = rgbColor.replace(/ /g, '')
@@ -259,7 +259,7 @@ export class Convertor {
 	 * <p>123</p> => 123
 	 * @param xml
 	 */
-	static xmlToText (xml: string): string {
+	static xmlToText(xml: string): string {
 		return xml.replace(/<[^>]+>/g, '')
 	}
 
@@ -269,7 +269,7 @@ export class Convertor {
 	 * @param num
 	 * @returns
 	 */
-	static numToAmountInWords (num: number): string {
+	static numToAmountInWords(num: number): string {
 		const fraction = ['角', '分']
 		const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
 		const unit = [['圆', '万', '亿'], ['', '拾', '佰', '仟']]
@@ -298,7 +298,7 @@ export class Convertor {
 	 * 数字转中文
 	 * @param num 整数
 	 */
-	static numToChinese (num: number): string {
+	static numToChinese(num: number): string {
 		const digit = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九']
 		const unit = [['', '万', '亿'], ['', '十', '百', '千']]
 		const IsNum = Number(num)
@@ -324,7 +324,7 @@ export class Convertor {
 	 * @author 桃子
 	 * @param url 地址
 	 */
-	static urlQueryToObject (url: string) {
+	static urlQueryToObject(url: string) {
 		const obj: any = {}
 		const urls = url.split('?')[1]
 		if (!urls) return {}
@@ -341,12 +341,43 @@ export class Convertor {
 	 * @param obj 对象
 	 * @returns
 	 */
-	static urlObjectToQuery (obj: any) {
+	static urlObjectToQuery(obj: any) {
 		let query = ''
 		for (const key in obj) {
 			query += query ? '&' : '?'
 			query += `${key}=${obj[key]}`
 		}
 		return query
+	}
+
+	/**
+	 * 蛇形命名法 -> 大驼峰命名法
+	 * @param keyName 键值名
+	 */
+	static snakeCaseToUpperCamelcase(keyName: string) {
+		return keyName.split('_').reduce((t, c) => t + c[0].toLocaleUpperCase() + c.substring(1), '')
+	}
+
+	/**
+	 * 蛇形命名法 -> 小驼峰命名法
+	 * @param keyName 键值名
+	 */
+	static snakeCaseToLowerCamelcase(keyName: string) {
+		keyName = this.snakeCaseToUpperCamelcase(keyName)
+		return keyName[0].toLocaleLowerCase() + keyName.substring(1)
+	}
+
+	/**
+	 * 小驼峰命名法 -> 蛇形命名法
+	 * @param keyName 键值名
+	 */
+	static camelcaseToSnakeCase(keyName: string) {
+		let result = keyName[0].toLocaleLowerCase()
+		for (let i = 1; i < keyName.length; i++) {
+			const char = keyName[i]
+			if (char.match(/[A-Z]/)) result += '_' + char.toLocaleLowerCase()
+			else result += char
+		}
+		return result
 	}
 }

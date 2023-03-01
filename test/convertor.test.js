@@ -33,6 +33,12 @@ let run = function () {
     // { "age": "2", "id": "1" 
     console.log('url object 转 query', Convertor.urlObjectToQuery({ id: 1, age: 3 }));
     // '?id=1&age=3'
+    console.log('蛇形命名法 -> 大驼峰命名法', Convertor.snakeCaseToUpperCamelcase('lower_case_with_underscores'));
+    // LowerCaseWithUnderscores
+    console.log('蛇形命名法 -> 小驼峰命名法', Convertor.snakeCaseToLowerCamelcase('lower_case_with_underscores'));
+    // lowerCaseWithUnderscores
+    console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
+    // lower_case_with_underscores
 }
 try {
     describe('转换模块', function () {
@@ -99,7 +105,15 @@ try {
         it('url object 转 query', function () {
             expect(Convertor.urlObjectToQuery({ id: 1, age: 3 })).toEqual('?id=1&age=3')
         })
-
+        it('蛇形命名法 -> 大驼峰命名法', function () {
+            expect(Convertor.snakeCaseToUpperCamelcase('lower_case_with_underscores')).toEqual('LowerCaseWithUnderscores')
+        })
+        it('蛇形命名法 -> 小驼峰命名法', function () {
+            expect(Convertor.snakeCaseToLowerCamelcase('lower_case_with_underscores')).toEqual('lowerCaseWithUnderscores')
+        })
+        it('驼峰命名法 -> 蛇形命名法', function () {
+            expect(Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores')).toEqual('lower_case_with_underscores')
+        })
     })
 } catch (error) {
     // describe is not defined 无需理会 调用方式不一致 

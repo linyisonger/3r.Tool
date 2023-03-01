@@ -157,6 +157,12 @@ console.log('url query 转对象', Convertor.urlQueryToObject('http://example.co
 // { "age": "2", "id": "1" 
 console.log('url object 转 query', Convertor.urlObjectToQuery({ id: 1, age: 3 }));
 // '?id=1&age=3'
+console.log('蛇形命名法 -> 大驼峰命名法', Convertor.snakeCaseToUpperCamelcase('lower_case_with_underscores'));
+// LowerCaseWithUnderscores
+console.log('蛇形命名法 -> 小驼峰命名法', Convertor.snakeCaseToLowerCamelcase('lower_case_with_underscores'));
+// lowerCaseWithUnderscores
+console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
+// lower_case_with_underscores
 
 ```
 
