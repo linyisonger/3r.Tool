@@ -1,11 +1,4 @@
 /src
 /build
-tsconfig.json
 /.vscode
 /.github
-/test
-/coverage
-.babelrc
-.eslintignore
-.eslintrc.json
-jest.config.cjs
