@@ -47,5 +47,7 @@
   "bugs": {
     "url": "https://github.com/linyisonger/3r.Tool/issues"
   },
-  "homepage": "https://github.com/linyisonger/3r.Tool#readme"
+  "homepage": "https://github.com/linyisonger/3r.Tool#readme",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js"
 }
