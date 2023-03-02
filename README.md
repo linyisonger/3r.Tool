@@ -1,11 +1,10 @@
 🏃‍ 包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票 KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合
 
-
-![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/cd.yml)![npm](https://img.shields.io/npm/v/@3r/tool)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg?branch=master)](https://coveralls.io/github/linyisonger/3r.Tool?branch=master)
+![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/cd.yml)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg?branch=master)](https://coveralls.io/github/linyisonger/3r.Tool?branch=master)![release](https://img.shields.io/librariesio/release/npm/@3r/tool)![npm](https://img.shields.io/npm/v/@3r/tool)![sourcerank](https://img.shields.io/librariesio/sourcerank/npm/@3r/tool)![NPM](https://img.shields.io/npm/l/@3r/tool)
 
 #### 如何使用工具包 ?
 
-👇Vue 小栗子🐿
+👇Vue 小栗子 🐿
 
 1.在工程下执行命令`npm i @3r/tool`安装依赖包
 
@@ -35,7 +34,7 @@ export default {
 </script>
 ```
 
-👇HTML 小栗子🐿
+👇HTML 小栗子 🐿
 
 1.定义一个`<script type="module"></script>`标签
 
