@@ -33,4 +33,4 @@ jobs:
         with:
           coverageCommand: yarn run test
           coverageLocations: |
-            ${{github.workspace}}/coverage/lcov-report:lcov
+            ${{github.workspace}}/coverage/lcov.info:lcov
