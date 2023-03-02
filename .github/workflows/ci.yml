@@ -27,12 +27,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Codeclimate format
-        uses: xylabs/action-code-climate-test-reporter@v1.0.0
-        with:
-          subcommand: "format-coverage -t lcov ./coverage/lcov.info"
-      - name: Codeclimate publish
-        uses: xylabs/action-code-climate-test-reporter@v1.0.0
+        uses: caffco/code-climate-github-action@v1.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
         with:
-          subcommand: "upload-coverage"
+          collect_coverage: 'true'
+          coverage_file_patterns: |
+            **/*.lcov:lcov
+      - name: Codeclimate publish
+        uses: caffco/code-climate-github-action@v1.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
+        with:
+          run_after_build: 'true'
