@@ -1,17 +1,24 @@
+const arrayType = [
+	Int8Array,
+	Uint8Array,
+	Uint8ClampedArray,
+	Int16Array,
+	Uint16Array,
+	Int32Array,
+	Uint32Array,
+	Float32Array,
+	Float64Array
+]
+
 /**
  * 深克隆
  * @param obj
  */
-export function cloneDeep<T> (obj: T) {
-	if (obj instanceof Int8Array) return Int8Array.from(obj) as T
-	if (obj instanceof Uint8Array) return Uint8Array.from(obj) as T
-	if (obj instanceof Uint8ClampedArray) return Uint8ClampedArray.from(obj) as T
-	if (obj instanceof Int16Array) return Int16Array.from(obj) as T
-	if (obj instanceof Uint16Array) return Uint16Array.from(obj) as T
-	if (obj instanceof Int32Array) return Int32Array.from(obj) as T
-	if (obj instanceof Uint32Array) return Uint32Array.from(obj) as T
-	if (obj instanceof Float32Array) return Float32Array.from(obj) as T
-	if (obj instanceof Float64Array) return Float64Array.from(obj) as T
+export function cloneDeep<T>(obj: T) {
+	for (let i = 0; i < arrayType.length; i++) {
+		const type = arrayType[i]
+		if (obj instanceof type) return type.from(obj) as T
+	}
 	if (obj instanceof ArrayBuffer) return new Int8Array(obj).buffer as T
 	if (obj instanceof Set) return new Set(obj.values()) as T
 	if (obj instanceof RegExp) return new RegExp(obj) as T

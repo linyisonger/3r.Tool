@@ -29,6 +29,7 @@ let run = function () {
     }
     a.color.add('222')
     let b = cloneDeep(a)
+    console.log(b);
     b.x = 2
     b.color.delete('222')
     console.log('深克隆', a, b);
