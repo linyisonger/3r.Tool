@@ -27,16 +27,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Codeclimate format
-        uses: caffco/code-climate-github-action@v1.0.0
+        uses: paambaati/codeclimate-action@v2.2.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
         with:
-          collect_coverage: 'true'
-          coverage_file_patterns: |
-            **/*.lcov:lcov
-      - name: Codeclimate publish
-        uses: caffco/code-climate-github-action@v1.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
-        with:
-          run_after_build: 'true'
+          coverageCommand: yarn run test
