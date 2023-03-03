@@ -112,6 +112,15 @@ class Base64 {
  */
 export class Convertor {
 	/**
+	 * 16进制转10进制
+	 * @param hex 16进制
+	 * @returns
+	 */
+	private static hexadecimalToRadix(hex: string) {
+		return +`0x${hex}`
+	}
+
+	/**
 	 * 社会统一信用代码转换组织机构代码
 	 * @param usci 社会统一信用代码
 	 * @returns 组织机构代码
@@ -206,33 +215,15 @@ export class Convertor {
 	 * @returns rgb颜色
 	 */
 	static hexToRgb(hexColor: string): string {
-		// 16进制代码
-		const hexCode = '0123456789ABCDEF'
-		if (/^#[0-9a-fA-F]{6}$/.test(hexColor)) {
-			const tmpHex = hexColor.substring(1).toUpperCase()
-			const r = hexCode.indexOf(tmpHex[0]) * 16 + hexCode.indexOf(tmpHex[1])
-			const g = hexCode.indexOf(tmpHex[2]) * 16 + hexCode.indexOf(tmpHex[3])
-			const b = hexCode.indexOf(tmpHex[4]) * 16 + hexCode.indexOf(tmpHex[5])
-			return `rgb(${r},${g},${b})`
-		} else if (/^#[0-9a-fA-F]{3}$/.test(hexColor)) {
-			const tmpHex = hexColor.substring(1).toUpperCase()
-			const r = hexCode.indexOf(tmpHex[0]) * 16 + hexCode.indexOf(tmpHex[0])
-			const g = hexCode.indexOf(tmpHex[1]) * 16 + hexCode.indexOf(tmpHex[1])
-			const b = hexCode.indexOf(tmpHex[2]) * 16 + hexCode.indexOf(tmpHex[2])
-			return `rgb(${r},${g},${b})`
-		} else if (/^[0-9a-fA-F]{6}$/.test(hexColor)) {
-			const tmpHex = hexColor.substring(0).toUpperCase()
-			const r = hexCode.indexOf(tmpHex[0]) * 16 + hexCode.indexOf(tmpHex[1])
-			const g = hexCode.indexOf(tmpHex[2]) * 16 + hexCode.indexOf(tmpHex[3])
-			const b = hexCode.indexOf(tmpHex[4]) * 16 + hexCode.indexOf(tmpHex[5])
-			return `rgb(${r},${g},${b})`
-		} else if (/^[0-9a-fA-F]{3}$/.test(hexColor)) {
-			const tmpHex = hexColor.substring(0).toUpperCase()
-			const r = hexCode.indexOf(tmpHex[0]) * 16 + hexCode.indexOf(tmpHex[0])
-			const g = hexCode.indexOf(tmpHex[1]) * 16 + hexCode.indexOf(tmpHex[1])
-			const b = hexCode.indexOf(tmpHex[2]) * 16 + hexCode.indexOf(tmpHex[2])
-			return `rgb(${r},${g},${b})`
-		} else throw new TypeError('input data type error.')
+		let tmpHex = ''
+		const length = hexColor.length
+		if (/^#[0-9a-fA-F]{6}$/.test(hexColor) || /^#[0-9a-fA-F]{3}$/.test(hexColor)) tmpHex = hexColor.substring(1, length)
+		if (/^[0-9a-fA-F]{6}$/.test(hexColor) || /^[0-9a-fA-F]{3}$/.test(hexColor)) tmpHex = hexColor.substring(0, length)
+		if (!tmpHex) throw new TypeError('input data type error.')
+		const r = this.hexadecimalToRadix(length > 4 ? tmpHex.substring(0, 2) : (tmpHex[0] + tmpHex[0]))
+		const g = this.hexadecimalToRadix(length > 4 ? tmpHex.substring(2, 4) : (tmpHex[1] + tmpHex[1]))
+		const b = this.hexadecimalToRadix(length > 4 ? tmpHex.substring(4, 6) : (tmpHex[2] + tmpHex[2]))
+		return `rgb(${r},${g},${b})`
 	}
 
 	/**
