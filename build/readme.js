@@ -10,8 +10,10 @@ import { fileURLToPath, pathToFileURL } from 'url';
 
 /**
  * 写入文件异步
- */
+*/
 async function write() {
+    // 包记录
+    const packageJson = JSON.parse(readFileSync('package.json', 'utf-8'))
     // 获取改文件所在文件夹
     const __dirname = dirname(fileURLToPath(import.meta.url))
     // 书写模板
@@ -20,6 +22,7 @@ async function write() {
     let currSrc = __dirname.replace('build', 'test')
     let currDir = readdirSync(currSrc)
 
+    template = packageJson.description + "\n" + template
     for (const file of currDir) {
         // 获取文件名称
         let fileName = pathToFileURL(path.join(currSrc, file), 'file:')
