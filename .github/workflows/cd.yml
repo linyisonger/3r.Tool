@@ -22,7 +22,7 @@ jobs:
           yarn run build
           yarn run test
           version=`npm view @3r/tool version`;
-          unpublish=`npm unpublish --force`
+          unpublish=`npm deprecate @3r/tool@$verison '这个版本仅开发用来测试'`
           echo $version
           if [[ $version =~ '-' ]] then $unpublish fi
           npm publish
