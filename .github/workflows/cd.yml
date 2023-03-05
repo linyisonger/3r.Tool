@@ -21,6 +21,10 @@ jobs:
           yarn install
           yarn run build
           yarn run test
+          version=`npm view @3r/tool version`;
+          unpublish=`npm unpublish --force`
+          echo $version
+          if [[ $version =~ '-' ]] then $unpublish fi
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NpmToken}}
