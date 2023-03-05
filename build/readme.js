@@ -22,7 +22,7 @@ async function write() {
     let currSrc = __dirname.replace('build', 'test')
     let currDir = readdirSync(currSrc)
 
-    template = packageJson.description + "\n" + template
+    template = packageJson.description + "\n\n" + template
     for (const file of currDir) {
         // 获取文件名称
         let fileName = pathToFileURL(path.join(currSrc, file), 'file:')
