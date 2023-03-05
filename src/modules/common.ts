@@ -39,3 +39,13 @@ export function cloneDeep<T>(obj: T) {
 
 	return obj
 }
+
+/**
+ * 执行时间
+ * @param fn 方法
+ */
+export function executionTime(fn: () => void) {
+	const n = +new Date()
+	fn()
+	return `方法名: ${fn.toString},执行时间: ${((+new Date() - n))}ms.`
+}

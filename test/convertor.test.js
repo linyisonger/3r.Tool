@@ -1,4 +1,4 @@
-import { Convertor } from "../index.js";
+import { Convertor, executionTime } from "../index.js";
 
 let description = function () {
     return ['#### Convertor 转换模块', '包含一些转换的方法.', '', '以下是相关示例:']
@@ -39,6 +39,8 @@ let run = function () {
     // lowerCaseWithUnderscores
     console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
     // lower_case_with_underscores
+    console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
+    console.log('通过日期获取星座', Convertor.getConstellationByDate(new Date(1997, 2, 14)));
 }
 try {
     describe('转换模块', function () {
@@ -114,6 +116,24 @@ try {
         it('驼峰命名法 -> 蛇形命名法', function () {
             expect(Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores')).toEqual('lower_case_with_underscores')
         })
+        it('通过日期获取星座', function () {
+            expect(Convertor.getConstellationByDate('01/01')).toEqual('摩羯座')
+            expect(Convertor.getConstellationByDate('02/02')).toEqual('水瓶座')
+            expect(Convertor.getConstellationByDate('03/01')).toEqual('双鱼座')
+            expect(Convertor.getConstellationByDate('04/01')).toEqual('白羊座')
+            expect(Convertor.getConstellationByDate('05/01')).toEqual('金牛座')
+            expect(Convertor.getConstellationByDate('06/01')).toEqual('双子座')
+            expect(Convertor.getConstellationByDate('07/01')).toEqual('巨蟹座')
+            expect(Convertor.getConstellationByDate('08/01')).toEqual('狮子座')
+            expect(Convertor.getConstellationByDate('09/01')).toEqual('处女座')
+            expect(Convertor.getConstellationByDate('10/01')).toEqual('天秤座')
+            expect(Convertor.getConstellationByDate('11/01')).toEqual('天蝎座')
+            expect(Convertor.getConstellationByDate('12/01')).toEqual('射手座')
+            expect(Convertor.getConstellationByDate('12/24')).toEqual('摩羯座')
+            expect(Convertor.getConstellationByDate(new Date(2000, 11, 24))).toEqual('摩羯座')
+            expect(Convertor.getConstellationByDate(1224)).toEqual('摩羯座')
+        })
+
     })
 } catch (error) {
     // describe is not defined 无需理会 调用方式不一致 

@@ -122,6 +122,8 @@ let p2 = cloneDeep(p1);
 p1.x = 2;
 console.log(p1, p2, p2.plus(p1));
 
+console.log('执行时间', executionTime(() => { cloneDeep(p1) }));
+
 ```
 
 #### Convertor 转换模块
@@ -163,6 +165,8 @@ console.log('蛇形命名法 -> 小驼峰命名法', Convertor.snakeCaseToLowerC
 // lowerCaseWithUnderscores
 console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
 // lower_case_with_underscores
+console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
+console.log('通过日期获取星座', Convertor.getConstellationByDate(new Date(1997, 2, 14)));
 
 ```
 

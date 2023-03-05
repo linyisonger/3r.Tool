@@ -371,4 +371,38 @@ export class Convertor {
 		}
 		return result
 	}
+
+	/**
+	 * 通过日期获取星座
+	 * @param date '09/14' or '03-14' or 314
+	 */
+	static getConstellationByDate(date: string | Date | number) {
+		let month = 0
+		let day = 0
+		if (date instanceof Date) {
+			month = date.getMonth() + 1
+			day = date.getDate()
+		}
+		if (typeof date === 'string') {
+			month = +date.substring(0, 2)
+			day = +date.substring(3, 5)
+		}
+		let score = month * 100 + day
+		if (typeof date === 'number') {
+			score = date
+		}
+		if (score <= 119) return '摩羯座'
+		if (score <= 218) return '水瓶座'
+		if (score <= 320) return '双鱼座'
+		if (score <= 419) return '白羊座'
+		if (score <= 520) return '金牛座'
+		if (score <= 621) return '双子座'
+		if (score <= 722) return '巨蟹座'
+		if (score <= 822) return '狮子座'
+		if (score <= 922) return '处女座'
+		if (score <= 1023) return '天秤座'
+		if (score <= 1122) return '天蝎座'
+		if (score <= 1221) return '射手座'
+		return '摩羯座'
+	}
 }

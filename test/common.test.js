@@ -1,4 +1,4 @@
-import { cloneDeep, v2 } from "../index.js";
+import { cloneDeep, v2, executionTime } from "../index.js";
 let description = function () {
     return ['#### Common 常用模块', '包含一些常用的方法.', '', '以下是相关示例:']
 }
@@ -37,6 +37,8 @@ let run = function () {
     let p2 = cloneDeep(p1);
     p1.x = 2;
     console.log(p1, p2, p2.plus(p1));
+
+    console.log('执行时间', executionTime(() => { cloneDeep(p1) }));
 }
 try {
     describe('深克隆', function () {
@@ -79,6 +81,15 @@ try {
 
         it('复杂类型', function () {
             expect(a == b).toEqual(false)
+        })
+    })
+    describe('深克隆', () => {
+        it('执行时间', function () {
+            executionTime(() => {
+                for (let i = 0; i < 1000; i++) {
+                    i = i + 2 - 1;
+                }
+            })
         })
     })
 } catch (error) {
