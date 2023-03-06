@@ -1,3 +1,5 @@
+import { cloneDeep } from '../modules/common.js'
+
 /** 因数 */
 interface IFactor {
 	/** 数字a */
@@ -149,12 +151,14 @@ export class Maths {
 	 * @returns
 	 */
 	static union<T>(A: T[], B: T[]): T[] {
-		const result: T[] = []
-		for (let i = 0; i < A.length; i++) {
-			if (!B.find(_ => this.equal(A[i], _))) result.push(A[i])
-		}
-		for (let i = 0; i < B.length; i++) {
-			if (!A.find(_ => this.equal(B[i], _))) result.push(B[i])
+		const result: T[] = cloneDeep(A).concat(B)
+		for (let i = 0; i < result.length - 1; i++) {
+			for (let j = i + 1; j < result.length; j++) {
+				if (this.equal(result[i], result[j])) {
+					result.splice(i, 1)
+					i--
+				}
+			}
 		}
 		return result
 	}

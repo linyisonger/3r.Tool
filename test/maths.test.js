@@ -38,7 +38,7 @@ let run = function () {
     console.log('补集', Maths.complementarySet([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }, false, true, 1, 3, 5, { a: 2, c: [1, 2] }], [true, 5, 5, { z: 3, a: 2 }, 8, { z: 3, a: 3 }]))
     // [ 8, { z: 3, a: 3 } ] 
     console.log('并集', Maths.union([1, 23, 4, 556, 14, 124], [123, 452, 231, 1, 14]));
-    // [ 23, 4, 556, 124, 123, 452, 231 ]
+    // [ 23, 4, 556, 124, 123, 452, 231, 1, 14]
     console.log('数组 通过下标改变位置 从3的位置移到1的位置', Maths.interchange([1, 2, 3, 4], 3, 1));
     // [ 1, 4, 2, 3 ]
     console.log('阶乘 10!', Maths.iterationFactorial(10))
@@ -91,7 +91,11 @@ try {
             expect(Maths.complementarySet([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }, false, true, 1, 3, 5, { a: 2, c: [1, 2] }], [true, 5, 5, { z: 3, a: 2 }, 8, { z: 3, a: 3 }])).toEqual([8, { z: 3, a: 3 }])
         })
         it('并集', function () {
-            expect(Maths.union([1, 23, 4, 556, 14, 124], [123, 452, 231, 1, 14])).toEqual([23, 4, 556, 124, 123, 452, 231])
+            expect(Maths.union([1, 23, 4, 556, 14, 124], [123, 452, 231, 1, 14])).toEqual([
+                23, 4, 556, 124,
+                123, 452, 231, 1,
+                14
+            ])
         })
         it('数组 通过下标改变位置 从3的位置移到1的位置', function () {
             expect(Maths.interchange([1, 2, 3, 4], 3, 1)).toEqual([1, 4, 2, 3])
