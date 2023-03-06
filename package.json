@@ -21,7 +21,10 @@
     "common",
     "vertor2",
     "verify",
-    "math"
+    "math",
+    "animation",
+    "randoms",
+    "map"
   ],
   "author": "3r",
   "license": "MIT",
