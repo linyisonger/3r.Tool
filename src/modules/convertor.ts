@@ -387,22 +387,19 @@ export class Convertor {
 			month = +date.substring(0, 2)
 			day = +date.substring(3, 5)
 		}
-		let score = month * 100 + day
+		let dateNum = month * 100 + day
 		if (typeof date === 'number') {
-			score = date
+			dateNum = date
 		}
-		if (score <= 119) return '摩羯座'
-		if (score <= 218) return '水瓶座'
-		if (score <= 320) return '双鱼座'
-		if (score <= 419) return '白羊座'
-		if (score <= 520) return '金牛座'
-		if (score <= 621) return '双子座'
-		if (score <= 722) return '巨蟹座'
-		if (score <= 822) return '狮子座'
-		if (score <= 922) return '处女座'
-		if (score <= 1023) return '天秤座'
-		if (score <= 1122) return '天蝎座'
-		if (score <= 1221) return '射手座'
-		return '摩羯座'
+		// 星座数组
+		const constellationArray = ['摩羯座', '水瓶座', '双鱼座', '白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座']
+		// 结束日期数组
+		const endDateNumArray = [119, 218, 320, 419, 520, 621, 722, 822, 922, 1023, 1122, 1221]
+		// 循环判断减少return
+		for (let i = 0; i < endDateNumArray.length; i++) {
+			const endDateNum = endDateNumArray[i]
+			if (dateNum <= endDateNum) return constellationArray[i]
+		}
+		return constellationArray[0]
 	}
 }
