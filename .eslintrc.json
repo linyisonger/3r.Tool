@@ -39,6 +39,9 @@
         "no-unused-vars": "off",
         "no-useless-escape": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+        "no-extend-native": "off",
+        "prefer-rest-params": "off",
+        "lines-between-class-members": "off"
     }
 }

@@ -1,4 +1,4 @@
-🏃‍包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号...持续更新整合
+🏃‍包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/校验身份证、统一社会信用代码、手机号/转换日期、星座、身份证解析...持续更新整合
 
 ![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/cd.yml)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg?branch=master)](https://coveralls.io/github/linyisonger/3r.Tool?branch=master)![release](https://img.shields.io/librariesio/release/npm/@3r/tool)![npm](https://img.shields.io/npm/v/@3r/tool)![sourcerank](https://img.shields.io/librariesio/sourcerank/npm/@3r/tool)![NPM](https://img.shields.io/npm/l/@3r/tool)[![Code Climate](https://codeclimate.com/github/linyisonger/3r.Tool/badges/gpa.svg)](https://codeclimate.com/github/linyisonger/3r.Tool)[![Test Coverage](https://codeclimate.com/github/linyisonger/3r.Tool/badges/coverage.svg)](https://codeclimate.com/github/linyisonger/3r.Tool/coverage)
 
@@ -168,6 +168,11 @@ console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase
 console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
 console.log('通过日期获取星座', Convertor.getConstellationByDate(new Date(1997, 2, 14)));
 
+console.log('通过日期获取星座', Convertor.getConstellationByDate(new Date(1997, 2, 14)));
+
+console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
+
+
 ```
 
 #### Map 地图模块
@@ -275,6 +280,19 @@ console.log('是否是车牌号', Verify.isVehicleNumber('青G04444'))
 console.log('像身份证号', Verify.likeIDCardNumber('622924198810193427'));
 console.log('是否是身份证号码', Verify.isCitizenIdentificationNumber('622924198810193427'));
 console.log('密码规则校验', Verify.passwordRules('abc123', PasswordRuleEnum.SmallNumber, 6, 20));
+// 字符串拓展使用
+console.log('是否是null或者""', ''.isNullOrEmpty);
+console.log('是否是{}', {}.isNullOrEmpty); // 无提示
+console.log('像是社会统一信用代码', '92230900EUFUTJY536'.likeUsci);
+console.log('校验是否是11位手机号码', '13062627854'.isPhoneNumber);
+console.log('校验是否是固定电话', '0371-99882211'.isTellPhoneNumber)
+console.log('是否是邮箱', 'linyisonger@qq.com'.isEmail)
+// 这个验证校验码是否正确
+console.log('是否是统一社会信用代码', '92230900EUFUTJY536'.isUnifiedSocialCreditIdentifier)
+console.log('是否是车牌号', '青G04444'.isVehicleNumber)
+console.log('像身份证号', '622924198810193427'.likeIDCardNumber);
+console.log('是否是身份证号码', '622924198810193427'.isCitizenIdentificationNumber);
+console.log('密码规则校验', 'abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
 
 ```
 

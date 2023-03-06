@@ -23,17 +23,18 @@ export class Verify {
 	 * @param usci 社会统一信用代码
 	 * @returns
 	 */
-	static likeUsci (usci: string): boolean {
+	static likeUsci(usci: string): boolean {
 		return /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.test(usci)
 	}
 
 	/**
-	 * 是否是null或者""
-	 * @param str 字符串
+	 * 是否是null或者""或者{}
+	 * @param obj 字符串|对象
 	 * @returns
 	 */
-	static isNullOrEmpty (str: string): boolean {
-		return str === '' || str === null || str === undefined
+	static isNullOrEmpty(obj: string | object): boolean {
+		if (typeof obj === 'object') return obj === null || Object.keys(obj).length === 0
+		return obj === '' || obj === undefined
 	}
 
 	/**
@@ -41,7 +42,7 @@ export class Verify {
 	 * @param phoneNumber 手机号码
 	 * @returns
 	 */
-	static isPhoneNumber (phoneNumber: string): boolean {
+	static isPhoneNumber(phoneNumber: string): boolean {
 		return /^1[3456789]\d{9}$/.test(phoneNumber)
 	}
 
@@ -50,7 +51,7 @@ export class Verify {
 	 * @param tellPhoneNumber 固定电话
 	 * @returns
 	 */
-	static isTellPhoneNumber (tellPhoneNumber: string): boolean {
+	static isTellPhoneNumber(tellPhoneNumber: string): boolean {
 		return /^\d{3}-\d{7,8}|\d{4}-\d{7,8}$/.test(tellPhoneNumber)
 	}
 
@@ -59,7 +60,7 @@ export class Verify {
 	 * @param email 邮箱
 	 * @returns
 	 */
-	static isEmail (email: string): boolean {
+	static isEmail(email: string): boolean {
 		return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(email)
 	}
 
@@ -68,7 +69,7 @@ export class Verify {
 	 * @param usci 统一社会信用代码
 	 * @returns
 	 */
-	static isUnifiedSocialCreditIdentifier (usci: string): boolean {
+	static isUnifiedSocialCreditIdentifier(usci: string): boolean {
 		if (usci.length !== 18) return false // 长度不正确
 		/** 省份区划 前两位 */
 		const provinceCodes = ['11', '12', '13', '14', '15', '21', '22', '23', '31', '32', '33', '34', '35', '36', '37', '41', '42', '43', '44', '45', '46', '50', '51', '52', '53', '54', '61', '62', '63', '64', '65', '71', '81', '82', '91']
@@ -158,7 +159,7 @@ export class Verify {
 	 * @param vehicleNumber 车牌号
 	 * @returns
 	 */
-	static isVehicleNumber (vehicleNumber: string) {
+	static isVehicleNumber(vehicleNumber: string) {
 		if (vehicleNumber.length === 7) return /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/.test(vehicleNumber)
 		if (vehicleNumber.length === 8) return /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DABCEFGHJK]$)|([DABCEFGHJK][A-HJ-NP-Z0-9][0-9]{4}$))/.test(vehicleNumber) // 2021年新能源车牌不止有DF
 		return false
@@ -169,7 +170,7 @@ export class Verify {
 	 * @param num 身份证号
 	 * @returns
 	 */
-	static likeIDCardNumber (num: string): boolean {
+	static likeIDCardNumber(num: string): boolean {
 		return /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(num)
 	}
 
@@ -177,7 +178,7 @@ export class Verify {
 	 * 是否是身份证号码
 	 * @param num 身份证号码
 	 */
-	static isCitizenIdentificationNumber (num: string): boolean {
+	static isCitizenIdentificationNumber(num: string): boolean {
 		if (num.length !== 18) return false
 		if (!this.likeIDCardNumber(num)) return false
 		// 验证码
@@ -202,11 +203,90 @@ export class Verify {
 	 * @param maxLength 最大长度
 	 * @returns
 	 */
-	static passwordRules (password: string, rule = PasswordRuleEnum.LargeSmallNumber, minLength = 6, maxLength = 20) {
+	static passwordRules(password: string, rule = PasswordRuleEnum.LargeSmallNumber, minLength = 6, maxLength = 20) {
 		let res = true
 		if ((rule & PasswordRuleEnum.Large) !== 0) { res = res && /(?=.*[A-Z])/.test(password) }
 		if ((rule & PasswordRuleEnum.Small) !== 0) { res = res && /(?=.*[a-z])/.test(password) }
 		if ((rule & PasswordRuleEnum.Number) !== 0) { res = res && /(?=.*[0-9])/.test(password) }
 		return res && password.length >= minLength && password.length <= maxLength
+	}
+}
+
+[
+	...Reflect.ownKeys(Verify).filter(_ => typeof (Verify as any)[_] === 'function' && _ !== 'passwordRules').map(n => Object({
+		name: n,
+		prototype: String.prototype,
+		type: 'property'
+	})),
+	{ name: 'passwordRules', prototype: String.prototype, type: 'method' },
+	{ name: 'isNullOrEmpty', prototype: Object.prototype, type: 'property' }
+].forEach(item => {
+	Object.defineProperty(item.prototype, item.name, {
+		get: function () {
+			const that = this as any
+			if (item.type === 'method') {
+				return function () {
+					return (Verify as any)[item.name].apply(that, [that, ...arguments])
+				}
+			}
+			return (Verify as any)[item.name](that)
+		}
+	})
+})
+
+declare global {
+	interface String {
+		/**
+		 * 像是社会统一信用代码
+		 */
+		likeUsci: boolean;
+		/**
+		 * 是否是null或者""或者{}
+		 **/
+		isNullOrEmpty: boolean;
+		/**
+		 * 校验是否是11位手机号码
+		 */
+		isPhoneNumber: boolean;
+		/**
+		 * 校验是否是固定电话
+		 */
+		isTellPhoneNumber: boolean;
+		/**
+		 * 是否是邮箱
+		 * @param email 邮箱
+		 * @returns
+		 */
+		isEmail: boolean;
+		/**
+		 * 是否是统一社会信用代码
+		 */
+		isUnifiedSocialCreditIdentifier: boolean;
+		/**
+		 * 是否是车牌号
+		 */
+		isVehicleNumber: boolean;
+		/**
+		 * 像身份证号
+		 */
+		likeIDCardNumber: boolean;
+		/**
+		 * 是否是身份证号码
+		 */
+		isCitizenIdentificationNumber: boolean;
+		/**
+		 * 密码规则校验
+		 * @param rule 规则
+		 * @param minLength 最小长度
+		 * @param maxLength 最大长度
+		 * @returns
+		 */
+		passwordRules: (rule?: PasswordRuleEnum, minLength?: number, maxLength?: number) => boolean
+	}
+	interface Object {
+		/**
+		 * 是否是null或者""或者{}
+		 **/
+		isNullOrEmpty: boolean;
 	}
 }

@@ -402,4 +402,140 @@ export class Convertor {
 		}
 		return constellationArray[0]
 	}
+	/**
+	 * 身份证号码信息解析
+	 * @param code 身份证号码
+	 */
+	static citizenIdentificationNumberParse(code: string) {
+		const reginCode = code.substring(0, 6)
+		const birthday = new Date(+code.substring(6, 10), +code.substring(10, 12) - 1, +code.substring(12, 14))
+		const gender = +code[16] % 2 === 0 ? '女' : '男'
+		const constellation = Convertor.getConstellationByDate(code.substring(10, 14))
+		return {
+			reginCode,
+			birthday: birthday.timeFormat('yyyy/MM/dd'),
+			gender,
+			constellation,
+			age: new Date().getFullYear() - birthday.getFullYear()
+		}
+	}
+}
+
+[
+	{ name: 'usciToOibc', prototype: String.prototype, type: 'property' },
+	{ name: 'timeFormat', prototype: Date.prototype, type: 'method' },
+	{ name: 'thousands', prototype: String.prototype, type: 'property' },
+	{ name: 'thousands', prototype: Number.prototype, type: 'property' },
+	{ name: 'hexToRgb', prototype: String.prototype, type: 'property' },
+	{ name: 'rgbToHex', prototype: String.prototype, type: 'property' },
+	{ name: 'xmlToText', prototype: String.prototype, type: 'property' },
+	{ name: 'numToAmountInWords', prototype: String.prototype, type: 'property' },
+	{ name: 'numToChinese', prototype: String.prototype, type: 'property' },
+	{ name: 'urlQueryToObject', prototype: String.prototype, type: 'property' },
+	{ name: 'snakeCaseToUpperCamelcase', prototype: String.prototype, type: 'property' },
+	{ name: 'snakeCaseToLowerCamelcase', prototype: String.prototype, type: 'property' },
+	{ name: 'camelcaseToSnakeCase', prototype: String.prototype, type: 'property' },
+	{ name: 'getConstellationByDate', prototype: String.prototype, type: 'property' },
+	{ name: 'getConstellationByDate', prototype: Date.prototype, type: 'property' },
+	{ name: 'citizenIdentificationNumberParse', prototype: String.prototype, type: 'property' }
+].forEach(item => {
+	Object.defineProperty(item.prototype, item.name, {
+		get: function () {
+			const that = this as any
+			if (item.type === 'method') {
+				return function () {
+					return (Convertor as any)[item.name].apply(that, [that, ...arguments])
+				}
+			}
+			return (Convertor as any)[item.name](that)
+		}
+	})
+})
+
+declare global {
+	interface String {
+		/**
+		 * 社会统一信用代码转换组织机构代码
+		 */
+		usciToOibc: string;
+		/**
+		 * 千分位处理
+		 */
+		thousands: string;
+		/**
+		 * 颜色转换
+		 * #fff or #ffffff => rgb(255,255,255)
+		 *  fff or  ffffff => rgb(255,255,255)
+		 */
+		hexToRgb: string;
+		/**
+		 * 颜色转换
+		 * rgb(255,255,255) => #ffffff
+		 */
+		rgbToHex: string;
+		/**
+		 * xml 输出 文本
+		 * <p>123</p> => 123
+		 */
+		xmlToText: string;
+		/**
+		 * 数字转大写金额
+		 * 引用 https://www.cnblogs.com/wangfuyou/p/7426472.html
+		 */
+		numToAmountInWords: string;
+		/**
+		 * 数字转中文
+		 */
+		numToChinese: string;
+		/**
+		 * url query 方式转成 object 形式
+		 * @author 桃子
+		 */
+		urlQueryToObject: any;
+		/**
+		 * 蛇形命名法 -> 大驼峰命名法
+		 */
+		snakeCaseToUpperCamelcase: string;
+		/**
+		 * 蛇形命名法 -> 小驼峰命名法
+		 */
+		snakeCaseToLowerCamelcase: string;
+		/**
+		 * 小驼峰命名法 -> 蛇形命名法
+		 */
+		camelcaseToSnakeCase: string;
+		/**
+		 * 通过日期获取星座
+		 */
+		getConstellationByDate: string;
+		/**
+		 * 身份证号码信息解析
+		 * @param code 身份证号码
+		 */
+		citizenIdentificationNumberParse: {
+			reginCode: string;
+			birthday: string;
+			gender: string;
+			constellation: string;
+			age: number;
+		};
+	}
+	interface Number {
+		/**
+		 * 千分位处理
+		 */
+		thousands: string;
+	}
+
+	interface Date {
+		/**
+		 * 时间格式化
+		 * @param fmt 格式化方案
+		 */
+		timeFormat(fmt?: string): string;
+		/**
+		 * 通过日期获取星座
+		 */
+		getConstellationByDate: string;
+	}
 }

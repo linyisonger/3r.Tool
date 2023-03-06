@@ -20,26 +20,45 @@ let run = function () {
     console.log('像身份证号', Verify.likeIDCardNumber('622924198810193427'));
     console.log('是否是身份证号码', Verify.isCitizenIdentificationNumber('622924198810193427'));
     console.log('密码规则校验', Verify.passwordRules('abc123', PasswordRuleEnum.SmallNumber, 6, 20));
+    // 字符串拓展使用
+    console.log('是否是null或者""', ''.isNullOrEmpty);
+    console.log('是否是{}', {}.isNullOrEmpty); // 无提示
+    console.log('像是社会统一信用代码', '92230900EUFUTJY536'.likeUsci);
+    console.log('校验是否是11位手机号码', '13062627854'.isPhoneNumber);
+    console.log('校验是否是固定电话', '0371-99882211'.isTellPhoneNumber)
+    console.log('是否是邮箱', 'linyisonger@qq.com'.isEmail)
+    // 这个验证校验码是否正确
+    console.log('是否是统一社会信用代码', '92230900EUFUTJY536'.isUnifiedSocialCreditIdentifier)
+    console.log('是否是车牌号', '青G04444'.isVehicleNumber)
+    console.log('像身份证号', '622924198810193427'.likeIDCardNumber);
+    console.log('是否是身份证号码', '622924198810193427'.isCitizenIdentificationNumber);
+    console.log('密码规则校验', 'abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
 }
 
 try {
     describe('验证模块', function () {
         it('像是社会统一信用代码', function () {
             expect(Verify.likeUsci('92230900EUFUTJY536')).toEqual(true)
+            expect('92230900EUFUTJY536'.likeUsci).toEqual(true)
         })
         it('是否是null或者""', function () {
             expect(Verify.isNullOrEmpty('')).toEqual(true)
             expect(Verify.isNullOrEmpty(null)).toEqual(true)
             expect(Verify.isNullOrEmpty(undefined)).toEqual(true)
+            expect(Verify.isNullOrEmpty({})).toEqual(true)
+            expect({}.isNullOrEmpty).toEqual(true)
         })
         it('校验是否是11位手机号码', function () {
             expect(Verify.isPhoneNumber('13062627854')).toEqual(true)
+            expect('13062627854'.isPhoneNumber).toEqual(true)
         })
         it('校验是否是固定电话', function () {
             expect(Verify.isTellPhoneNumber('0371-99882211')).toEqual(true)
+            expect('0371-99882211'.isTellPhoneNumber).toEqual(true)
         })
         it('是否是邮箱', function () {
             expect(Verify.isEmail('linyisonger@qq.com')).toEqual(true)
+            expect('linyisonger@qq.com'.isEmail).toEqual(true)
         })
         it('是否是统一社会信用代码', function () {
             expect(Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY536')).toEqual(true)
@@ -61,16 +80,19 @@ try {
             expect(Verify.isUnifiedSocialCreditIdentifier('92412100WWUCGLLT04')).toEqual(true)
             expect(Verify.isUnifiedSocialCreditIdentifier('91211200KL0LRM9N40')).toEqual(true)
             expect(Verify.isUnifiedSocialCreditIdentifier('91330600TC9XYWDY5G')).toEqual(true)
+            expect('91330600TC9XYWDY5G'.isUnifiedSocialCreditIdentifier).toEqual(true)
 
-            
+
         })
         it('是否是车牌号', function () {
             expect(Verify.isVehicleNumber('青G04444')).toEqual(true)
             expect(Verify.isVehicleNumber('青AG04444')).toEqual(true)
             expect(Verify.isVehicleNumber('青AG04444X')).toEqual(false)
+            expect('青AG04444X'.isVehicleNumber).toEqual(false)
         })
         it('像身份证号', function () {
             expect(Verify.likeIDCardNumber('622924198810193427')).toEqual(true)
+            expect('622924198810193427'.likeIDCardNumber).toEqual(true)
         })
         it('是否是身份证号码', function () {
             expect(Verify.isCitizenIdentificationNumber('622924198810193427')).toEqual(true)
@@ -78,6 +100,7 @@ try {
             expect(Verify.isCitizenIdentificationNumber('62X92419881019342X')).toEqual(false)
             expect(Verify.isCitizenIdentificationNumber('62292430001019342X')).toEqual(false)
             expect(Verify.isCitizenIdentificationNumber('622419881019342X')).toEqual(false)
+            expect('622419881019342X'.isCitizenIdentificationNumber).toEqual(false)
         })
         it('密码规则校验', function () {
             expect(Verify.passwordRules('abc123', PasswordRuleEnum.SmallNumber, 6, 20)).toEqual(true)
@@ -90,6 +113,10 @@ try {
             expect(Verify.passwordRules('abc123', PasswordRuleEnum.LargeSmallNumber, 6, 20)).toEqual(false)
             expect(Verify.passwordRules('abc123', PasswordRuleEnum.LargeSmall, 6, 20)).toEqual(false)
             expect(Verify.passwordRules('abc123')).toEqual(false)
+            expect('abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20)).toEqual(true)
+            expect('abc123'.passwordRules()).toEqual(false)
+
+
         })
     })
 } catch (error) {

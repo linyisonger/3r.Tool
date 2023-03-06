@@ -1,3 +1,21 @@
+### 🚀v1.2.0 拓展方法
+
+➕: 拓展方法如下
+👀: '12/24'.getConstellationByDate
+👀: 'LowerCaseWithUnderscores'.camelcaseToSnakeCase
+🙋‍: ... 目前convertor和verify绝大部分增加了
+➕: 身份证号码信息
+👀: '420503198804097532'.citizenIdentificationNumberParse
+```js
+{
+    "age": 35,
+    "birthday": "1988/04/09",
+    "constellation": "白羊座",
+    "gender": "男",
+    "reginCode": "420503",
+}
+```
+
 ### 🚀v1.1.6 日期转换星座
 
 ➕: 执行时间输出
