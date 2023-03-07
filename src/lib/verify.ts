@@ -28,7 +28,7 @@ export class Verify {
 	}
 
 	/**
-	 * 是否是null或者""或者{}
+	 * 是否是null或者""或者\{\}
 	 * @param obj 字符串|对象
 	 * @returns
 	 */
