@@ -12,7 +12,7 @@
     "build": "npx tsc && npm run build:readme && npm run build:compress",
     "build:readme": "node ./build/readme.js",
     "build:compress": "node ./build/compress.js",
-    "lint": "npx eslint src/modules/*.ts --fix"
+    "lint": "npx eslint src/lib/*.ts --fix"
   },
   "keywords": [
     "typescript",
