@@ -1,4 +1,4 @@
-import { Maths } from '../modules/maths.js'
+import { Maths } from '../lib/maths.js'
 
 export enum GetRandomStrEnum {
     /** 大写字母 */

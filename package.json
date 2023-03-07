@@ -52,5 +52,9 @@
   },
   "homepage": "https://github.com/linyisonger/3r.Tool#readme",
   "unpkg": "index.js",
-  "jsdelivr": "index.js"
+  "jsdelivr": "index.js",
+  "typings": "index.d.ts",
+  "gitHooks": {
+    "pre-commit": "build"
+  }
 }

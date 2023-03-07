@@ -1,4 +1,4 @@
-modules/
+lib/
 node_modules/
 !/src/*
 coverage/

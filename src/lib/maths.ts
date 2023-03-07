@@ -1,4 +1,4 @@
-import { cloneDeep } from '../modules/common.js'
+import { cloneDeep } from '../lib/common.js'
 
 /** 因数 */
 interface IFactor {
