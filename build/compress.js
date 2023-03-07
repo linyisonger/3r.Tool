@@ -15,7 +15,7 @@ async function compress() {
     // 获取改文件所在文件夹
     const __dirname = dirname(fileURLToPath(import.meta.url))
 
-    let currSrc = __dirname.replace('build', 'modules')
+    let currSrc = __dirname.replace('build', 'lib')
     let currDir = readdirSync(currSrc)
 
     for (const file of currDir) {
