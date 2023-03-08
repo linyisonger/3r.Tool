@@ -420,7 +420,7 @@ export class Convertor {
 		}
 	}
 	/**
-	 * 文件大小 -> 对应大小kb，m，g，t
+	 * 文件大小 -> 对应大小K，M，G，T
 	 * @param byte 传入字节，单位byte
 	 * @param fractionDigits 保留几位小数，默认两位
 	 */

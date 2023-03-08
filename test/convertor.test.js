@@ -46,6 +46,8 @@ let run = function () {
 
     console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
 
+    console.log('字节转换',Convertor.byteFormat(1099511627776,2));
+
 }
 try {
     describe('转换模块', function () {
