@@ -421,16 +421,16 @@ export class Convertor {
 	}
 	/**
 	 * 文件大小 -> 对应大小kb，m，g，t
-	 * @param size 传入字节，单位byte
-	 * @param toFix 保留几位小数，默认两位
+	 * @param byte 传入字节，单位byte
+	 * @param fractionDigits 保留几位小数，默认两位
 	 */
-	static fileSizeChange(size: number,toFix: number = 2) {
+	static byteFormat(byte: number,fractionDigits: number = 2) {
 		var sizeKey = 1024.00
-		if (size < sizeKey) return size + "B";
-			if (size < Math.pow(sizeKey, 2)) return (size / sizeKey).toFixed(toFix) + "K"; //kb
-			if (size < Math.pow(sizeKey, 3)) return (size / Math.pow(sizeKey, 2)).toFixed(toFix) + "M"; //M
-			if (size < Math.pow(sizeKey, 4)) return (size / Math.pow(sizeKey, 3)).toFixed(toFix) + "G"; //G
-			return (size / Math.pow(sizeKey, 4)).toFixed(toFix) + "T"; //T
+		if (byte < sizeKey) return byte + "B";
+		if (byte < Math.pow(sizeKey, 2)) return (byte / sizeKey).toFixed(fractionDigits) + "K"; //kb
+		if (byte < Math.pow(sizeKey, 3)) return (byte / Math.pow(sizeKey, 2)).toFixed(fractionDigits) + "M"; //M
+		if (byte < Math.pow(sizeKey, 4)) return (byte / Math.pow(sizeKey, 3)).toFixed(fractionDigits) + "G"; //G
+		return (byte / Math.pow(sizeKey, 4)).toFixed(fractionDigits) + "T"; //T
 	}
 }	
 
