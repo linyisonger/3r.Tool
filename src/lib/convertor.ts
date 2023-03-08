@@ -419,7 +419,20 @@ export class Convertor {
 			age: new Date().getFullYear() - birthday.getFullYear()
 		}
 	}
-}
+	/**
+	 * 文件大小 -> 对应大小kb，m，g，t
+	 * @param size 传入字节，单位byte
+	 * @param toFix 保留几位小数，默认两位
+	 */
+	static fileSizeChange(size: number,toFix: number = 2) {
+		var sizeKey = 1024.00
+		if (size < sizeKey) return size + "B";
+			if (size < Math.pow(sizeKey, 2)) return (size / sizeKey).toFixed(toFix) + "K"; //kb
+			if (size < Math.pow(sizeKey, 3)) return (size / Math.pow(sizeKey, 2)).toFixed(toFix) + "M"; //M
+			if (size < Math.pow(sizeKey, 4)) return (size / Math.pow(sizeKey, 3)).toFixed(toFix) + "G"; //G
+			return (size / Math.pow(sizeKey, 4)).toFixed(toFix) + "T"; //T
+	}
+}	
 
 [
 	{ name: 'usciToOibc', prototype: String.prototype, type: 'property' },
