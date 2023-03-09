@@ -23,8 +23,8 @@ export function cloneDeep<T>(obj: T) {
 	if (obj instanceof Set) return new Set(obj.values()) as T
 	if (obj instanceof RegExp) return new RegExp(obj) as T
 	if (obj instanceof Date) return new Date(+obj) as T
-
 	if (typeof obj === 'object') {
+		if (obj === null) return null as T
 		const res = (Array.isArray(obj) ? [] : {}) as T
 		// 获取类型
 		const proOf = Reflect.getPrototypeOf(obj as object)
@@ -32,7 +32,7 @@ export function cloneDeep<T>(obj: T) {
 		Reflect.setPrototypeOf(res as object, proOf)
 
 		for (const key in obj) {
-			res[key] = cloneDeep(obj[key])
+			(res as any)[key] = cloneDeep(obj[key])
 		}
 		return res
 	}

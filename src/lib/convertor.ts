@@ -424,15 +424,15 @@ export class Convertor {
 	 * @param byte 传入字节，单位byte
 	 * @param fractionDigits 保留几位小数，默认两位
 	 */
-	static byteFormat(byte: number,fractionDigits: number = 2) {
-		var sizeKey = 1024.00
-		if (byte < sizeKey) return byte + "B";
-		if (byte < Math.pow(sizeKey, 2)) return (byte / sizeKey).toFixed(fractionDigits) + "K"; //kb
-		if (byte < Math.pow(sizeKey, 3)) return (byte / Math.pow(sizeKey, 2)).toFixed(fractionDigits) + "M"; //M
-		if (byte < Math.pow(sizeKey, 4)) return (byte / Math.pow(sizeKey, 3)).toFixed(fractionDigits) + "G"; //G
-		return (byte / Math.pow(sizeKey, 4)).toFixed(fractionDigits) + "T"; //T
+	static byteFormat(byte: number, fractionDigits = 2) {
+		const sizeKey = 1024.00
+		if (byte < sizeKey) return byte + 'B'
+		if (byte < Math.pow(sizeKey, 2)) return (byte / sizeKey).toFixed(fractionDigits) + 'K'
+		if (byte < Math.pow(sizeKey, 3)) return (byte / Math.pow(sizeKey, 2)).toFixed(fractionDigits) + 'M'
+		if (byte < Math.pow(sizeKey, 4)) return (byte / Math.pow(sizeKey, 3)).toFixed(fractionDigits) + 'G'
+		return (byte / Math.pow(sizeKey, 4)).toFixed(fractionDigits) + 'T'
 	}
-}	
+}
 
 [
 	{ name: 'usciToOibc', prototype: String.prototype, type: 'property' },
