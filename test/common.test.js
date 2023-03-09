@@ -75,7 +75,7 @@ try {
             uint32Array: new Uint32Array([22, 22, 13]),
             float32Array: new Float32Array([1.1, 2.3]),
             float64Array: new Float64Array([1.1, 2.3]),
-
+            n: null
         }
         let b = cloneDeep(a);
 
