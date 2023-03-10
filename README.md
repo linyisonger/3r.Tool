@@ -172,6 +172,8 @@ console.log('通过日期获取星座', Convertor.getConstellationByDate(new Dat
 
 console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
 
+console.log('字节转换',Convertor.byteFormat(1099511627776,2));
+
 
 ```
 

@@ -428,7 +428,7 @@ export class Convertor {
 		}
 	}
 	/**
-	 * 文件大小 -> 对应大小kb，m，g，t
+	 * 文件大小 -> 对应大小K，M，G，T
 	 * @param byte 传入字节，单位byte
 	 * @param fractionDigits 保留几位小数，默认两位
 	 * @param units 单位名称 默认值 ['B', 'KB', 'MB', 'GB', 'TB', 'PB'] 自定义传入时只能比起需 <= 默认值长度
