@@ -6,48 +6,25 @@ let description = function () {
 
 let run = function () {
     console.log('社会统一信用代码转换组织机构代码', Convertor.usciToOibc('91411100766237140X'));
-    // 76623714-0
     console.log('日期转换', Convertor.timeFormat(new Date(), 'yyyy年MM月dd日 hh:mm:ss'));
-    // 例: 2022年12月27日 11:12:35
     console.log('千分位处理', Convertor.thousands(10009992.12));
-    // 10,009,992.12
     console.log('文本转base64', Convertor.textToBase64('1234'));
-    // MTIzNA==
     console.log('base64转文本', Convertor.base64ToText('MTIzNA=='));
-    // 1234
     console.log('json对象转换base64', Convertor.jsonToBase64({ a: 1 }));
-    // eyJhIjoxfQ==
     console.log('base64转换json对象', Convertor.base64ToJson('eyJhIjoxfQ=='));
-    // { a: 1 }
     console.log('颜色转换', Convertor.hexToRgb('f2a'));
-    // rgb(255,34,170)
     console.log('颜色转换', Convertor.rgbToHex('rgb(255,34,170)'));
-    // #ff22aa
     console.log('xml输出文本', Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>'));
-    // 总金额 100,000.00
     console.log('数字转大写人民币', Convertor.numToAmountInWords(102030.00));
-    // 壹拾万贰仟零叁拾圆整
     console.log('数字转中文', Convertor.numToChinese(102030));
-    // 十万二千三十
     console.log('url query 转对象', Convertor.urlQueryToObject('http://example.com/user?id=1&age=2'));
-    // { "age": "2", "id": "1" 
     console.log('url object 转 query', Convertor.urlObjectToQuery({ id: 1, age: 3 }));
-    // '?id=1&age=3'
     console.log('蛇形命名法 -> 大驼峰命名法', Convertor.snakeCaseToUpperCamelcase('lower_case_with_underscores'));
-    // LowerCaseWithUnderscores
     console.log('蛇形命名法 -> 小驼峰命名法', Convertor.snakeCaseToLowerCamelcase('lower_case_with_underscores'));
-    // lowerCaseWithUnderscores
     console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
-    // lower_case_with_underscores
     console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
-    console.log('通过日期获取星座', Convertor.getConstellationByDate(new Date(1997, 2, 14)));
-
-    console.log('通过日期获取星座', Convertor.getConstellationByDate(new Date(1997, 2, 14)));
-
     console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
-
     console.log('字节转换',Convertor.byteFormat(1099511627776,2));
-
 }
 try {
     describe('转换模块', function () {

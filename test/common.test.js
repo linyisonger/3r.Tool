@@ -4,38 +4,8 @@ let description = function () {
 }
 
 let run = function () {
-    let a = {
-        x: 1, y: '2', z: 33333333333333333333333333333, h: function () {
-            return this.y
-        },
-        isPoint: true,
-        count: NaN,
-        length: undefined,
-        child: [
-            {
-                x: 2,
-            }
-        ],
-        time: new Date(),
-        test: /\d/g,
-        color: new Set(),
-        arrayBuffer: new Int8Array([12, 23, 33]).buffer,
-        int8Array: new Int8Array([12, 23, 33]),
-        int16Array: new Int16Array([22, 33, 13]),
-        int32Array: new Int32Array([22, 22, 13]),
-    }
-    a.color.add('222')
-    let b = cloneDeep(a)
-    console.log(b);
-    b.x = 2
-    b.color.delete('222')
-    console.log('深克隆', a, b);
-    let p1 = v2(1, 2)
-    let p2 = cloneDeep(p1);
-    p1.x = 2;
-    console.log(p1, p2, p2.plus(p1));
-
-    console.log('执行时间', executionTime(() => { cloneDeep(p1) }));
+    console.log('深克隆', cloneDeep({ /** 需要克隆的对象 */ }));
+    console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
 }
 try {
     describe('深克隆', function () {
