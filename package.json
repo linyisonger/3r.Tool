@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "npx tsc && npm run build:readme && npm run build:compress && npm run docs",
+    "build": "npx tsc && npm run build:readme && npm run build:compress",
     "build:readme": "node ./build/readme.js",
     "build:compress": "node ./build/compress.js",
     "lint": "npx eslint src/lib/*.ts --fix",
