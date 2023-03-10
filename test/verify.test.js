@@ -33,6 +33,7 @@ let run = function () {
     console.log('像身份证号', '622924198810193427'.likeIDCardNumber);
     console.log('是否是身份证号码', '622924198810193427'.isCitizenIdentificationNumber);
     console.log('密码规则校验', 'abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
+    console.log('判断版本是否相等', '1.0.0'.versionComparison('1.0.0'));
 }
 
 try {
@@ -115,9 +116,13 @@ try {
             expect(Verify.passwordRules('abc123')).toEqual(false)
             expect('abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20)).toEqual(true)
             expect('abc123'.passwordRules()).toEqual(false)
-
-
         })
+        it('版本对比', function () {
+            expect('1.1.1'.versionComparison('1.1.1')).toEqual(0)
+            expect('1.1.1'.versionComparison('1.1.2')).toEqual(-1)
+            expect('1.2.1'.versionComparison('1.1.2')).toEqual(1)
+            expect('1.2.1.1'.versionComparison('1.1.2.1')).toEqual(1)
+        });
     })
 } catch (error) {
     // describe is not defined 无需理会 调用方式不一致 

@@ -178,13 +178,17 @@ try {
                 "reginCode": "420503",
             })
         })
-        it('字节转换', function() {
-            expect(Convertor.byteFormat(830,2)).toEqual('830B')
-            expect(Convertor.byteFormat(1024,2)).toEqual('1.00K')
-            expect(Convertor.byteFormat(1024)).toEqual('1.00K')
-            expect(Convertor.byteFormat(1048576,2)).toEqual('1.00M')
-            expect(Convertor.byteFormat(1073741824,2)).toEqual('1.00G')
-            expect(Convertor.byteFormat(1099511627776,2)).toEqual('1.00T')
+        it('字节转换', function () {
+            let byte = 12345
+            expect(Convertor.byteFormat(830, 2)).toEqual('830B')
+            expect(Convertor.byteFormat(1024, 2)).toEqual('1.00KB')
+            expect(Convertor.byteFormat(1024)).toEqual('1.00KB')
+            expect(Convertor.byteFormat(1048576, 2)).toEqual('1.00MB')
+            expect(Convertor.byteFormat(1073741824, 2)).toEqual('1.00GB')
+            expect(Convertor.byteFormat(1099511627776, 2)).toEqual('1.00TB')
+            expect(Convertor.byteFormat(1125899906842624, 2)).toEqual('1.00PB')
+            expect(byte.byteFormat(2)).toEqual('12.06KB')
+            expect(Convertor.byteFormat('1024', 2)).toEqual('1.00KB')
         })
 
     })

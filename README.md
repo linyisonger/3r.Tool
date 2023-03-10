@@ -293,6 +293,7 @@ console.log('是否是车牌号', '青G04444'.isVehicleNumber)
 console.log('像身份证号', '622924198810193427'.likeIDCardNumber);
 console.log('是否是身份证号码', '622924198810193427'.isCitizenIdentificationNumber);
 console.log('密码规则校验', 'abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
+console.log('判断版本是否相等', '1.0.0'.versionComparison('1.0.0'));
 
 ```
 

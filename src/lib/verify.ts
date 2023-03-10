@@ -210,16 +210,34 @@ export class Verify {
 		if ((rule & PasswordRuleEnum.Number) !== 0) { res = res && /(?=.*[0-9])/.test(password) }
 		return res && password.length >= minLength && password.length <= maxLength
 	}
+
+	/**
+	 * 版本对比 仅支持 x.x.x ...这种类型
+	 * @param current 当前版本
+	 * @param target 目标版本
+	 * @returns -1 小于 0 等于 1 大于
+	 */
+	static versionComparison(current: string, target: string) {
+		const c = current.split('.').map(_ => +_)
+		const t = target.split('.').map(_ => +_)
+		for (let i = 0; i < c.length; i++) {
+			if (c[i] > t[i]) return 1
+			if (c[i] < t[i]) return -1
+		}
+		return 0
+	}
 }
 
+const ignorePrototype = ['passwordRules', 'versionComparison'];
 [
-	...Reflect.ownKeys(Verify).filter(_ => typeof (Verify as any)[_] === 'function' && _ !== 'passwordRules').map(n => Object({
+	...Reflect.ownKeys(Verify).filter(_ => typeof (Verify as any)[_] === 'function' && !ignorePrototype.includes(_ as string)).map(n => Object({
 		name: n,
 		prototype: String.prototype,
 		type: 'property'
 	})),
 	{ name: 'passwordRules', prototype: String.prototype, type: 'method' },
-	{ name: 'isNullOrEmpty', prototype: Object.prototype, type: 'property' }
+	{ name: 'isNullOrEmpty', prototype: Object.prototype, type: 'property' },
+	{ name: 'versionComparison', prototype: String.prototype, type: 'method' }
 ].forEach(item => {
 	Object.defineProperty(item.prototype, item.name, {
 		get: function () {
@@ -282,6 +300,12 @@ declare global {
 		 * @returns
 		 */
 		passwordRules: (rule?: PasswordRuleEnum, minLength?: number, maxLength?: number) => boolean
+		/**
+		 * 版本对比 仅支持 x.x.x ...这种类型
+		 * @param target 目标版本
+		 * @returns -1 小于 0 等于 1 大于
+		 */
+		versionComparison(target: string): 0 | 1 | -1;
 	}
 	interface Object {
 		/**

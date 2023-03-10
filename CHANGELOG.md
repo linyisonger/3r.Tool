@@ -1,3 +1,11 @@
+### 🚀v1.2.4 版本校验/字节转换
+➕: 版本校验
+👀: '1.2.1'.versionComparison('1.1.2')
+➕: 字节转换
+👀: Convertor.byteFormat(830, 2)
+🔧: 修复cloneDeep null字段报错
+
+
 ### 🚀v1.2.0 拓展方法
 
 ➕: 拓展方法如下

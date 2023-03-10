@@ -112,6 +112,14 @@ class Base64 {
  */
 export class Convertor {
 	/**
+	 * 字节单位
+	 */
+	private static byteUnits = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+	/**
+	 * 字节转换
+	 */
+	private static byteDifferenceValue = new Array(this.byteUnits.length - 1).fill('').map((_, i) => Math.pow(1024, i + 1))
+	/**
 	 * 16进制转10进制
 	 * @param hex 16进制
 	 * @returns
@@ -423,20 +431,21 @@ export class Convertor {
 	 * 文件大小 -> 对应大小kb，m，g，t
 	 * @param byte 传入字节，单位byte
 	 * @param fractionDigits 保留几位小数，默认两位
-	 */
-	static byteFormat(byte: number, fractionDigits = 2) {
-		const sizeKey = 1024.00
-		if (byte < sizeKey) return byte + 'B'
-		if (byte < Math.pow(sizeKey, 2)) return (byte / sizeKey).toFixed(fractionDigits) + 'K'
-		if (byte < Math.pow(sizeKey, 3)) return (byte / Math.pow(sizeKey, 2)).toFixed(fractionDigits) + 'M'
-		if (byte < Math.pow(sizeKey, 4)) return (byte / Math.pow(sizeKey, 3)).toFixed(fractionDigits) + 'G'
-		return (byte / Math.pow(sizeKey, 4)).toFixed(fractionDigits) + 'T'
+	 * @param units 单位名称 默认值 ['B', 'KB', 'MB', 'GB', 'TB', 'PB'] 自定义传入时只能比起需 <= 默认值长度
+	   */
+	static byteFormat(byte: number | string, fractionDigits = 2, units = Convertor.byteUnits) {
+		if (typeof byte === 'string') byte = +byte
+		for (let i = 0; i < units.length - 1; i++) {
+			if (byte < Convertor.byteDifferenceValue[i]) return (byte / (Convertor.byteDifferenceValue[i - 1] ?? 1)).toFixed(i ? fractionDigits : i) + units[i]
+		}
+		return (byte / Convertor.byteDifferenceValue[Convertor.byteDifferenceValue.length - 1]).toFixed(fractionDigits) + units[units.length - 1]
 	}
 }
 
 [
 	{ name: 'usciToOibc', prototype: String.prototype, type: 'property' },
 	{ name: 'timeFormat', prototype: Date.prototype, type: 'method' },
+	{ name: 'byteFormat', prototype: Number.prototype, type: 'method' },
 	{ name: 'thousands', prototype: String.prototype, type: 'property' },
 	{ name: 'thousands', prototype: Number.prototype, type: 'property' },
 	{ name: 'hexToRgb', prototype: String.prototype, type: 'property' },
@@ -532,12 +541,21 @@ declare global {
 			constellation: string;
 			age: number;
 		};
+
 	}
 	interface Number {
 		/**
 		 * 千分位处理
 		 */
 		thousands: string;
+
+		/**
+		 * 文件大小 -> 对应大小kb，m，g，t
+		 * @param byte 传入字节，单位byte
+		 * @param fractionDigits 保留几位小数，默认两位
+		 * @param units 单位名称 默认值 ['B', 'KB', 'MB', 'GB', 'TB', 'PB'] 自定义传入时只能比起需 <= 默认值长度
+		 */
+		byteFormat(fractionDigits?: number, units?: string[]): string;
 	}
 
 	interface Date {
