@@ -1,6 +1,7 @@
 import { Octokit } from "octokit"
 import { readFileSync } from 'fs';
 const args = process.argv;
+console.log(args)
 const octokit = new Octokit({
     auth：args[2]
 });
