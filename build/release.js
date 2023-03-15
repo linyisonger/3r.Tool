@@ -1,12 +1,14 @@
 import { Octokit } from "octokit"
 import { readFileSync } from 'fs';
 const args = process.argv;
+console.log(args)
 const octokit = new Octokit({
-    auth: args[2],
+    auth：process.env.TOKEN
 });
-const owner = args[3]
-const repo = args[4]
+const owner = args[2]
+const repo = args[3]
 try {
+    console.log(args)
     const changelog = readFileSync('CHANGELOG.md', { encoding: 'utf-8' })
     const loglines = changelog.split('\n')
     const version = /🚀(.*?) /.exec(loglines[0])[1]
@@ -48,5 +50,6 @@ try {
     }
     else console.log("无需发布");
 } catch (error) {
+    console.log(error)
     console.log(`Error! Status: ${error.status}. Message: ${error.response.data.message}`)
 }

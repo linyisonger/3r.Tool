@@ -17,6 +17,10 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org
-      - run: |
+      - run:
           yarn install
-          node build/release.js '${{ secrets.GITHUB_TOKEN }}' 'linyisonger' '3r.Tool'
+      - name: Run script
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          node build/release.js 'linyisonger' '3r.Tool'
