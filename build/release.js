@@ -1,13 +1,14 @@
 import { Octokit } from "octokit"
 import { readFileSync } from 'fs';
 const args = process.argv;
-const token = process.env.GITHUB_TOKEN
+const token = process.env.GITHUB_TOKEN;
 const octokit = new Octokit({
-    auth: token,
+    auth：token
 });
 const owner = args[2]
 const repo = args[3]
 try {
+    console.log(token)
     console.log(args)
     const changelog = readFileSync('CHANGELOG.md', { encoding: 'utf-8' })
     const loglines = changelog.split('\n')
