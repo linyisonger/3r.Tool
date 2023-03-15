@@ -1,7 +1,7 @@
 /**
  * 图像模式返回值
  */
-type PictureModeResult = {
+export type PictureModeResult = {
     offsetX: number
     offsetY: number
     width: number
@@ -13,7 +13,7 @@ type PictureModeResult = {
  * @param targetWidth 目标 宽
  * @param targetHeight 目标 高
  */
-type PictureMode = (originWidth: number, originHeight: number, targetWidth: number, targetHeight: number) => PictureModeResult
+export type PictureMode = (originWidth: number, originHeight: number, targetWidth: number, targetHeight: number) => PictureModeResult
 /**
  * 缩放模式，保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。
  * @param originWidth 源 宽
