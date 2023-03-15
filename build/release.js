@@ -8,7 +8,6 @@ const octokit = new Octokit({
 const owner = args[2]
 const repo = args[3]
 try {
-    console.log(args)
     const changelog = readFileSync('CHANGELOG.md', { encoding: 'utf-8' })
     const loglines = changelog.split('\n')
     const version = /🚀(.*?) /.exec(loglines[0])[1]
@@ -36,7 +35,6 @@ try {
             owner,
             repo,
             tag_name: version,
-            target_commitish: 'main',
             name,
             body,
             draft: false,
