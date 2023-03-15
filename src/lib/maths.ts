@@ -27,7 +27,7 @@ export class Maths {
 	 */
 	static getFactors(x: number): IFactor[] {
 		// 所有因数对应组
-		const factors = []
+		const factors: IFactor[] = []
 		// 循环得到因数
 		for (let i = 1; i <= x / 2; i++) {
 			if (x % i === 0) factors.push({ a: i, b: x / i })
