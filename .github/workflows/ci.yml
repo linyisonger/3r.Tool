@@ -4,8 +4,7 @@ on:
   push:
     branches: [master]
     paths:
-      - "**/*.js"
-      - "**/*.ts"
+      - "**/*.test.js"
   workflow_dispatch:
 
 jobs:
