@@ -153,6 +153,17 @@ console.log('阶乘 10!', Maths.iterationFactorial(10))
 
 ```
 
+#### Picture 图像模块
+包含一些与图像的方法.
+
+以下是相关示例:
+```js
+console.log('scaleToFill 缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素	', scaleToFill(...p1));
+console.log('aspectFill 缩放模式，保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。', aspectFill(...p3));
+console.log('aspectFit 缩放模式，保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。', aspectFit(...p5));
+
+```
+
 #### Randoms 随机模块
 包含一些随机的方法.
 
