@@ -2,10 +2,10 @@
  * 图像模式返回值
  */
 export type PictureModeResult = {
-    offsetX: number
-    offsetY: number
-    width: number
-    height: number
+	offsetX: number
+	offsetY: number
+	width: number
+	height: number
 }
 /**
  * @param originWidth 源 宽
@@ -33,16 +33,16 @@ export const aspectFit: PictureMode = (originWidth, originHeight, targetWidth, t
 	/** 检测宽高大小 */
 	if (originWidth > originHeight) {
 		/**
-         * 结果的宽度 = 目标的宽度
-         * 结果的高度 = 目标宽度 / 宽高比
-         */
+		 * 结果的宽度 = 目标的宽度
+		 * 结果的高度 = 目标宽度 / 宽高比
+		 */
 		resultWidth = targetWidth
 		resultHeight = resultWidth / scale
 	} else {
 		/**
-         * 结果的高度 = 目标的高度
-         * 结果的宽度 = 目标高度 * 宽高比
-         */
+		 * 结果的高度 = 目标的高度
+		 * 结果的宽度 = 目标高度 * 宽高比
+		 */
 		resultHeight = targetHeight
 		resultWidth = resultHeight * scale
 	}
@@ -85,16 +85,27 @@ export const aspectFill: PictureMode = (originWidth, originHeight, targetWidth, 
 	/** 检测宽高大小 */
 	if (originWidth < originHeight) {
 		/**
-         * 结果的宽度 = 目标的宽度
-         * 结果的高度 = 目标宽度 / 宽高比
-         */
+		 * 结果的宽度 = 目标的宽度
+		 * 结果的高度 = 目标宽度 / 宽高比
+		 */
 		resultWidth = targetWidth
 		resultHeight = resultWidth / scale
 	} else {
 		/**
-         * 结果的高度 = 目标的高度
-         * 结果的宽度 = 目标高度 * 宽高比
-         */
+		 * 结果的高度 = 目标的高度
+		 * 结果的宽度 = 目标高度 * 宽高比
+		 */
+		resultHeight = targetHeight
+		resultWidth = resultHeight * scale
+	}
+
+	/** 如果结果宽度小于目标宽度 */
+	if (resultWidth < targetWidth) {
+		resultWidth = targetWidth
+		resultHeight = resultWidth / scale
+	}
+	/** 如果结果高度小于目标高度 */
+	if (resultHeight < targetHeight) {
 		resultHeight = targetHeight
 		resultWidth = resultHeight * scale
 	}
