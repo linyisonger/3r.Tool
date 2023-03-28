@@ -1,5 +1,3 @@
-import { cloneDeep } from '../lib/common.js'
-
 /** 因数 */
 interface IFactor {
 	/** 数字a */
@@ -85,82 +83,57 @@ export class Maths {
 
 	/**
 	 * 对象是否相等
-	 * @param A
-	 * @param B
+	 * @param a
+	 * @param b
 	 */
-	static equal<T>(A: T, B: T): boolean {
-		if (typeof A !== typeof B) return false
-		if (typeof A === 'object') {
-			for (const key in A) {
-				if (!this.equal(A[key], B[key])) { return false }
+	static equal<T>(a: T, b: T): boolean {
+		if (typeof a !== typeof b) return false
+		if (typeof a === 'object') {
+			for (const key in a) {
+				if (!this.equal(a[key], b[key])) { return false }
 			}
 			return true
 		}
-		if (A !== B) return false
+		if (a !== b) return false
 		return true
 	}
 
 	/**
 	 * 交集
-	 * @param A
-	 * @param B
+	 * @param a
+	 * @param b
 	 */
-	static intersection<T>(A: T[], B: T[]): T[] {
-		const result: T[] = []
-		for (let i = 0; i < A.length; i++) {
-			for (let j = 0; j < B.length; j++) {
-				if (this.equal(A[i], B[j])) result.push(A[i])
-			}
-		}
-		return result
+	static intersection<T>(a: T[], b: T[]): T[] {
+		return this.removeRepeat(a).filter((item) => b.find(t => this.equal(t, item)))
 	}
 
 	/**
-	 * 删除重复项 (改变原数组)
-	 * @param A
+	 * 删除重复项
+	 * @param origin
 	 */
-	static removeRepeat<T>(A: T[]): T[] {
-		for (let i = 0; i < A.length - 1; i++) {
-			for (let j = i + 1; j < A.length; j++) {
-				if (this.equal(A[i], A[j])) {
-					A.splice(j, 1)
-					j--
-				}
-			}
-		}
-		return A
+	static removeRepeat<T>(origin: T[]): T[] {
+		return origin.filter((item, index) => origin.findIndex((target) => this.equal(target, item)) === index)
 	}
 
 	/**
 	 * 补集
-	 * @param A
-	 * @param B
+	 * @param a
+	 * @param b
 	 */
-	static complementarySet<T>(A: T[], B: T[]): T[] {
+	static complementarySet<T>(a: T[], b: T[]): T[] {
 		const result: T[] = []
-		for (let i = 0; i < B.length; i++) {
-			if (!A.find(_ => this.equal(B[i], _))) result.push(B[i])
-		}
+		for (let i = 0; i < b.length; i++) if (!a.find(item => this.equal(b[i], item))) result.push(b[i])
 		return result
 	}
 
 	/**
 	 * 并集
-	 * @param A
-	 * @param B
+	 * @param a
+	 * @param b
 	 * @returns
 	 */
-	static union<T>(A: T[], B: T[]): T[] {
-		const result: T[] = cloneDeep(A).concat(B)
-		for (let i = 0; i < result.length - 1; i++) {
-			for (let j = i + 1; j < result.length; j++) {
-				if (this.equal(result[i], result[j])) {
-					result.splice(i, 1)
-					i--
-				}
-			}
-		}
-		return result
+	static union<T>(a: T[], b: T[]): T[] {
+		return this.removeRepeat(a.concat(b))
 	}
 
 	/**
