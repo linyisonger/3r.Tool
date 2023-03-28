@@ -1,4 +1,4 @@
-import { cloneDeep, v2, executionTime } from "../index.js";
+import { cloneDeep, v2, executionTime, throttle } from "../index.js";
 let description = function () {
     return ['#### Common 常用模块', '包含一些常用的方法.', '', '以下是相关示例:']
 }
@@ -6,9 +6,10 @@ let description = function () {
 let run = function () {
     console.log('深克隆', cloneDeep({ /** 需要克隆的对象 */ }));
     console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
+    console.log('防抖/节流', throttle(() => { /** 要做的事情 */ }, 1000)());
 }
 try {
-    describe('深克隆', function () {
+    describe('常用方法', function () {
         let p1 = v2(1, 2)
         let p2 = cloneDeep(p1);
         it('引用类型', function () {
@@ -42,15 +43,13 @@ try {
             uint32Array: new Uint32Array([22, 22, 13]),
             float32Array: new Float32Array([1.1, 2.3]),
             float64Array: new Float64Array([1.1, 2.3]),
-            n: null
+            n: null,
         }
+        a['a'] = a
         let b = cloneDeep(a);
-
         it('复杂类型', function () {
             expect(a == b).toEqual(false)
         })
-    })
-    describe('深克隆', () => {
         it('执行时间', function () {
             executionTime(() => {
                 for (let i = 0; i < 1000; i++) {
@@ -58,8 +57,16 @@ try {
                 }
             })
         })
+        it('防抖', function () {
+            let a = 1;
+            let t = throttle(() => { a++ }, 1000)
+            t();
+            t();
+            expect(a == 2).toEqual(true)
+        })
     })
 } catch (error) {
+    console.log(error);
     // describe is not defined 无需理会 调用方式不一致 
 }
 
