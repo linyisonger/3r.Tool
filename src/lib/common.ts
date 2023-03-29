@@ -31,11 +31,11 @@ export function executionTime(fn: () => void) {
 }
 
 /**
- * 防抖/节流
+ * 防抖
  * @param fn 方法
  * @param delay 延迟
  */
-export function throttle(fn: () => void, delay: number) {
+export function antiShake(fn: () => void, delay: number) {
 	let last = 0 // 上次触发的时间
 	return function (this: any, ...args: []) {
 		const now = Date.now()
@@ -43,5 +43,21 @@ export function throttle(fn: () => void, delay: number) {
 			last = now
 			fn.apply(this, args)
 		}
+	}
+}
+
+/**
+ * 节流
+ * @param fn 方法
+ * @param delay 延迟
+ */
+export function throttle(fn: () => void, delay: number) {
+	// eslint-disable-next-line no-undef
+	let timeoutId: NodeJS.Timeout
+	return function (this: any, ...args: []) {
+		if (timeoutId) clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => {
+			fn.apply(this, args)
+		}, delay)
 	}
 }
