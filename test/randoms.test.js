@@ -46,6 +46,7 @@ let run = function () {
     console.log('全局唯一标识符(uuid)', Randoms.uuid());
     // 数据格式 [{name:string,weight:number}] weight 支持自定义在第二个参数中
     console.log('按权重获取随机索引', Randoms.getRandomIndexByWeight(prizes));
+    console.log('随机获取颜色', Randoms.getRandomColor());
 }
 
 try {
@@ -67,7 +68,9 @@ try {
         })
         it('按权重获取随机索引', function () {
             expect(Randoms.getRandomIndexByWeight(prizes) < prizes.length).toEqual(true)
-
+        })
+        it('随机获取颜色', function () {
+            expect(Randoms.getRandomColor().startsWith('rgb')).toEqual(true)
         })
     })
 } catch (error) {
