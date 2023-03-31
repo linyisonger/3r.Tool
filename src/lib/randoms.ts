@@ -25,7 +25,7 @@ export class Randoms {
 	 * @returns 随机数 [min,max)
 	 */
 	static getRandomInt(min: number, max: number): number {
-		return Math.floor(Math.random() * max) + min
+		return ~~(Math.random() * max) + min
 	}
 
 	/**
