@@ -1,4 +1,4 @@
-import { cloneDeep, v2, executionTime, throttle } from "../index.js";
+import { cloneDeep, v2, executionTime, throttle, antiShake } from "../index.js";
 let description = function () {
     return ['#### Common 常用模块', '包含一些常用的方法.', '', '以下是相关示例:']
 }
@@ -6,9 +6,11 @@ let description = function () {
 let run = function () {
     console.log('深克隆', cloneDeep({ /** 需要克隆的对象 */ }));
     console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
-    console.log('防抖/节流', throttle(() => { /** 要做的事情 */ }, 1000)());
+    console.log('防抖', antiShake(() => { /** 要做的事情 */ }, 1000)());
+    console.log('节流', throttle(() => { /** 要做的事情 */ }, 1000)());
 }
 try {
+    jest.useFakeTimers();
     describe('常用方法', function () {
         let p1 = v2(1, 2)
         let p2 = cloneDeep(p1);
@@ -59,10 +61,19 @@ try {
         })
         it('防抖', function () {
             let a = 1;
-            let t = throttle(() => { a++ }, 1000)
+            let t = antiShake(() => { a++ }, 1000)
             t();
             t();
             expect(a == 2).toEqual(true)
+        })
+        it('节流', function () {
+            let a = 1;
+            let t = throttle(() => { a++ }, 1000)
+            t();
+            t();
+            const fn = jest.fn()
+            jest.advanceTimersByTime(3000)
+            expect(fn).toHaveBeenCalledTimes(0)
         })
     })
 } catch (error) {
