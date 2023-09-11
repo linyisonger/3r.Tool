@@ -34,6 +34,7 @@ let run = function () {
     console.log('是否是身份证号码', '622924198810193427'.isCitizenIdentificationNumber);
     console.log('密码规则校验', 'abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
     console.log('判断版本是否相等', '1.0.0'.versionComparison('1.0.0'));
+    console.log('是否是IP地址', Verify.isIPAddress('244.255.123.1'));
 }
 
 try {
@@ -122,6 +123,10 @@ try {
             expect('1.1.1'.versionComparison('1.1.2')).toEqual(-1)
             expect('1.2.1'.versionComparison('1.1.2')).toEqual(1)
             expect('1.2.1.1'.versionComparison('1.1.2.1')).toEqual(1)
+        });
+        it('是否是IP地址', function () {
+            expect('244.255.123.1'.isIPAddress).toEqual(true)
+            expect('244.256.123.1'.isIPAddress).toEqual(false)
         });
     })
 } catch (error) {

@@ -18,13 +18,29 @@ export enum PasswordRuleEnum {
  * 验证拓展类
  */
 export class Verify {
+	/** 像是社会统一信用代码正则 */
+	static readonly LIKE_USCI_REGEXP = /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/
+	/** IP地址验证正则 */
+	static readonly IP_ADDRESS_REGEXP = /^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)\.(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$/
+	/** 手机号码正则表达式 */
+	static readonly PHONE_NUMBER_REGEXP = /^1[3456789]\d{9}$/
+	/** 电话号码正则表达式 */
+	static readonly TELL_PHONE_NUMBER_REGEXP = /^\d{3}-\d{7,8}|\d{4}-\d{7,8}$/
+	/** 电子邮箱正则 */
+	static readonly EMAIL_REGEXP = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+	/** 油车车牌正则 */
+	static readonly VEHICLE_NUMBER_REGEXO = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/
+	/** 电车车牌正则 */
+	static readonly ELECTRIC_VEHICLE_NUMBER_REGEXO = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DABCEFGHJK]$)|([DABCEFGHJK][A-HJ-NP-Z0-9][0-9]{4}$))/
+	/** 像是身份证号码正则 */
+	static readonly LIKE_ID_CARD_NUMBER_REGEXO = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/
 	/**
 	 * 像是社会统一信用代码
 	 * @param usci 社会统一信用代码
 	 * @returns
 	 */
 	static likeUsci(usci: string): boolean {
-		return /[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.test(usci)
+		return Verify.LIKE_USCI_REGEXP.test(usci)
 	}
 
 	/**
@@ -43,7 +59,7 @@ export class Verify {
 	 * @returns
 	 */
 	static isPhoneNumber(phoneNumber: string): boolean {
-		return /^1[3456789]\d{9}$/.test(phoneNumber)
+		return Verify.PHONE_NUMBER_REGEXP.test(phoneNumber)
 	}
 
 	/**
@@ -52,7 +68,7 @@ export class Verify {
 	 * @returns
 	 */
 	static isTellPhoneNumber(tellPhoneNumber: string): boolean {
-		return /^\d{3}-\d{7,8}|\d{4}-\d{7,8}$/.test(tellPhoneNumber)
+		return Verify.TELL_PHONE_NUMBER_REGEXP.test(tellPhoneNumber)
 	}
 
 	/**
@@ -61,7 +77,7 @@ export class Verify {
 	 * @returns
 	 */
 	static isEmail(email: string): boolean {
-		return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(email)
+		return Verify.EMAIL_REGEXP.test(email)
 	}
 
 	/**
@@ -160,8 +176,8 @@ export class Verify {
 	 * @returns
 	 */
 	static isVehicleNumber(vehicleNumber: string) {
-		if (vehicleNumber.length === 7) return /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/.test(vehicleNumber)
-		if (vehicleNumber.length === 8) return /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DABCEFGHJK]$)|([DABCEFGHJK][A-HJ-NP-Z0-9][0-9]{4}$))/.test(vehicleNumber) // 2021年新能源车牌不止有DF
+		if (vehicleNumber.length === 7) return Verify.VEHICLE_NUMBER_REGEXO.test(vehicleNumber)
+		if (vehicleNumber.length === 8) return Verify.ELECTRIC_VEHICLE_NUMBER_REGEXO.test(vehicleNumber) // 2021年新能源车牌不止有DF
 		return false
 	}
 
@@ -171,7 +187,7 @@ export class Verify {
 	 * @returns
 	 */
 	static likeIDCardNumber(num: string): boolean {
-		return /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(num)
+		return Verify.LIKE_ID_CARD_NUMBER_REGEXO.test(num)
 	}
 
 	/**
@@ -225,6 +241,15 @@ export class Verify {
 			if (c[i] < t[i]) return -1
 		}
 		return 0
+	}
+
+	/**
+	 * IP地址验证
+	 * @param ipaddr 验证ip
+	 * @returns
+	 */
+	static isIPAddress(ipaddr: string) {
+		return Verify.IP_ADDRESS_REGEXP.test(ipaddr)
 	}
 }
 
@@ -292,6 +317,11 @@ declare global {
 		 * 是否是身份证号码
 		 */
 		isCitizenIdentificationNumber: boolean;
+
+		/**
+		 * 是否是IP地址 IPv4
+		 */
+		isIPAddress: boolean;
 		/**
 		 * 密码规则校验
 		 * @param rule 规则

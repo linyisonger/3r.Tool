@@ -8,3 +8,4 @@ export * from './lib/verify.js';
 export * from './lib/market.js';
 export * from './lib/animation.js';
 export * from './lib/picture.js';
+export * from './lib/generate.js';

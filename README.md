@@ -78,6 +78,9 @@ export default {
 ```js
 console.log('深克隆', cloneDeep({ /** 需要克隆的对象 */ }));
 console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
+console.log('防抖', antiShake(() => { /** 要做的事情 */ }, 1000)());
+console.log('节流', throttle(() => { /** 要做的事情 */ }, 1000)());
+console.log('打组', group([1, 2, 3, 4, 5], (item, index) => item % 3));
 
 ```
 
@@ -106,6 +109,16 @@ console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase
 console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
 console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
 console.log('字节转换',Convertor.byteFormat(1099511627776,2));
+
+```
+
+#### Generate 生成模块
+包含一些生成的方法.
+
+以下是相关示例:
+```js
+console.log('范围数字', Generate.rangeNumber(1, 7)); //  [ 1, 2, 3, 4, 5, 6 ]
+console.log('直线路径', Generate.straightLinePath(v2(0, 0), v2(0, 2), v2(2, 2))); // [{ x: 0, y: 0 },{ x: 0, y: 1 },{ x: 0, y: 2 },{ x: 1, y: 2 },{ x: 2, y: 2 }]
 
 ```
 
@@ -175,6 +188,7 @@ console.log('随机一个长度为10的只有大小写的字母字符串', Rando
 console.log('全局唯一标识符(uuid)', Randoms.uuid());
 // 数据格式 [{name:string,weight:number}] weight 支持自定义在第二个参数中
 console.log('按权重获取随机索引', Randoms.getRandomIndexByWeight(prizes));
+console.log('随机获取颜色', Randoms.getRandomColor());
 
 ```
 
@@ -212,6 +226,7 @@ console.log('像身份证号', '622924198810193427'.likeIDCardNumber);
 console.log('是否是身份证号码', '622924198810193427'.isCitizenIdentificationNumber);
 console.log('密码规则校验', 'abc123'.passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
 console.log('判断版本是否相等', '1.0.0'.versionComparison('1.0.0'));
+console.log('是否是IP地址', Verify.isIPAddress('244.255.123.1'));
 
 ```
 
