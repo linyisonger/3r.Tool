@@ -1,4 +1,4 @@
-import { cloneDeep, v2, executionTime, throttle, antiShake } from "../index.js";
+import { cloneDeep, v2, executionTime, throttle, antiShake, group } from "../index.js";
 let description = function () {
     return ['#### Common 常用模块', '包含一些常用的方法.', '', '以下是相关示例:']
 }
@@ -8,6 +8,7 @@ let run = function () {
     console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
     console.log('防抖', antiShake(() => { /** 要做的事情 */ }, 1000)());
     console.log('节流', throttle(() => { /** 要做的事情 */ }, 1000)());
+    console.log('打组', group([1, 2, 3, 4, 5], (item, index) => item % 3));
 }
 try {
     jest.useFakeTimers();
@@ -74,6 +75,9 @@ try {
             const fn = jest.fn()
             jest.advanceTimersByTime(3000)
             expect(fn).toHaveBeenCalledTimes(0)
+        })
+        it('打组', function () {
+            expect(group([1, 2, 3, 4, 5], (item, index) => item % 3)).toEqual([[3], [1, 4], [2, 5]])
         })
     })
 } catch (error) {

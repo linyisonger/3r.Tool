@@ -61,3 +61,20 @@ export function throttle(fn: () => void, delay: number) {
 		}, delay)
 	}
 }
+
+/**
+ * 打组方法
+ * 例:
+ * group([1,2,3,4,5],(item,index)=> item % 3) => [ [ 3 ], [ 1, 4 ], [ 2, 5 ] ]
+ * @param arr
+ * @param func
+ * @returns
+ */
+export function group<T>(arr: Array<T>, func: (item: T, index: number) => any) {
+	const tmpDict: any = {}
+	for (let i = 0; i < arr.length; i++) {
+		if (!tmpDict[func(arr[i], i)]) tmpDict[func(arr[i], i)] = []
+		tmpDict[func(arr[i], i)].push(arr[i])
+	}
+	return Object.values(tmpDict)
+}
