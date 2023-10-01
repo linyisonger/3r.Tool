@@ -25,7 +25,8 @@
     "math",
     "animation",
     "randoms",
-    "map"
+    "map",
+    "tools"
   ],
   "author": "3r",
   "license": "MIT",

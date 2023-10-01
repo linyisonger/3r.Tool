@@ -81,6 +81,7 @@ console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
 console.log('防抖', antiShake(() => { /** 要做的事情 */ }, 1000)());
 console.log('节流', throttle(() => { /** 要做的事情 */ }, 1000)());
 console.log('打组', group([1, 2, 3, 4, 5], (item, index) => item % 3));
+console.log('一一对比', contrast([1, 2, 3], (curr, next) => curr + next == 3));
 
 ```
 
