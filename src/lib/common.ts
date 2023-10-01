@@ -78,3 +78,20 @@ export function group<T>(arr: Array<T>, func: (item: T, index: number) => any) {
 	}
 	return Object.values(tmpDict)
 }
+
+/**
+ * 通过条件一一对比
+ * 例:
+ * contrast([1,2,3],(curr,next)=>curr+next==3) => true
+ * @param arr
+ * @param func
+ * @returns
+ */
+export function contrast<T>(arr: Array<T>, func: (curr: T, next: T) => any) {
+	for (let i = 0; i < arr.length - 1; i++) {
+		for (let j = i + 1; j < arr.length; j++) {
+			if (func(arr[i], arr[j])) return true
+		}
+	}
+	return false
+}
