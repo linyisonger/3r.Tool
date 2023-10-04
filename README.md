@@ -248,6 +248,7 @@ console.log('检测p点是否在点p1,p2,p3,p4组成的矩形内', Vector2.check
 console.log('p点绕o点旋转angle°', Vector2.rotateAroundPoint(v2(1, 0), v2(0, 0), 90));
 console.log('计算p1到p2两点之间的距离 保留3位小数', Vector2.distance(v2(0, 0), v2(1, 0)));
 console.log('计算两直线的夹角角度', Vector2.includedAngle(v2(1, 0), v2(1, 1)))
+console.log('在距离处获取点', Vector2.getPointAtDist(v2(0, 0), v2(-1, 0), .5))
 
 ```
 

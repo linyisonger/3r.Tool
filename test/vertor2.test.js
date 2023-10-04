@@ -19,6 +19,7 @@ let run = function () {
     console.log('p点绕o点旋转angle°', Vector2.rotateAroundPoint(v2(1, 0), v2(0, 0), 90));
     console.log('计算p1到p2两点之间的距离 保留3位小数', Vector2.distance(v2(0, 0), v2(1, 0)));
     console.log('计算两直线的夹角角度', Vector2.includedAngle(v2(1, 0), v2(1, 1)))
+    console.log('在距离处获取点', Vector2.getPointAtDist(v2(0, 0), v2(-1, 0), .5))
 }
 
 try {
@@ -61,6 +62,11 @@ try {
         })
         it('转换字符串', function () {
             expect(v2(1, 1).toString()).toEqual("Vector2(1,1)")
+        })
+        it('在距离处获取点', function () {
+            expect(Vector2.getPointAtDist(v2(0, 0), v2(3, 4), 2.5)).toEqual(v2(1.5, 2))
+            expect(Vector2.getPointAtDist(v2(0, 0), v2(1, 0), .5)).toEqual(v2(.5, 0))
+            expect(Vector2.getPointAtDist(v2(0, 0), v2(0, 1), .5)).toEqual(v2(0, .5))
         })
     })
 } catch (error) {
