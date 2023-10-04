@@ -82,7 +82,7 @@ export class Randoms {
 	 */
 	static getRandomIndexByWeight(arr: [], weightKey = 'weight') {
 		/** 总权重 */
-		const total = Maths.sum(arr.map(_ => +_[weightKey]))
+		const total = Maths.sum(arr.map(item => +item[weightKey]))
 		/** 随机数 */
 		const randomNum = Randoms.getRandomInt(0, total)
 		let tmp = 0
@@ -96,6 +96,6 @@ export class Randoms {
 	 * 随机获取颜色
 	 */
 	static getRandomColor() {
-		return `rgb(${new Array(3).fill('').map(_ => this.getRandomInt(0, 256)).join(',')})`
+		return `rgb(${new Array(3).fill('').map(() => this.getRandomInt(0, 256)).join(',')})`
 	}
 }
