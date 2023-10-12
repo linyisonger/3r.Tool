@@ -1,3 +1,6 @@
+### 🚀v1.3.3 对CommonJS的支持
+🔧: 对CommonJS的支持
+
 ### 🚀v1.3.2 二维向量 在距离处获取点
 ➕: Vector2.getPointAtDist 通过距离开始点、结束点、距离 获取距离的坐标点
 

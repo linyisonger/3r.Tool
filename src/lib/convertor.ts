@@ -466,7 +466,7 @@ export class Convertor {
 			const that = this as any
 			if (item.type === 'method') {
 				return function () {
-					return (Convertor as any)[item.name].apply(that, [that, ...arguments])
+					return (Convertor as any)[item.name].apply(that, [that].concat(Object.values(arguments)))
 				}
 			}
 			return (Convertor as any)[item.name](that)

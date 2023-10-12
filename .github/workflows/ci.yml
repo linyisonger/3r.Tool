@@ -19,7 +19,7 @@ jobs:
       - run: |
           yarn install
           yarn run lint
-          npx tsc
+          npx tsc -p tsconfig.test.json
           yarn run test
       - name: Coveralls
         uses: coverallsapp/github-action@master
