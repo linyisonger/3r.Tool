@@ -269,7 +269,7 @@ const ignorePrototype = ['passwordRules', 'versionComparison'];
 			const that = this as any
 			if (item.type === 'method') {
 				return function () {
-					return (Verify as any)[item.name].apply(that, [that, ...arguments])
+					return (Verify as any)[item.name].apply(that, [that].concat(Object.values(arguments)))
 				}
 			}
 			return (Verify as any)[item.name](that)

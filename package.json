@@ -60,5 +60,6 @@
   "typings": "index.d.ts",
   "gitHooks": {
     "pre-commit": "build"
-  }
+  },
+  "directories": {}
 }
