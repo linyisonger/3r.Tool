@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "npx tsc && npm run build:readme && npm run build:compress",
-    "build:readme": "node ./build/readme.js",
+    "build": "npm run build:readme && npx tsc && npm run build:compress",
+    "build:readme": "npx tsc -p tsconfig.test.json && node ./build/readme.js",
     "build:compress": "node ./build/compress.js",
     "lint": "npx eslint src/lib/*.ts --fix",
     "docs": "npx typedoc src/index.ts"
@@ -59,7 +59,7 @@
   "jsdelivr": "index.js",
   "typings": "index.d.ts",
   "gitHooks": {
-    "pre-commit": "build"
+    "pre-commit": "build:readme"
   },
   "directories": {}
 }
