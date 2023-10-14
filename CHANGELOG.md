@@ -1,4 +1,9 @@
-### 🚀v1.3.3 对CommonJS的支持
+### 🚀v1.4.0 递归调用/勾股定理
+➕: Maths.pythagorasTheorem 勾股定理
+➕: recursive 递归调用
+
+
+### 🚀v1.3.3 对CommonJS的支持 ❌
 🔧: 对CommonJS的支持
 
 ### 🚀v1.3.2 二维向量 在距离处获取点

@@ -1,4 +1,11 @@
 /**
+ * 递归调用关键词名称
+ */
+interface IRecursiveKeyName {
+	children: string
+}
+
+/**
  * 深克隆
  * @param obj
  */
@@ -94,4 +101,21 @@ export function contrast<T>(arr: Array<T>, func: (curr: T, next: T) => any) {
 		}
 	}
 	return false
+}
+
+/**
+ * 递归调用
+ * @param arr 数组
+ * @param func 方法
+ */
+export function recursive<T>(arr: Array<T>, func: (curr: T) => void, keyName?: IRecursiveKeyName): T[] {
+	let resultArr: T[] = []
+	const childrenKeyName = (keyName?.children ?? 'children') as keyof T
+	for (let i = 0; i < arr.length; i++) {
+		const item = arr[i]
+		resultArr.push(item)
+		func && func(item)
+		if (item[childrenKeyName] && (item[childrenKeyName] as T[]).length) resultArr = resultArr.concat(recursive(item[childrenKeyName] as T[], func, keyName))
+	}
+	return resultArr
 }

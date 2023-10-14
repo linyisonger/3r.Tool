@@ -82,6 +82,7 @@ console.log('防抖', antiShake(() => { /** 要做的事情 */ }, 1000)());
 console.log('节流', throttle(() => { /** 要做的事情 */ }, 1000)());
 console.log('打组', group([1, 2, 3, 4, 5], (item, index) => item % 3));
 console.log('一一对比', contrast([1, 2, 3], (curr, next) => curr + next == 3));
+console.log('递归调用', recursive(tree, console.log));
 
 ```
 
@@ -164,6 +165,7 @@ console.log('补集', Maths.complementarySet([{ x: 1 }, { y: 2 }, { a: 2, z: 3 }
 console.log('并集', Maths.union([1, 23, 4, 556, 14, 124], [123, 452, 231, 1, 14]));
 console.log('数组 通过下标改变位置 从3的位置移到1的位置', Maths.interchange([1, 2, 3, 4], 3, 1));
 console.log('阶乘 10!', Maths.iterationFactorial(10))
+console.log('勾股定理', Maths.pythagorasTheorem(3, 4))
 
 ```
 
