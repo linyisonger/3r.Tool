@@ -163,4 +163,12 @@ export class Maths {
 		for (let i = 2; i <= num; i++) { counter = counter * i }
 		return counter
 	}
+
+	/**
+	 * 勾股定理
+	 * a²+b²=c²
+	 */
+	static pythagorasTheorem(a: number, b: number) {
+		return Math.sqrt(a * a + b * b)
+	}
 }

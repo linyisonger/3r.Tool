@@ -1,8 +1,42 @@
-import { cloneDeep, v2, executionTime, throttle, antiShake, group, contrast } from "../index.js";
+import { cloneDeep, v2, executionTime, throttle, antiShake, group, contrast, recursive } from "../index.js";
 let description = function () {
     return ['#### Common 常用模块', '包含一些常用的方法.', '', '以下是相关示例:']
 }
-
+let tree = [{
+    label: '一级 1',
+    children: [{
+        label: '二级 1-1',
+        children: [{
+            label: '三级 1-1-1'
+        }]
+    }]
+}, {
+    label: '一级 2',
+    children: [{
+        label: '二级 2-1',
+        children: [{
+            label: '三级 2-1-1'
+        }]
+    }, {
+        label: '二级 2-2',
+        children: [{
+            label: '三级 2-2-1'
+        }]
+    }]
+}, {
+    label: '一级 3',
+    children: [{
+        label: '二级 3-1',
+        children: [{
+            label: '三级 3-1-1'
+        }]
+    }, {
+        label: '二级 3-2',
+        children: [{
+            label: '三级 3-2-1'
+        }]
+    }]
+}];
 let run = function () {
     console.log('深克隆', cloneDeep({ /** 需要克隆的对象 */ }));
     console.log('执行时间', executionTime(() => { /** 要做的事情 */ }));
@@ -10,6 +44,7 @@ let run = function () {
     console.log('节流', throttle(() => { /** 要做的事情 */ }, 1000)());
     console.log('打组', group([1, 2, 3, 4, 5], (item, index) => item % 3));
     console.log('一一对比', contrast([1, 2, 3], (curr, next) => curr + next == 3));
+    console.log('递归调用', recursive(tree, console.log));
 }
 try {
     jest.useFakeTimers();
@@ -83,6 +118,11 @@ try {
         it('一一对比', function () {
             expect(contrast([1, 2, 3], (curr, next) => curr + next == 3)).toEqual(true)
             expect(contrast([1, 2, 3], (curr, next) => curr + next == 9)).toEqual(false)
+        })
+        it('递归调用', function () {
+            expect(recursive(tree, (item) => item, { children: 'children' }).length === 13).toEqual(true)
+            expect(recursive(tree, (item) => item).length === 13).toEqual(true)
+            expect(recursive(tree).length === 13).toEqual(true)
         })
     })
 } catch (error) {
