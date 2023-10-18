@@ -33,6 +33,5 @@ jobs:
           coverageCommand: yarn run test
           debug: true
       - name: Codecov
-      - uses: actions/checkout@master
-      - uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v3
         
