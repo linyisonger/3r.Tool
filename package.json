@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
+    "test:codecov": "jest --coverage --config jest.config.codecov.cjs",
     "build": "npm run build:readme && npx tsc && npm run build:compress",
     "build:readme": "npx tsc -p tsconfig.test.json && node ./build/readme.js",
     "build:compress": "node ./build/compress.js",
