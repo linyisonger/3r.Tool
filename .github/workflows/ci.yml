@@ -32,8 +32,8 @@ jobs:
         with:
           coverageCommand: yarn run test
           debug: true
+      - run: yarn run test:codecov
       - name: Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/clover.xml
