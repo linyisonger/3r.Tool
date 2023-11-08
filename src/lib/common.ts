@@ -108,14 +108,14 @@ export function contrast<T>(arr: Array<T>, func: (curr: T, next: T) => any) {
  * @param arr 数组
  * @param func 方法
  */
-export function recursive<T>(arr: Array<T>, func: (curr: T) => void, keyName?: IRecursiveKeyName): T[] {
+export function recursive<T>(arr: Array<T>, func: (curr: T, parent?: T) => void, keyName?: IRecursiveKeyName, parent?: T): T[] {
 	let resultArr: T[] = []
 	const childrenKeyName = (keyName?.children ?? 'children') as keyof T
 	for (let i = 0; i < arr.length; i++) {
 		const item = arr[i]
 		resultArr.push(item)
-		func && func(item)
-		if (item[childrenKeyName] && (item[childrenKeyName] as T[]).length) resultArr = resultArr.concat(recursive(item[childrenKeyName] as T[], func, keyName))
+		func && func(item, parent)
+		if (item[childrenKeyName] && (item[childrenKeyName] as T[]).length) resultArr = resultArr.concat(recursive(item[childrenKeyName] as T[], func, keyName, item))
 	}
 	return resultArr
 }
