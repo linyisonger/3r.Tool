@@ -440,6 +440,25 @@ export class Convertor {
 		}
 		return (byte / Convertor.byteDifferenceValue[Convertor.byteDifferenceValue.length - 1]).toFixed(fractionDigits) + units[units.length - 1]
 	}
+
+	/**
+	 * 四值法拆分
+	 * 1 => [1,1,1,1]
+	 * [1] => [1,1,1,1]
+	 * [1,2] => [1,2,1,2]
+	 * [1,2,3]=> [1,2,3,2]
+	 * [1,2,3,4] => [1,2,3,4]
+	 * @param val 输入值
+	 */
+	static fourValueSplit(val: number | number[]): number[] {
+		if (Array.isArray(val)) {
+			if (val.length === 4) return val
+			if (val.length === 3) return val.concat([val[1]])
+			if (val.length === 2) return val.concat([val[0], val[1]])
+			if (val.length === 1) return [val[0], val[0], val[0], val[0]]
+			throw Error('array length error .')
+		} else return [val, val, val, val]
+	}
 }
 
 [
