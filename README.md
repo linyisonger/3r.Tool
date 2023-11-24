@@ -1,6 +1,6 @@
-🏃‍包含一些常用方法例如对象深克隆/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/验证为空、车牌号、邮箱、身份证、统一社会信用代码、手机号、版本对比/转换日期、星座、身份证解析、字节...持续更新整合
+🏃‍包含一些常用方法例如对象深克隆、递归调用、一一对比/数组交集、并集、差集/二维向量点乘、叉乘/股票KDJ、MACD、RSI、BOLL/验证为空、车牌号、邮箱、身份证、统一社会信用代码、手机号、版本对比/转换日期、星座、身份证解析、字节...持续更新整合
 
-![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/cd.yml)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg?branch=master)](https://coveralls.io/github/linyisonger/3r.Tool?branch=master)![release](https://img.shields.io/librariesio/release/npm/@3r/tool)![npm](https://img.shields.io/npm/v/@3r/tool)![sourcerank](https://img.shields.io/librariesio/sourcerank/npm/@3r/tool)![NPM](https://img.shields.io/npm/l/@3r/tool)[![Code Climate](https://codeclimate.com/github/linyisonger/3r.Tool/badges/gpa.svg)](https://codeclimate.com/github/linyisonger/3r.Tool)[![Test Coverage](https://codeclimate.com/github/linyisonger/3r.Tool/badges/coverage.svg)](https://codeclimate.com/github/linyisonger/3r.Tool/coverage)[![docs](https://img.shields.io/badge/docs-info-blue)](https://linyisonger.github.io/3r.Tool/)
+![action](https://img.shields.io/github/actions/workflow/status/linyisonger/3r.Tool/cd.yml)![npm](https://img.shields.io/npm/dw/@3r/tool)[![Coverage Status](https://coveralls.io/repos/github/linyisonger/3r.Tool/badge.svg?branch=master)](https://coveralls.io/github/linyisonger/3r.Tool?branch=master)![release](https://img.shields.io/librariesio/release/npm/@3r/tool)![npm](https://img.shields.io/npm/v/@3r/tool)![sourcerank](https://img.shields.io/librariesio/sourcerank/npm/@3r/tool)![NPM](https://img.shields.io/npm/l/@3r/tool)[![Code Climate](https://codeclimate.com/github/linyisonger/3r.Tool/badges/gpa.svg)](https://codeclimate.com/github/linyisonger/3r.Tool)[![Test Coverage](https://codeclimate.com/github/linyisonger/3r.Tool/badges/coverage.svg)](https://codeclimate.com/github/linyisonger/3r.Tool/coverage)[![codecov](https://codecov.io/gh/linyisonger/3r.Tool/graph/badge.svg?token=0VLDX7ON0N)](https://codecov.io/gh/linyisonger/3r.Tool)[![docs](https://img.shields.io/badge/docs-info-blue)](https://linyisonger.github.io/3r.Tool/)
 
 #### 如何使用工具包 ?
 
@@ -110,7 +110,8 @@ console.log('蛇形命名法 -> 小驼峰命名法', Convertor.snakeCaseToLowerC
 console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
 console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
 console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
-console.log('字节转换',Convertor.byteFormat(1099511627776,2));
+console.log('字节转换', Convertor.byteFormat(1099511627776, 2));
+console.log('四值法拆分', Convertor.fourValueSplit(1));
 
 ```
 
