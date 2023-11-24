@@ -24,7 +24,8 @@ let run = function () {
     console.log('驼峰命名法 -> 蛇形命名法', Convertor.camelcaseToSnakeCase('LowerCaseWithUnderscores'));
     console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'));
     console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
-    console.log('字节转换',Convertor.byteFormat(1099511627776,2));
+    console.log('字节转换', Convertor.byteFormat(1099511627776, 2));
+    console.log('四值法拆分', Convertor.fourValueSplit(1));
 }
 try {
     describe('转换模块', function () {
@@ -169,7 +170,14 @@ try {
             expect(byte.byteFormat(2)).toEqual('12.06KB')
             expect(Convertor.byteFormat('1024', 2)).toEqual('1.00KB')
         })
-
+        it('四值法拆分', function () {
+            expect(Convertor.fourValueSplit(1)).toEqual([1, 1, 1, 1])
+            expect(Convertor.fourValueSplit([1])).toEqual([1, 1, 1, 1])
+            expect(Convertor.fourValueSplit([1, 2])).toEqual([1, 2, 1, 2])
+            expect(Convertor.fourValueSplit([1, 2, 3])).toEqual([1, 2, 3, 2])
+            expect(Convertor.fourValueSplit([1, 2, 3, 4])).toEqual([1, 2, 3, 4])
+            expect(() => Convertor.fourValueSplit([1, 2, 3, 4, 5])).toThrow()
+        })
     })
 } catch (error) {
     // describe is not defined 无需理会 调用方式不一致 
