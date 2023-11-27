@@ -19,6 +19,7 @@ let run = function () {
     console.log('数组 通过下标改变位置 从3的位置移到1的位置', Maths.interchange([1, 2, 3, 4], 3, 1));
     console.log('阶乘 10!', Maths.iterationFactorial(10))
     console.log('勾股定理', Maths.pythagorasTheorem(3, 4))
+    console.log('在可及的范围内', Maths.inRange(4, 1, 5))
 }
 
 try {
@@ -78,6 +79,13 @@ try {
         })
         it('勾股定理', function () {
             expect(Maths.pythagorasTheorem(3, 4)).toEqual(5)
+        })
+        it('在可及的范围内', function () {
+            let val = 10;
+            expect(val.inRange(1, 10)).toEqual(val)
+            expect(val.inRange(1, 9)).toEqual(9)
+            expect(val.inRange(11, 91)).toEqual(11)
+            expect(val.inRange(10, 91)).toEqual(10)
         })
     })
 } catch (error) {
