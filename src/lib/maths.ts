@@ -171,4 +171,43 @@ export class Maths {
 	static pythagorasTheorem(a: number, b: number) {
 		return Math.sqrt(a * a + b * b)
 	}
+
+	/**
+	 * 在可及的范围内
+	 * @param val 值
+	 * @param min 最小
+	 * @param max 最大
+	 * @returns 范围内值
+	 */
+	static inRange(val: number, min: number, max: number) {
+		if (min > val) return min
+		if (max < val) return max
+		return val
+	}
+}
+
+[
+	{ name: 'inRange', prototype: Number.prototype, type: 'method' }
+].forEach(item => {
+	Object.defineProperty(item.prototype, item.name, {
+		get: function () {
+			const that = this as any
+			return function () {
+				return (Maths as any)[item.name].apply(that, [that].concat(Object.values(arguments)))
+			}
+		}
+	})
+})
+
+declare global {
+	interface Number {
+		/**
+		 * 在可及的范围内
+		 * @param min 最小
+		 * @param max 最大
+		 * @returns 范围内值
+		 */
+		inRange(min: number, max: number): number;
+	}
+
 }
