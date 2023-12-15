@@ -207,7 +207,10 @@ export class Verify {
 			sum += (c * Math.pow(2, 17 - i)) % 11
 		}
 		sum %= 11
-		if (Number(num[17]) !== vc[sum]) return false
+		// 最后一个字符
+		let lastChar: string | number = num[17]
+		if (lastChar === 'X') lastChar = 10
+		if (Number(lastChar) !== vc[sum]) return false
 		return true
 	}
 
