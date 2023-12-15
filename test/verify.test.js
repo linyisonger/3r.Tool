@@ -17,7 +17,7 @@ let run = function () {
     // 这个验证校验码是否正确
     console.log('是否是统一社会信用代码', Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY536'))
     console.log('是否是车牌号', Verify.isVehicleNumber('青G04444'))
-    console.log('像身份证号', Verify.likeIDCardNumber('410328199911062510'));
+    console.log('像身份证号', Verify.likeIDCardNumber('37062219890704584X'));
     console.log('是否是身份证号码', Verify.isCitizenIdentificationNumber('37062219890704584X'));
     console.log('密码规则校验', Verify.passwordRules('abc123', PasswordRuleEnum.SmallNumber, 6, 20));
     // 字符串拓展使用
