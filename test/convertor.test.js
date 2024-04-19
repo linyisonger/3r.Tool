@@ -26,6 +26,7 @@ let run = function () {
     console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
     console.log('字节转换', Convertor.byteFormat(1099511627776, 2));
     console.log('四值法拆分', Convertor.fourValueSplit(1));
+    console.log('敏感信息加符号', Convertor.sensitivePlusSymbol('230504199607116664', '6,14'));
 }
 try {
     describe('转换模块', function () {
@@ -141,17 +142,17 @@ try {
                 birthday: '1996/07/11',
                 gender: '女',
                 constellation: '巨蟹座',
-                age: 27
+                age: new Date().getFullYear() - 1996
             })
             expect('230504199607116664'.citizenIdentificationNumberParse).toEqual({
                 reginCode: '230504',
                 birthday: '1996/07/11',
                 gender: '女',
                 constellation: '巨蟹座',
-                age: 27
+                age: new Date().getFullYear() - 1996
             })
             expect('420503198804097532'.citizenIdentificationNumberParse).toEqual({
-                "age": 35,
+                "age": new Date().getFullYear() - 1988,
                 "birthday": "1988/04/09",
                 "constellation": "白羊座",
                 "gender": "男",
@@ -178,6 +179,13 @@ try {
             expect(Convertor.fourValueSplit([1, 2, 3, 4])).toEqual([1, 2, 3, 4])
             expect(() => Convertor.fourValueSplit([1, 2, 3, 4, 5])).toThrow()
         })
+        it('敏感信息加符号', function () {
+            expect(Convertor.sensitivePlusSymbol('230504199607116664', '6,14')).toEqual('230504********6664')
+            expect(Convertor.sensitivePlusSymbol('18602736144', [3, 7])).toEqual('186****6144')
+            expect(Convertor.sensitivePlusSymbol('18602736144', [[3, 7], [8, 11]])).toEqual('186****6***')
+            expect(Convertor.sensitivePlusSymbol('18602736144', [[3, 7, 3]])).toEqual('18602736144')
+        })
+
     })
 } catch (error) {
     // describe is not defined 无需理会 调用方式不一致 
