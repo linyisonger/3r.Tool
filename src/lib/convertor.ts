@@ -462,24 +462,24 @@ export class Convertor {
 
 	/**
 	 * 敏感信息加符号
-	 * @param str 
-	 * @param range 
-	 * @param symbol 
+	 * @param str
+	 * @param range
+	 * @param symbol
 	 */
 	static sensitivePlusSymbol(str: string, range: [] | [[]] | string, symbol = '*') {
-		let res = str.split('');
+		const res = str.split('')
 		let rangeList = []
 		if (Array.isArray(range)) {
-			range = range.toString();
+			range = range.toString()
 		}
 		rangeList = range.split(',').map(item => +item)
 		// 非法参数
-		if (rangeList.length % 2 == 1 || rangeList.length == 0) return str;
+		if (rangeList.length % 2 === 1 || rangeList.length === 0) return str
 
 		for (let i = 0; i < str.length; i++) {
 			for (let j = 0; j < rangeList.length; j += 2) {
-				const min = rangeList[j];
-				const max = rangeList[j + 1];
+				const min = rangeList[j]
+				const max = rangeList[j + 1]
 				if (min <= i && i < max) {
 					res[i] = symbol
 				}
@@ -487,7 +487,6 @@ export class Convertor {
 		}
 		return res.join('')
 	}
-
 }
 
 [
@@ -507,7 +506,7 @@ export class Convertor {
 	{ name: 'camelcaseToSnakeCase', prototype: String.prototype, type: 'property' },
 	{ name: 'getConstellationByDate', prototype: String.prototype, type: 'property' },
 	{ name: 'getConstellationByDate', prototype: Date.prototype, type: 'property' },
-	{ name: 'citizenIdentificationNumberParse', prototype: String.prototype, type: 'property' },
+	{ name: 'citizenIdentificationNumberParse', prototype: String.prototype, type: 'property' }
 ].forEach(item => {
 	Object.defineProperty(item.prototype, item.name, {
 		get: function () {
