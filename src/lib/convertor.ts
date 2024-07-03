@@ -240,15 +240,19 @@ export class Convertor {
 	 * @param rgbColor rgb颜色
 	 * @returns 16进制颜色
 	 */
-	static rgbToHex(rgbColor: string): string {
-		const reg = /rgb\((\d{0,2}|1\d{0,2}|2[0-5]{2}),(\d{0,2}|1\d{0,2}|2[0-5]{2}),(\d{0,2}|1\d{0,2}|2[0-5]{2})\)/
-		// 剔除空格
-		rgbColor = rgbColor.replace(/ /g, '')
+	static rgbToHex(rgbColor: string | string[]): string {
+		let rgb: string[] = Array.isArray(rgbColor) ? rgbColor : []
+		if (typeof rgbColor === 'string') {
+			// 剔除空格
+			rgbColor = rgbColor.replace(/ /g, '');
+			// 剔除rgb
+			rgbColor = rgbColor.replace(/[rgb\(\)]/g, '');
+
+			rgb = rgbColor.split(',')
+		}
 		// 测试是否符合规范
-		if (reg.test(rgbColor)) {
-			const [, r, g, b] = rgbColor.match(reg) as Array<string>
-			const rgb = [+r, +g, +b]
-			const hex = rgb.map(a => a.toString(16)).map(a => a[1] ? a : `0${a}`)
+		if (rgb.length === 3 && !rgb.some(val => +val < 0 || +val > 255)) {
+			const hex = rgb.map(a => (+a).toString(16)).map(a => a[1] ? a : `0${a}`)
 			return `#${hex.join('')}`
 		} else throw new TypeError('input data type error.')
 	}
