@@ -13,7 +13,7 @@ let run = function () {
     console.log('json对象转换base64', Convertor.jsonToBase64({ a: 1 }));
     console.log('base64转换json对象', Convertor.base64ToJson('eyJhIjoxfQ=='));
     console.log('颜色转换', Convertor.hexToRgb('f2a'));
-    console.log('颜色转换', Convertor.rgbToHex('rgb(255,34,170)'));
+    console.log('颜色转换', Convertor.rgbToHex('rgb(235,239,241)'));
     console.log('xml输出文本', Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>'));
     console.log('数字转大写人民币', Convertor.numToAmountInWords(102030.00));
     console.log('数字转中文', Convertor.numToChinese(102030));
@@ -74,13 +74,16 @@ try {
             expect(Convertor.hexToRgb('#ff22aa')).toEqual('rgb(255,34,170)')
             expect(Convertor.hexToRgb('ff22aa')).toEqual('rgb(255,34,170)')
             expect('ff22aa'.hexToRgb).toEqual('rgb(255,34,170)')
+            expect('EBEFF1'.hexToRgb).toEqual('rgb(235,239,241)')
             expect(() => Convertor.hexToRgb('')).toThrow();
         })
         it('颜色转换', function () {
             expect(Convertor.rgbToHex('rgb(255,34,170)')).toEqual('#ff22aa')
             expect(Convertor.rgbToHex('rgb(1,34,170)')).toEqual('#0122aa')
             expect('rgb(255,34,170)'.rgbToHex).toEqual('#ff22aa')
+            expect(Convertor.rgbToHex([255, 34, 170])).toEqual('#ff22aa')
             expect(() => Convertor.rgbToHex('')).toThrow();
+            expect(() => Convertor.rgbToHex([])).toThrow();
         })
         it('xml输出文本', function () {
             expect(Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>')).toEqual('总金额 100,000.00')
