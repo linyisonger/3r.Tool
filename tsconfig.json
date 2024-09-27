@@ -1,17 +1,16 @@
 {
-    "compilerOptions": {
-        "target": "ES6", // 指定ECMAScript目标版本
-        "module": "ES2015",
-        "declaration": true, // 生成 `.d.ts` 文件
-        "outDir": "./", // 编译后生成的文件目录
-        "strict": true, // 开启严格的类型检测
-        "sourceMap": false,
-        "allowJs": true,
-        "skipLibCheck": true
-    },
-    "include": [
-        "src/**/*",
-        "src/*",
-    ],
-    "exclude": [],
+  "compilerOptions": {
+    "target": "ES6", // 指定ECMAScript目标版本
+    "module": "ESNext",
+    "declaration": true, // 生成 `.d.ts` 文件
+    "outDir": "./", // 编译后生成的文件目录
+    "strict": true, // 开启严格的类型检测
+    "sourceMap": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "src/*"],
+  "exclude": []
 }
