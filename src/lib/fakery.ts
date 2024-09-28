@@ -113,7 +113,7 @@ function getBankCardNumberCheckCode(cardNumber: string) {
 		const n = +cardNumber[i]
 		sum += (cardNumber.length - 1 - i) % 2 === 0 ? (n * 2) / 10 + (n * 2) % 10 : n
 	}
-	return sum % 10 === 0 ? '0' : 10 - sum % 10 + ''
+	return sum % 10 === 0 ? '0' : ~~(10 - sum % 10) + ''
 }
 /**
  * 假数据
