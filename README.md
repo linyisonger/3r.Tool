@@ -99,7 +99,7 @@ console.log('base64转文本', Convertor.base64ToText('MTIzNA=='));
 console.log('json对象转换base64', Convertor.jsonToBase64({ a: 1 }));
 console.log('base64转换json对象', Convertor.base64ToJson('eyJhIjoxfQ=='));
 console.log('颜色转换', Convertor.hexToRgb('f2a'));
-console.log('颜色转换', Convertor.rgbToHex('rgb(255,34,170)'));
+console.log('颜色转换', Convertor.rgbToHex('rgb(235,239,241)'));
 console.log('xml输出文本', Convertor.xmlToText('<div>总金额 <span>100,000.00</span></div>'));
 console.log('数字转大写人民币', Convertor.numToAmountInWords(102030.00));
 console.log('数字转中文', Convertor.numToChinese(102030));
@@ -112,6 +112,25 @@ console.log('通过日期获取星座', Convertor.getConstellationByDate('09/14'
 console.log('身份证号解析', '230504199607116664'.citizenIdentificationNumberParse);
 console.log('字节转换', Convertor.byteFormat(1099511627776, 2));
 console.log('四值法拆分', Convertor.fourValueSplit(1));
+console.log('敏感信息加符号', Convertor.sensitivePlusSymbol('230504199607116664', '6,14'));
+
+```
+
+####  fakery 假数据模块
+包含一些生成数据的方法.
+
+以下是相关示例:
+```js
+console.log('身份证号码', Fakery.citizenIdentificationNumber({
+    regionCodes: ['410728'],
+    maxAge: 20,
+    minAge: 15,
+    gender: GenderEnum.Female
+}));
+console.log('社会统一信用代码', Fakery.usci());
+console.log('手机号码', Fakery.phoneNumber());
+console.log('姓名', Fakery.fullName());
+console.log('银行卡号码 [工商银行卡号]', Fakery.bankCardNumber());
 
 ```
 
@@ -167,6 +186,7 @@ console.log('并集', Maths.union([1, 23, 4, 556, 14, 124], [123, 452, 231, 1, 1
 console.log('数组 通过下标改变位置 从3的位置移到1的位置', Maths.interchange([1, 2, 3, 4], 3, 1));
 console.log('阶乘 10!', Maths.iterationFactorial(10))
 console.log('勾股定理', Maths.pythagorasTheorem(3, 4))
+console.log('在可及的范围内', Maths.inRange(4, 1, 5))
 
 ```
 
@@ -186,13 +206,23 @@ console.log('aspectFit 缩放模式，保持纵横比缩放图片，使图片的
 
 以下是相关示例:
 ```js
-console.log('获取随机数(整数) [0~10)之间的数', Randoms.getRandomInt(0, 10))
-console.log('打乱数组', Randoms.getDisorganizeArray([{ a: 1 }, { b: 1 }, { c: 1 }]));
-console.log('随机一个长度为10的只有大小写的字母字符串', Randoms.getRandomStr(10, GetRandomStrEnum.LargeSmall))
-console.log('全局唯一标识符(uuid)', Randoms.uuid());
-// 数据格式 [{name:string,weight:number}] weight 支持自定义在第二个参数中
-console.log('按权重获取随机索引', Randoms.getRandomIndexByWeight(prizes));
-console.log('随机获取颜色', Randoms.getRandomColor());
+nsole.log("获取随机数(整数) [0~10)之间的数", Randoms.getRandomInt(0, 10));
+nsole.log(
+"打乱数组",
+Randoms.getDisorganizeArray([{ a: 1 }, { b: 1 }, { c: 1 }])
+
+nsole.log(
+"随机一个长度为10的只有大小写的字母字符串",
+Randoms.getRandomStr(10, GetRandomStrEnum.LargeSmall)
+
+nsole.log("全局唯一标识符(uuid)", Randoms.uuid());
+ 数据格式 [{name:string,weight:number}] weight 支持自定义在第二个参数中
+nsole.log("按权重获取随机索引", Randoms.getRandomIndexByWeight(prizes));
+nsole.log("随机获取颜色", Randoms.getRandomColor());
+nsole.log(
+"随机获取身份证号码",
+Randoms.getRandomCitizenIdentificationNumber()
+
 
 ```
 
@@ -213,8 +243,8 @@ console.log('是否是邮箱', Verify.isEmail('linyisonger@qq.com'))
 // 这个验证校验码是否正确
 console.log('是否是统一社会信用代码', Verify.isUnifiedSocialCreditIdentifier('92230900EUFUTJY536'))
 console.log('是否是车牌号', Verify.isVehicleNumber('青G04444'))
-console.log('像身份证号', Verify.likeIDCardNumber('622924198810193427'));
-console.log('是否是身份证号码', Verify.isCitizenIdentificationNumber('622924198810193427'));
+console.log('像身份证号', Verify.likeIDCardNumber('37062219890704584X'));
+console.log('是否是身份证号码', Verify.isCitizenIdentificationNumber('37062219890704584X'));
 console.log('密码规则校验', Verify.passwordRules('abc123', PasswordRuleEnum.SmallNumber, 6, 20));
 // 字符串拓展使用
 console.log('是否是null或者""', ''.isNullOrEmpty);
