@@ -1,3 +1,19 @@
+
+/**
+ * 获取校验码
+ * @param frontCode 
+ */
+function getCitizenIdentificationNumberCheckCode(frontCode: string) {
+	let vc = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
+	let sum = 0
+	for (let i = 0; i < frontCode.length; i++) {
+		const c = Number(frontCode[i])
+		sum += (c * Math.pow(2, 17 - i)) % 11
+	}
+	sum %= 11
+	return vc[sum]
+}
+
 export enum PasswordRuleEnum {
 	/** 大写字母 */
 	Large = 1,
@@ -197,20 +213,8 @@ export class Verify {
 	static isCitizenIdentificationNumber(num: string): boolean {
 		if (num.length !== 18) return false
 		if (!this.likeIDCardNumber(num)) return false
-		// 验证码
-		const vc = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]
-		// 前部分
-		const frontNum = num.substring(0, 17)
-		let sum = 0
-		for (let i = 0; i < frontNum.length; i++) {
-			const c = Number(frontNum[i])
-			sum += (c * Math.pow(2, 17 - i)) % 11
-		}
-		sum %= 11
-		// 最后一个字符
-		let lastChar: string | number = num[17]
-		if (lastChar === 'X') lastChar = 10
-		if (Number(lastChar) !== vc[sum]) return false
+		const lastChar = getCitizenIdentificationNumberCheckCode(num.substring(0, 17)) // 最后一个字符
+		if (lastChar !== num[17]) return false
 		return true
 	}
 
