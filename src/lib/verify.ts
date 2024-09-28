@@ -1,10 +1,9 @@
-
 /**
  * 获取校验码
- * @param frontCode 
+ * @param frontCode
  */
 function getCitizenIdentificationNumberCheckCode(frontCode: string) {
-	let vc = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
+	const vc = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
 	let sum = 0
 	for (let i = 0; i < frontCode.length; i++) {
 		const c = Number(frontCode[i])
