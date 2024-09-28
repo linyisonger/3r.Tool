@@ -244,9 +244,9 @@ export class Convertor {
 		let rgb: string[] = Array.isArray(rgbColor) ? rgbColor : []
 		if (typeof rgbColor === 'string') {
 			// 剔除空格
-			rgbColor = rgbColor.replace(/ /g, '');
+			rgbColor = rgbColor.replace(/ /g, '')
 			// 剔除rgb
-			rgbColor = rgbColor.replace(/[rgb\(\)]/g, '');
+			rgbColor = rgbColor.replace(/[rgb\(\)]/g, '')
 
 			rgb = rgbColor.split(',')
 		}
