@@ -116,17 +116,12 @@ console.log('敏感信息加符号', Convertor.sensitivePlusSymbol('230504199607
 
 ```
 
-####  fakery 假数据模块
+####  Fakery 假数据模块
 包含一些生成数据的方法.
 
 以下是相关示例:
 ```js
-console.log('身份证号码', Fakery.citizenIdentificationNumber({
-    regionCodes: ['410728'],
-    maxAge: 20,
-    minAge: 15,
-    gender: GenderEnum.Female
-}));
+console.log('身份证号码', Fakery.citizenIdentificationNumber());
 console.log('社会统一信用代码', Fakery.usci());
 console.log('手机号码', Fakery.phoneNumber());
 console.log('姓名', Fakery.fullName());
