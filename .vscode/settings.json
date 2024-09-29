@@ -1,0 +1,4 @@
+{
+    "prettier.printWidth": 800,
+    "prettier.bracketSameLine": true
+}

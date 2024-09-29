@@ -27,7 +27,8 @@
     "animation",
     "randoms",
     "map",
-    "tools"
+    "tools",
+    "fakery"
   ],
   "author": "3r",
   "license": "MIT",
