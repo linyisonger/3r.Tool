@@ -82,6 +82,7 @@ try {
       expect(Verify.isUnifiedSocialCreditIdentifier("92412100WWUCGLLT04")).toEqual(true);
       expect(Verify.isUnifiedSocialCreditIdentifier("91211200KL0LRM9N40")).toEqual(true);
       expect(Verify.isUnifiedSocialCreditIdentifier("91330600TC9XYWDY5G")).toEqual(true);
+      expect(Verify.isUnifiedSocialCreditIdentifier("12100000764116134Y")).toEqual(true);
       expect("91330600TC9XYWDY5G".isUnifiedSocialCreditIdentifier).toEqual(true);
     });
     it("是否是车牌号", function () {
