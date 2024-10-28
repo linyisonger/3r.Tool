@@ -103,11 +103,11 @@ export class Verify {
 	static isUnifiedSocialCreditIdentifier(usci: string): boolean {
 		if (usci.length !== 18) return false // 长度不正确
 		/** 省份区划 前两位 */
-		const provinceCodes = ['11', '12', '13', '14', '15', '21', '22', '23', '31', '32', '33', '34', '35', '36', '37', '41', '42', '43', '44', '45', '46', '50', '51', '52', '53', '54', '61', '62', '63', '64', '65', '71', '81', '82', '91']
+		// const provinceCodes = ['11', '12', '13', '14', '15', '21', '22', '23', '31', '32', '33', '34', '35', '36', '37', '41', '42', '43', '44', '45', '46', '50', '51', '52', '53', '54', '61', '62', '63', '64', '65', '71', '81', '82', '91']
 		/** 前两位 */
 		const top2 = usci.substring(0, 2)
 		/** 省份区域代码 第三位和第四位 */
-		const proCode = usci.substring(2, 4)
+		// const proCode = usci.substring(2, 4)
 		/** 行政区域代码 第三位和第八位 */
 		const regionCode = usci.substring(2, 8)
 		/** 组织机构代码 */
@@ -116,7 +116,7 @@ export class Verify {
 		/** 组织机构校验不合格 */
 		if (!/^((1?[1|2|3|9])|(5?[1|2|3|9])|(9?[1|2|3|9])|[2|3|4|6|7|8|A-G|Y][1])$/.test(top2)) return false
 		/** 省份区域代码校验不合格 */
-		if (!(provinceCodes.indexOf(proCode) > 0)) return false
+		// if (!(provinceCodes.indexOf(proCode) > 0)) return false
 		/** 行政区域代码校验不合格 */
 		if (!/^([0-9])*$/.test(regionCode)) return false
 		/** 行政区域代码校验不合格 */
