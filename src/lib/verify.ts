@@ -114,7 +114,7 @@ export class Verify {
 		const organizingInstitutionBarCode = usci.substring(8, 16) + '-' + usci.substring(16, 17)
 
 		/** 组织机构校验不合格 */
-		if (!/^((1?[1|2|3|9])|(5?[1|2|3|9])|(9?[1|2|3|9])|[2|3|4|6|7|8|A-G|Y][1])$/.test(top2)) return false
+		if (!/^((1?[1|2|3|9])|(5?[1|2|3|5|9])|(9?[1|2|3|9])|[2|3|4|6|7|8|A-G|Y][1])$/.test(top2)) return false
 		/** 省份区域代码校验不合格 */
 		// if (!(provinceCodes.indexOf(proCode) > 0)) return false
 		/** 行政区域代码校验不合格 */

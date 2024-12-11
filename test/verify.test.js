@@ -28,7 +28,7 @@ let run = function () {
   console.log("校验是否是固定电话", "0371-99882211".isTellPhoneNumber);
   console.log("是否是邮箱", "linyisonger@qq.com".isEmail);
   // 这个验证校验码是否正确
-  console.log("是否是统一社会信用代码", "92230900EUFUTJY536".isUnifiedSocialCreditIdentifier);
+  console.log("是否是统一社会信用代码", "55420502676482337D".isUnifiedSocialCreditIdentifier);
   console.log("是否是车牌号", "青G04444".isVehicleNumber);
   console.log("像身份证号", "622924198810193427".likeIDCardNumber);
   console.log("是否是身份证号码", "622924198810193427".isCitizenIdentificationNumber);
@@ -40,6 +40,7 @@ let run = function () {
 try {
   describe("验证模块", function () {
     it("像是社会统一信用代码", function () {
+      expect(Verify.likeUsci("55420502676482337D")).toEqual(true);
       expect(Verify.likeUsci("92230900EUFUTJY536")).toEqual(true);
       expect("92230900EUFUTJY536".likeUsci).toEqual(true);
     });
@@ -63,6 +64,7 @@ try {
       expect("linyisonger@qq.com".isEmail).toEqual(true);
     });
     it("是否是统一社会信用代码", function () {
+      expect(Verify.isUnifiedSocialCreditIdentifier("55420502676482337D")).toEqual(true);
       expect(Verify.isUnifiedSocialCreditIdentifier("92230900EUFUTJY536")).toEqual(true);
       expect(Verify.isUnifiedSocialCreditIdentifier("92230900EUFUTJY36")).toEqual(false);
       expect(Verify.isUnifiedSocialCreditIdentifier("9X30900EUFUTJY36")).toEqual(false);
