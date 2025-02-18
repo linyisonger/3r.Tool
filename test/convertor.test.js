@@ -27,6 +27,8 @@ let run = function () {
   console.log("字节转换", Convertor.byteFormat(1099511627776, 2));
   console.log("四值法拆分", Convertor.fourValueSplit(1));
   console.log("敏感信息加符号", Convertor.sensitivePlusSymbol("230504199607116664", "6,14"));
+  console.log("将字符串中的全角转换为半角", Convertor.toHalfWidthChar("【你好呀】"));
+  console.log("将字符串中的半角转换为全角", Convertor.toFullWidthChar("[哈哈哈哈]"));
 };
 try {
   describe("转换模块", function () {
@@ -192,6 +194,12 @@ try {
         ])
       ).toEqual("186****6***");
       expect(Convertor.sensitivePlusSymbol("18602736144", [[3, 7, 3]])).toEqual("18602736144");
+    });
+    it("将字符串中的全角转换为半角", function () {
+      expect(Convertor.toHalfWidthChar("【你好呀】")).toEqual("[你好呀]"); 
+    });
+    it("将字符串中的半角转换为全角", function () { 
+      expect(Convertor.toFullWidthChar("[哈哈哈哈]")).toEqual("【哈哈哈哈】");
     });
   });
 } catch (error) {
