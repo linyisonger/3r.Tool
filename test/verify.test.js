@@ -35,6 +35,7 @@ let run = function () {
   console.log("密码规则校验", "abc123".passwordRules(PasswordRuleEnum.SmallNumber, 6, 20));
   console.log("判断版本是否相等", "1.0.0".versionComparison("1.0.0"));
   console.log("是否是IP地址", Verify.isIPAddress("244.255.123.1"));
+  console.log("获取密码难度等级", Verify.passwordDifficulty("abc123.."));
 };
 
 try {
@@ -128,6 +129,12 @@ try {
     it("是否是IP地址", function () {
       expect("244.255.123.1".isIPAddress).toEqual(true);
       expect("244.256.123.1".isIPAddress).toEqual(false);
+    });
+    it("获取密码难度等级", function () {
+      expect(Verify.passwordDifficulty("abc123..")).toEqual(3);
+      expect(Verify.passwordDifficulty("abc123..", 3)).toEqual(true);
+      expect(Verify.passwordDifficulty("abc123", 3)).toEqual(false);
+      expect(Verify.passwordDifficulty("abcA123..")).toEqual(4);
     });
   });
 } catch (error) {
