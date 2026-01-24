@@ -9,21 +9,20 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write
-  contents: read  # 读取仓库代码
+  id-token: write  # Required for OIDC
+  contents: read
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
-      - run: |
-          yarn install
-          yarn run build
-          yarn run test
-          npm publish --provenance --access public
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn install
+      - run: yarn run build
+      - run: yarn run test
+      - run: npm publish
