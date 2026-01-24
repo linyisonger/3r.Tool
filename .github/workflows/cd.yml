@@ -22,7 +22,8 @@ jobs:
         with:
           node-version: 20 # 推荐 LTS 版本
           registry-url: https://registry.npmjs.org/
-          
+      - name: 清理废弃的 npm 配置
+        run: npm config delete always-auth || true # || true 避免配置不存在时报错
       - name: Upgrade npm to latest (解决 OIDC 兼容问题)
         run: npm install -g npm@latest
       - run: npm install
