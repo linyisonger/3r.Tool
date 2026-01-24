@@ -63,5 +63,8 @@
   "gitHooks": {
     "pre-commit": "build:readme"
   },
-  "directories": {}
+  "directories": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }
