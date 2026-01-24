@@ -7,6 +7,10 @@ let description = function () {
 let run = function () {
   console.log("范围数字", Generate.rangeNumber(1, 7)); //  [ 1, 2, 3, 4, 5, 6 ]
   console.log("直线路径", Generate.straightLinePath(v2(0, 0), v2(0, 2), v2(2, 2))); // [{ x: 0, y: 0 },{ x: 0, y: 1 },{ x: 0, y: 2 },{ x: 1, y: 2 },{ x: 2, y: 2 }]
+  console.log("最近一周", Generate.rangeDateByPastWeek()); //  [ '2026-01-18', '2026-01-19', '2026-01-20', '2026-01-21', '2026-01-22', '2026-01-23', '2026-01-24']
+  console.log("最近半个月", Generate.rangeDateByPastHalfMonth()); //  [ ..., '2026-01-18', '2026-01-19', '2026-01-20', '2026-01-21', '2026-01-22', '2026-01-23', '2026-01-24']
+  console.log("最近一个月", Generate.rangeDateByPastMonth()); // [ ...,'2026-01-18', '2026-01-19', '2026-01-20', '2026-01-21', '2026-01-22', '2026-01-23', '2026-01-24']
+
 };
 try {
   describe("生成模块", function () {
@@ -22,6 +26,12 @@ try {
         { x: 1, y: 2 },
         { x: 2, y: 2 },
       ]);
+    });
+    it("范围日期", function () {
+      expect(Generate.rangeDateByPastWeek().length).toEqual(7);
+      expect(Generate.rangeDateByPastHalfMonth().length).toEqual(15);
+      expect(Generate.rangeDateByPastMonth().length).toEqual(30);
+      expect(Generate.rangeDate(new Date('2026-01-24'), new Date('2026-01-25')).length).toEqual(2);
     });
   });
 } catch (error) {
