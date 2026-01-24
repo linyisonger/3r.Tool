@@ -1,5 +1,6 @@
 name: CD Pipeline
 
+
 on:
   push:
     branches: [master]
@@ -7,20 +8,22 @@ on:
       - "package.json"
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read  # 读取仓库代码
+
 jobs:
   build:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
       - run: |
           yarn install
           yarn run build
           yarn run test
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NpmToken}}
+          npm publish --provenance --access public
