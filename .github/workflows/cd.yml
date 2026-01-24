@@ -17,12 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js and npm
+        uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
-      - run: yarn install
-      - run: yarn run build
-      - run: yarn run test
+          node-version: 20 # 推荐 LTS 版本
+          registry-url: https://registry.npmjs.org/
+          cache: 'npm' # 缓存依赖，加速构建
+      - name: Upgrade npm to latest (解决 OIDC 兼容问题)
+        run: npm install -g npm@latest
+      - run: npm install
+      - run: npm run build
+      - run: npm run test
       - run: npm publish --access public
